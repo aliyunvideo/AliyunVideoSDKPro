@@ -42,6 +42,11 @@ typedef NS_ENUM(NSInteger, AliyunImageCropMode) {
 @property (nonatomic, strong) UIColor *fillBackgroundColor;
 
 
+/**
+ 裁剪生成图片
+
+ @return 裁剪后的图片  如果裁剪失败 然后nil
+ */
 - (UIImage *)generateImage;
 
 @end

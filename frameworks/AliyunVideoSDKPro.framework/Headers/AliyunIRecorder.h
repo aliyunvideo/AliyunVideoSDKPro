@@ -351,14 +351,14 @@ enum {
 
  @param filter 滤镜
  */
-- (void)applyFilter:(AliyunEffectFilter *)filter;
+- (int)applyFilter:(AliyunEffectFilter *)filter;
 
 /**
  添加水印
 
  @param image 水印
  */
-- (void)applyImage:(AliyunEffectImage *)image;
+- (int)applyImage:(AliyunEffectImage *)image;
 
 
 /**
@@ -449,7 +449,14 @@ enum {
  */
 - (NSInteger)recorderOutputVideoPixelBuffer:(CVPixelBufferRef)pixelBuffer textureName:(NSInteger)textureName;
 
-
+/**
+ 用户自定义渲染接口
+ 
+ @param srcTexture 原始视频帧纹理id
+ @param size 原始视频帧纹理size
+ @return 返回纹理id
+ */
+- (int)customRender:(int)srcTexture size:(CGSize)size;
 /**
 
  录制实时时长

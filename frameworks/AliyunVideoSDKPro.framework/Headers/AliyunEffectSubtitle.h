@@ -22,4 +22,6 @@
 @property (nonatomic, strong) UIColor *textLabelColor;
 @property (nonatomic, assign) BOOL hasTextLabel;
 
+- (id)initWithRestore:(NSDictionary *)dict;
+
 @end

@@ -34,6 +34,9 @@
 @property (nonatomic, assign) CGFloat originDuration;//原始时长
 @property (nonatomic, assign) CGFloat originTextDuration;//文字原始时长
 @property (nonatomic, assign) CGFloat originTextBeginTime;//文字原始开始时间 相对于动图
+//@property (nonatomic, assign) AliyunPasterType type;
+
+- (id)initWithRestore:(NSDictionary *)dict;
 
 
 @end

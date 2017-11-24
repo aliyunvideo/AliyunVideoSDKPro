@@ -13,8 +13,7 @@
 #import "AliyunPasterManager.h"
 #import "AliyunIPlayerCallback.h"
 #import "AliyunIExporterCallback.h"
-
-
+#import "AliyunEffectStaticImage.h"
 #import "AliyunEffectMV.h"
 #import "AliyunEffectFilter.h"
 #import "AliyunEffectMusic.h"
@@ -39,7 +38,7 @@
 /**
  创建相关资源
  */
-- (void)startEdit;
+- (int)startEdit;
 
 /**
  销毁相关资源
@@ -133,6 +132,21 @@
 
 
 /**
+ 加入静态贴纸
+
+ @param staticImage 静态贴纸
+ */
+- (void)applyStaticImage:(AliyunEffectStaticImage *)staticImage;
+
+/**
+ 移除静态贴纸
+
+ @param staticImage 静态贴纸
+ */
+- (void)removeStaticImage:(AliyunEffectStaticImage *)staticImage;
+
+
+/**
  使用涂鸦
 
  @param paintImage 涂鸦图片
@@ -194,6 +208,11 @@
  @param color 颜色
  */
 - (void)setRenderBackgroundColor:(UIColor *)color;
+
+/**
+ request id
+ */
+- (NSString *)getRequestId;
 
 /**
  版本号

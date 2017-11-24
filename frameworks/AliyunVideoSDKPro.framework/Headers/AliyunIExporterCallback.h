@@ -17,9 +17,9 @@
 
 /**
  导出结束
+ @param outputPath 输出文件路径
  */
-- (void)exporterDidEnd;
-
+- (void)exporterDidEnd:(NSString *)outputPath;
 
 /**
  导出取消
@@ -40,5 +40,12 @@
  @param errorCode 错误码
  */
 - (void)exportError:(int)errorCode;
+
+
+@optional
+/**
+ 导出结束 建议使用exporterDidEnd:(NSString *)outputPath方法
+ */
+- (void)exporterDidEnd;
 
 @end

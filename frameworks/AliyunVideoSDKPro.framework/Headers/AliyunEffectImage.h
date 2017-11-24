@@ -6,9 +6,10 @@
 //  Copyright (C) 2010-2017 Alibaba Group Holding Limited. All rights reserved.
 //
 
-#import "AliyunEffect.h"
+#import "AliyunEffectPasterBase.h"
 #import <CoreGraphics/CoreGraphics.h>
 
-@interface AliyunEffectImage : AliyunEffect
-@property (nonatomic, assign) CGRect frame;
+@interface AliyunEffectImage : AliyunEffectPasterBase
+
+- (id)initWithRestore:(NSDictionary *)dict;
 @end

@@ -13,7 +13,7 @@
 typedef NS_ENUM(NSInteger, AliyunEvent) {
     AliyunEventRecordInit = 2001,
     AliyunEventRecordStart,
-    AliyunEventRecordStop,
+    AliyunEventRecordSuccess,
     AliyunEventRecordDelete,
     AliyunEventRecordFinish,
     AliyunEventRecordError,
@@ -23,13 +23,14 @@ typedef NS_ENUM(NSInteger, AliyunEvent) {
     AliyunEventRecordRate,
     AliyunEventRecordBeauty,
     AliyunEventRecordPosition,
+    AliyunEventRecordStop,
     AliyunEventEditInit = 3001,
     AliyunEventEditFilter = 3005,
     AliyunEventEditMV,
     AliyunEventEditExportStart = 3011,
     AliyunEventEditExportCancel,
     AliyunEventEditExportError = 3016,
-    AliyunEventEditExportFinish,
+    AliyunEventEditExportFinish = 3017,
     AliyunEventTranscodeStart = 8001,
     AliyunEventTranscodeCancel,
     AliyunEventTranscodeError,
@@ -39,12 +40,20 @@ typedef NS_ENUM(NSInteger, AliyunEvent) {
     AliyunEventImporterFinish = 9003,
 };
 
+typedef NS_ENUM(NSInteger, AliyunSubmoduleType) {
+    AliyunSubmoduleTypeNull,
+    AliyunSubmoduleTypeRecord,
+    AliyunSubmoduleTypeCut,
+    AliyunSubmoduleTypeEdit,
+    AliyunSubmoduleTypeImport
+};
+
 typedef struct AliyunVideoEventInfo {
     int bitrate;
     int fps;
     int vduration;
     int aduration;
-    int64_t crc;
+    uint64_t crc;
 } AliyunVideoEventInfo;
 
 
@@ -56,6 +65,8 @@ typedef struct AliyunVideoEventInfo {
 + (instancetype)sharedManager;
 
 - (void)sendEvent:(AliyunEvent)event params:(NSDictionary *)params;
+
+- (void)sendEvent:(AliyunEvent)event params:(NSDictionary *)params type:(AliyunSubmoduleType)type;
 
 - (AliyunVideoEventInfo)videoInfoWithPath:(NSString *)path;
 

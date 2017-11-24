@@ -122,7 +122,7 @@ typedef enum : NSUInteger {
 /**
  文字是否描边
  */
-@property (nonatomic, assign, readonly) BOOL subtitleStroke;
+@property (nonatomic, assign) BOOL subtitleStroke;
 
 /**
  文字颜色

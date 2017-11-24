@@ -31,4 +31,6 @@ typedef NS_ENUM(NSInteger, AliyunPasterType) {
 
 - (AliyunEffectPaster*)copyAnother;
 
+- (id)initWithRestore:(NSDictionary *)dict;
+
 @end
