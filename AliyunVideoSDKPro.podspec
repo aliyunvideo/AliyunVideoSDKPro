@@ -127,7 +127,7 @@ Pod::Spec.new do |s|
 
 
   s.dependency 'QuCore-ThirdParty'
-  s.dependency 'VODUpload'
+  # s.dependency 'VODUpload'
 
 
 
