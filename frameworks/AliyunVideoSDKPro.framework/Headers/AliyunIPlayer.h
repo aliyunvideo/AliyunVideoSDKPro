@@ -77,4 +77,12 @@
 - (void)setActive:(BOOL)active;
 
 
+/**
+ 设置播放器的刷新频率 默认30帧/s 最大60帧/s 建议不低于20帧/s
+
+ @param fps 帧
+ */
+- (void)setRefreshFps:(int)fps;
+
+
 @end

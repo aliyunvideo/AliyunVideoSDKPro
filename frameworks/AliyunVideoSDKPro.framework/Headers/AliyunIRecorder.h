@@ -223,6 +223,18 @@ enum {
  */
 @property (nonatomic, assign) BOOL useFaceDetect;
 
+
+/**
+ 设置识别人脸的个数  最大是3个 最小是1个  如果不需要检测人脸 使用:useFaceDetect = NO
+ */
+@property (nonatomic, assign) int faceDetectCount;
+
+
+/**
+ 是否同步贴合人脸，默认同步。说明：同步贴合人脸动图会在同步线程执行，优点是贴合性强，缺点是性能差的设备会有卡顿现象；非同步贴合人脸动图，有点是画面流畅但贴图贴合性不强。默认是YES。6及以下机型适合异步，以上适合同步
+ */
+@property (nonatomic, assign) BOOL faceDectectSync;
+
 /**
  人脸数量的回调，在useFaceDetect开启的状态下生效
  */
@@ -431,6 +443,14 @@ enum {
  */
 - (void)recorderOutputVideoRawSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 
+/**
+ 返回原始的音频数据 用来做语音识别一类的业务
+ 
+ @param sampleBuffer 音频数据
+ */
+- (void)recorderOutputAudioRawSampleBuffer:(CMSampleBufferRef)sampleBuffer;
+
+/**
 
 /**
  用户自定义渲染

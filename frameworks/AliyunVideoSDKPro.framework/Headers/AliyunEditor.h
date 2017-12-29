@@ -210,6 +210,18 @@
 - (void)setRenderBackgroundColor:(UIColor *)color;
 
 /**
+ 设置转场时长
+ 
+ @param fadeDuration 转场时长
+ @param inDuration 暂时无效
+ @param outDuration 暂时无效
+ @param index 视频index
+ @return 返回结果
+ 第一段视频设置无效,转场时长不能超过最短视频时长的一半
+ */
+- (int)setClipFadeDuration:(CGFloat)fadeDuration inDuration:(CGFloat)inDuration outDuration:(CGFloat)outDuration atIndex:(NSInteger)index;
+
+/**
  request id
  */
 - (NSString *)getRequestId;
