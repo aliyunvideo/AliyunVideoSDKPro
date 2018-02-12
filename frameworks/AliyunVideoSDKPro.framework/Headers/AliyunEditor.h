@@ -130,6 +130,22 @@
  */
 - (int)applyFilter:(AliyunEffectFilter *)filter;
 
+/**
+ 使用动效滤镜
+
+ @param filter filter对象
+ @return 返回值
+ */
+- (int)applyAnimationFilter:(AliyunEffectFilter *)filter;
+
+
+/**
+ 移除某个动效滤镜
+
+ @param filter filter对象
+ */
+- (void)removeAnimationFilter:(AliyunEffectFilter *)filter;
+
 
 /**
  加入静态贴纸

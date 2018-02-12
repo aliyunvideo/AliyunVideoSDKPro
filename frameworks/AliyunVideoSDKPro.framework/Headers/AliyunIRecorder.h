@@ -17,6 +17,7 @@
 #import "AliyunEffectImage.h"
 #import "AliyunEffectMusic.h"
 #import "AliyunEffectFilter.h"
+#import "AliyunEffectMV.h"
 
 typedef NS_ENUM(NSInteger, AliyunIRecorderCameraPosition) {
     AliyunIRecorderCameraPositionFront = 0,
@@ -183,6 +184,11 @@ enum {
  建议1-300，默认5
  */
 @property (nonatomic, assign) int GOP;
+
+/**
+ 录制帧率 默认25
+ */
+@property (nonatomic, assign) int recordFps;
 
 /**
  静音
@@ -365,6 +371,23 @@ enum {
  */
 - (int)applyFilter:(AliyunEffectFilter *)filter;
 
+
+/**
+ 添加动效滤镜
+
+ @param filter 滤镜
+ @return 返回值
+ */
+- (int)applyAnimationFilter:(AliyunEffectFilter *)filter;
+
+/**
+ 添加mv
+
+ @param mv mv
+ @return 返回值
+ */
+- (int)applyMV:(AliyunEffectMV *)mv;
+
 /**
  添加水印
 
@@ -399,6 +422,11 @@ enum {
  删除滤镜
  */
 - (void)deleteFilter;
+
+/**
+ 删除动效滤镜
+ */
+- (void)deleteAnimationFilter;
 
 /**
  删除水印

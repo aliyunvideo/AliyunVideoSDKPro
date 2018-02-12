@@ -10,4 +10,9 @@
 
 @interface AliyunEffectFilter : AliyunEffect
 
+@property (nonatomic, assign) float startTime;
+@property (nonatomic, assign) float endTime;
+
+- (id)initWithRestore:(NSDictionary *)dict;
+
 @end

@@ -120,6 +120,13 @@ typedef NS_ENUM(NSInteger, AliyunCropCutMode) {
  */
 @property (nonatomic, assign) BOOL useHW;
 
+
+/**
+  是否开启优化，开启后只裁剪时间将不走编解码
+  默认开启
+ */
+@property (nonatomic, assign) BOOL shouldOptimize;
+
 /**
  视频填充模式下，填充的背景颜色
  */
