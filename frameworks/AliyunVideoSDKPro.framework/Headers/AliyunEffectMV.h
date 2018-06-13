@@ -9,5 +9,7 @@
 #import "AliyunEffect.h"
 
 @interface AliyunEffectMV : AliyunEffect
-
+@property(nonatomic, assign) int audioEffectVid;    // mv音乐流id
+@property(nonatomic, assign) int disableAudio;      // 是否打开mv音乐
+@property (nonatomic, assign) int audioMixWeight;     // 仅对mv和音乐有效，0-100
 @end

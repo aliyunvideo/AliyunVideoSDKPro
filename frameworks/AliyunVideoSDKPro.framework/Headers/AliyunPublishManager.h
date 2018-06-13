@@ -76,13 +76,27 @@
 
 
 /**
+ 设置水印
+ 
+ @param waterMark 水印
+ */
+- (int)setWaterMark:(AliyunEffectImage *)waterMark;
+
+/**
+ 设置片尾水印
+ 
+ @param waterMark 片尾水印
+ */
+- (int)setTailWaterMark:(AliyunEffectImage *)waterMark;
+
+/**
  设置片尾水印
 
  @param image 水印图片
  @param frame 水印位置
  @param duration 水印时长
  */
-- (void)setTailWaterMark:(UIImage *)image frame:(CGRect)frame duration:(CGFloat)duration;
+- (void)setTailWaterMark:(UIImage *)image frame:(CGRect)frame duration:(CGFloat)duration __deprecated_msg("use setTailWaterMark:(AliyunEffectImage *)waterMark");
 
 /**
  合成视频

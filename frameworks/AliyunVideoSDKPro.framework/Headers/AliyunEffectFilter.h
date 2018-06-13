@@ -12,6 +12,8 @@
 
 @property (nonatomic, assign) float startTime;
 @property (nonatomic, assign) float endTime;
+@property (nonatomic, assign) float streamStartTime;
+@property (nonatomic, assign) float streamEndTime;
 
 - (id)initWithRestore:(NSDictionary *)dict;
 

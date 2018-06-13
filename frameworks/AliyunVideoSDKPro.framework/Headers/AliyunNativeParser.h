@@ -50,4 +50,6 @@
 @interface AliyunNativeParser : NSObject
 -(instancetype)initWithPath:(NSString *)path;
 -(NSString *)getValueForKey:(NSInteger)key;
+- (BOOL)checkInvertAvailable;
+- (int)getMaxEstimatedCacheSize;
 @end

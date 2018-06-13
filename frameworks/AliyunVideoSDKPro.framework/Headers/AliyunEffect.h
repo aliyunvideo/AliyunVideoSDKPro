@@ -18,6 +18,8 @@ id QUSDKObjectOrNull(id object);
 
 - (int)effectVid;
 
+- (void)setEffectVid:(int)vid;
+
 - (id)initWithFile:(NSString *)path;
 
 - (id)initWithDict:(NSDictionary *)dict;

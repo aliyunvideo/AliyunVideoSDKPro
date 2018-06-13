@@ -29,6 +29,12 @@
  视频输出分辨率
  */
 @property (nonatomic, assign) CGSize outputSize;
+
+/**
+ 渲染时size
+ */
+@property (nonatomic, assign) CGSize previewRenderSize;
+
 /**
  添加动图
 

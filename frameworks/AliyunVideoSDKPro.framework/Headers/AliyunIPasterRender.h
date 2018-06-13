@@ -18,7 +18,11 @@
  底层接口，添加动图渲染
 
  @param paster 动图对象
- 
+ * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ * 状态不正确 ALIVC_COMMON_INVALID_STATE
+ * 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
+ * 解析动图失败 ALIVC_SVIDEO_EDITOR_PARSE_RESOURCE_FAILED
+ * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  */
 - (int)addGifPaster:(AliyunEffectPaster *)paster;
 
@@ -28,6 +32,9 @@
 
  @param subtitle 纯文字动图对象
  @param textImage 文字截图
+ * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ * 状态不正确 ALIVC_COMMON_INVALID_STATE
+ * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  */
 - (int)addSubtitlePaster:(AliyunEffectSubtitle *)subtitle textImage:(UIImage *)textImage;
 
@@ -36,6 +43,10 @@
 
  @param caption 字幕动图对象
  @param textImage 文字截图
+ * 状态不正确 ALIVC_COMMON_INVALID_STATE
+ * 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
+ * 解析动图失败 ALIVC_SVIDEO_EDITOR_PARSE_RESOURCE_FAILED
+ * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  */
 - (int)addCaptionPaster:(AliyunEffectCaption *)caption textImage:(UIImage *)textImage;
 
@@ -43,15 +54,18 @@
  移除动图
 
  @param basePaster 动图对象
+ * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ * 状态不正确 ALIVC_COMMON_INVALID_STATE
+ * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  */
-- (void)removePaster:(AliyunEffectPasterBase *)basePaster;
+- (int)removePaster:(AliyunEffectPasterBase *)basePaster;
 
 /**
  隐藏动图
 
  @param basePaster 动图对象
  */
-- (void)hidePaster:(AliyunEffectPasterBase *)basePaster;
+- (int)hidePaster:(AliyunEffectPasterBase *)basePaster __deprecated_msg("will not use anymore");
 
 
 /**
@@ -59,20 +73,20 @@
 
  @param paster 动图对象
  */
-- (void)showGifPaster:(AliyunEffectPaster *)paster;
+- (int)showGifPaster:(AliyunEffectPaster *)paster __deprecated_msg("will not use anymore");
 
 /**
  显示纯文字动图
 
  @param subtitle 纯文字动图对象
  */
-- (void)showSubtitlePaster:(AliyunEffectSubtitle *)subtitle;
+- (int)showSubtitlePaster:(AliyunEffectSubtitle *)subtitle __deprecated_msg("will not use anymore");
 
 /**
  显示字幕动图
 
  @param caption 字幕动图对象
  */
-- (void)showCaptionPaster:(AliyunEffectCaption *)caption;
+- (int)showCaptionPaster:(AliyunEffectCaption *)caption __deprecated_msg("will not use anymore");
 
 @end

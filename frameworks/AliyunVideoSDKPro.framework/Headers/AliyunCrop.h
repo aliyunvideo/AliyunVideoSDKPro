@@ -60,7 +60,7 @@ typedef NS_ENUM(NSInteger, AliyunCropCutMode) {
 @property (nonatomic, copy) NSString *outputPath;
 
 /**
- 裁剪后视频尺寸
+ 裁剪后视频分辨率
  */
 @property (nonatomic, assign) CGSize outputSize;
 
@@ -111,7 +111,7 @@ typedef NS_ENUM(NSInteger, AliyunCropCutMode) {
 @property (nonatomic, assign) int encodeMode;  // 0软编   1硬编
 
 /**
- 码率
+ 码率 bps
  */
 @property (nonatomic, assign) int bitrate;
 

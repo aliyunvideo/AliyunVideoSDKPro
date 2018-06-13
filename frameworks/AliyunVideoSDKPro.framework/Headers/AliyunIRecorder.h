@@ -204,7 +204,7 @@ enum {
 
 
 /**
- 码率
+ 码率 bps
  */
 @property (nonatomic, assign) int bitrate;
 

@@ -12,6 +12,10 @@
 
 
 @protocol AliyunClip;
+typedef NS_ENUM(NSInteger,AliyunClipType) {
+    AliyunClipVideo,
+    AliyunClipImage
+};
 
 @interface AliyunClip : AliyunJSONModel
 /*
@@ -24,7 +28,7 @@
  rotation   :  图片/视频角度
  duration   :  图片
  */
-@property (nonatomic, assign) int mediaType;
+@property (nonatomic, assign) AliyunClipType mediaType;
 @property (nonatomic, assign) int mediaHeight;
 @property (nonatomic, assign) int mediaWidth;
 @property (nonatomic, copy) NSString *src;
@@ -34,6 +38,46 @@
 @property (nonatomic, assign) int displayMode;
 @property (nonatomic, assign) int rotation;
 @property (nonatomic, assign) CGFloat duration;
+@property (nonatomic, assign) int streamId;
+
+/**
+ 创建一个图片片段
+
+ @param path 图片路径
+ @param duration 图片时长
+ @param animDuration 过渡动画时长
+ @return 图片片段
+ */
+- (instancetype)initWithImagePath:(NSString *)path
+                         duration:(CGFloat)duration
+                     animDuration:(CGFloat)animDuration;
+
+
+/**
+ 创建一个视频片段
+
+ @param path 视频路径
+ @param animDuration 过渡动画时长
+ @return 视频片段
+ */
+- (instancetype)initWithVideoPath:(NSString *)path
+                     animDuration:(CGFloat)animDuration;
+
+
+/**
+ 创建一个视频片段
+
+ @param path 视频路径
+ @param startTime 相对原视频开始时间
+ @param duration 视频片段时长
+ @param animDuration 过渡动画时长
+ @return 视频片段
+ */
+- (instancetype)initWithVideoPath:(NSString *)path
+                        startTime:(CGFloat)startTime
+                         duration:(CGFloat)duration
+                     animDuration:(CGFloat)animDuration;
+
 @end
 
 
@@ -43,6 +87,6 @@
 
 @property (nonatomic, assign) int idTrack;
 @property (nonatomic, assign) float volume;
-@property (nonatomic, strong) NSMutableArray<AliyunClip> *clipList;
+@property (nonatomic, strong) NSMutableArray<AliyunClip *> *clipList;
 
 @end

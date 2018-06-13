@@ -175,6 +175,11 @@ typedef enum : NSUInteger {
  */
 @property (nonatomic, assign) CGSize outputSize;
 
+/**
+ 预览大小
+ */
+@property (nonatomic, assign) CGSize previewRenderSize;
+
 
 - (NSString *)getIconPath;
 

@@ -48,6 +48,7 @@ FOUNDATION_EXPORT const unsigned char QUSDKVersionString[];
 #import <AliyunVideoSDKPro/AliyunEffectMusic.h>
 #import <AliyunVideoSDKPro/AliyunEffectPasterBase.h>
 #import <AliyunVideoSDKPro/AliyunEffectPaster.h>
+#import <AliyunVideoSDKPro/AliyunEffectTimeFilter.h>
 #import <AliyunVideoSDKPro/AliyunEffectCaption.h>
 #import <AliyunVideoSDKPro/AliyunEffectSubtitle.h>
 #import <AliyunVideoSDKPro/AliyunEffectStaticImage.h>
@@ -63,6 +64,8 @@ FOUNDATION_EXPORT const unsigned char QUSDKVersionString[];
 #import <AliyunVideoSDKPro/AliyunErrorLogger.h>
 #import <AliyunVideoSDKPro/AliyunNativeParser.h>
 #import <AliyunVideoSDKPro/AliyunEffectStaticImage.h>
+#import <AliyunVideoSDKPro/AliyunIClipConstructor.h>
+#import <AliyunVideoSDKPro/AliyunErrorCode.h>
 #endif /* QUSDK_h */
 
 
