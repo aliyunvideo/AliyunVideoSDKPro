@@ -55,10 +55,15 @@
 @end
 
 @interface AliyunUploadSVideoInfo : NSObject
-@property (nonatomic, strong) NSString* title;
-@property (nonatomic, strong) NSString* tags;
-@property (nonatomic, strong) NSString* desc;
+@property (nonatomic, copy) NSString* title;
+@property (nonatomic, copy) NSString* tags;
+@property (nonatomic, copy) NSString* desc;
 @property (nonatomic, strong) NSNumber* cateId;
+@property (nonatomic, assign) BOOL isProcess;
+@property (nonatomic, assign) BOOL isShowWaterMark;
+@property (nonatomic, strong) NSNumber* priority;
+@property (nonatomic, copy) NSString* storageLocation;
+@property (nonatomic, copy) NSString* templateGroupId;
 @end
 
 @interface AliyunPublishManager : NSObject
