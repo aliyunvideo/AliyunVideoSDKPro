@@ -19,14 +19,17 @@ typedef NS_ENUM(NSInteger,AliyunClipType) {
 
 @interface AliyunClip : AliyunJSONModel
 /*
- mediaType  :  类型，视频或图片image，类型改为0,1 0标示视频，1标示图片  
- mediaHeight:  图片/视频／图片的分辨率
- mediaWidth :
- src        :  
- startTime  :  图片/视频、配音 开始时间
- endTime    :  图片/视频、配音 结束时间
- rotation   :  图片/视频角度
- duration   :  图片
+ mediaType    :  类型，视频或图片image，类型改为0,1 0标示视频，1标示图片
+ mediaHeight  :  图片/视频高
+ mediaWidth   :  图片/视频宽
+ src          :  资源路径
+ startTime    :  视频/配音 开始时间
+ endTime      :  视频/配音 结束时间
+ fadeDuration :  过渡时长
+ displayMode  :  显示模式 0:截断填充 1:黑边填充
+ rotation     :  图片/视频角度
+ duration     :  图片/视频/配音时长
+ streamId     :  图片/视频/配音流id，sdk内部生成，请勿直接赋值
  */
 @property (nonatomic, assign) AliyunClipType mediaType;
 @property (nonatomic, assign) int mediaHeight;
