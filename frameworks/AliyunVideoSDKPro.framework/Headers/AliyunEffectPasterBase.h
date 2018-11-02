@@ -7,22 +7,24 @@
 //
 
 #import "AliyunEffect.h"
+#import "AliyunAction.h"
+#import "AliyunActionProtocol.h"
 #import <CoreGraphics/CoreGraphics.h>
 
-static const CGFloat kQUSDKPasterBase = 640.f;
+static const double kQUSDKPasterBase = 640.f;
 
 struct PasterPosition {
-    CGFloat centerX;
-    CGFloat centerY;
-    CGFloat width;
-    CGFloat height;
+    double centerX;
+    double centerY;
+    double width;
+    double height;
 };
 typedef struct PasterPosition PasterPosition;
 
 /**
  所有动图 字幕的基类
  */
-@interface AliyunEffectPasterBase : AliyunEffect
+@interface AliyunEffectPasterBase : AliyunEffect<AliyunActionProtocol>
 
 @property (nonatomic, assign) CGFloat startTime;//开始时间
 @property (nonatomic, assign) CGFloat endTime;//结束时间
@@ -33,14 +35,54 @@ typedef struct PasterPosition PasterPosition;
 @property (nonatomic, assign) CGRect frame;//位置大小
 @property (nonatomic, assign) CGPoint position;//位置
 @property (nonatomic, assign) CGSize size;//大小
-@property (nonatomic, assign) CGFloat width;
-@property (nonatomic, assign) CGFloat height;
+@property (nonatomic, assign) double width;
+@property (nonatomic, assign) double height;
 @property (nonatomic, assign) BOOL mirror;
 
 - (id)initWithDict:(NSDictionary *)dict;
 
 - (PasterPosition)convertToPasterBaseSize;
 
+/**
+   API_AVAILABLE(3.7.0)
+
+ @return 返回相对位置
+ */
+- (PasterPosition)convertToRatioPasterSize;
+
 - (PasterPosition)convertToDisplaySize;
+
+/**
+ API_AVAILABLE(3.7.0)
+ 
+ @return 返回相对位置
+ */
+- (PasterPosition)convertToRatioDisplaySize;
+
+- (NSMutableArray *)convertActions;
+
+- (void)convertFromJsonActions:(NSArray *)jsonActions;
+
+/**
+ API_AVAILABLE(3.7.0)
+ 
+ 添加动画
+
+ @param action 动画
+ */
+- (void)runAction:(AliyunAction *)action;
+
+/**
+ API_AVAILABLE(3.7.0)
+ 
+ 停止动画
+
+ @param action 动画
+ */
+- (void)stopAction:(AliyunAction *)action;
+
+- (void)stopAllActions;
+
+- (NSArray *)allActions;
 
 @end

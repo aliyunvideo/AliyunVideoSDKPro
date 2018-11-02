@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
 
 #define ALIYUN_VIDEO_STREAM_DIC_KEY_START                       0
 #define ALIYUN_VIDEO_STREAM_INDEX                               (ALIYUN_VIDEO_STREAM_DIC_KEY_START)
@@ -48,8 +49,159 @@
 
 
 @interface AliyunNativeParser : NSObject
+
+/**
+ 初始化参数解析器
+
+ @param path 文件路径
+ @return 解析器示例
+ */
 -(instancetype)initWithPath:(NSString *)path;
+
+/**
+ 获取文件基本参数
+
+ @param key 参数名
+ @return 参数值，统一为string格式
+ 例：获取视频时长
+ CGFloat duration = [[_parser getValueForKey:ALIYUN_VIDEO_DURATION]
+                                        integerValue]/1000000.0f;
+
+ */
 -(NSString *)getValueForKey:(NSInteger)key;
+
+/**
+ 获取视频编码格式
+
+ @return 视频编码格式
+ 内部封装了getValueForKey:方法
+ */
+-(NSString *)getVideoCodec;
+
+/**
+ 获取视频时长
+
+ @return 视频时长
+ 内部封装了getValueForKey:方法
+ */
+- (CGFloat)getVideoDuration;
+
+/**
+ 获取视频帧数
+
+ @return 视频帧数
+ 内部封装了getValueForKey:方法
+ */
+- (NSInteger)getVideoFrameCount;
+
+/**
+ 获取视频码率
+
+ @return 视频码率
+ 内部封装了getValueForKey:方法
+ */
+- (NSInteger)getVideoBitrate;
+
+
+/**
+ 获取视频宽度
+
+ @return 视频宽度
+ 内部封装了getValueForKey:方法
+ */
+- (NSInteger)getVideoWidth;
+
+/**
+ 获取视频高度
+
+ @return 视频高度
+ 内部封装了getValueForKey:方法
+ */
+- (NSInteger)getVideoHeight;
+
+/**
+ 获取音频编码格式
+ 
+ @return 音频编码格式
+ 内部封装了getValueForKey:方法
+ */
+-(NSString *)getAudioCodec;
+
+/**
+ 获取音频时长
+ 
+ @return 音频时长
+ 内部封装了getValueForKey:方法
+ */
+- (CGFloat)getAudioDuration;
+
+/**
+ 获取音频帧数
+ 
+ @return 音频帧数
+ 内部封装了getValueForKey:方法
+ */
+- (NSInteger)getAudioFrameCount;
+
+/**
+ 获取音频码率
+ 
+ @return 音频码率
+ 内部封装了getValueForKey:方法
+ */
+- (NSInteger)getAudioBitrate;
+
+/**
+ 获取音频声道数
+
+ @return 音频声道数
+ 内部封装了getValueForKey:方法
+ */
+-(NSInteger)getAudioChannels;
+
+/**
+ 获取音频采样率
+
+ @return 音频采样率
+ 内部封装了getValueForKey:方法
+ */
+-(NSInteger)getAudioSampleRate;
+
+/**
+ 获取视频文件时长
+
+ @return 视频文件时长
+ 内部封装了getValueForKey:方法
+ */
+- (CGFloat)getFileDuration;
+
+/**
+ 获取文件格式
+
+ @return 文件格式
+ 内部封装了getValueForKey:方法
+ */
+- (NSString *)getFileFormat;
+
+/**
+ 获取文件码率
+
+ @return 文件码率
+ 内部封装了getValueForKey:方法
+ */
+- (NSInteger)getFileBitrate;
+
+/**
+ 检查视频是否支持倒播
+
+ @return 是否支持倒播
+ */
 - (BOOL)checkInvertAvailable;
+
+/**
+ 获取视频最大缓存大小
+
+ @return 视频最大缓存大小
+ */
 - (int)getMaxEstimatedCacheSize;
 @end

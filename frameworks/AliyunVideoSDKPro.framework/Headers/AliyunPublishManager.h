@@ -43,40 +43,61 @@
 - (void)uploadTokenExpired;
 
 /**
- 开始重试
+ 上传超时，开始重试
  */
 - (void)uploadRetry;
 
 /**
- 重试完成，继续上传
+ 重试结束，继续上传
  */
 - (void)uploadRetryResume;
 
 @end
 
 @interface AliyunUploadSVideoInfo : NSObject
-@property (nonatomic, copy) NSString* title;
-@property (nonatomic, copy) NSString* tags;
-@property (nonatomic, copy) NSString* desc;
-@property (nonatomic, strong) NSNumber* cateId;
-@property (nonatomic, assign) BOOL isProcess;
-@property (nonatomic, assign) BOOL isShowWaterMark;
-@property (nonatomic, strong) NSNumber* priority;
-@property (nonatomic, copy) NSString* storageLocation;
-@property (nonatomic, copy) NSString* templateGroupId;
+@property (nonatomic, copy) NSString* title;                // 标题
+@property (nonatomic, copy) NSString* tags;                 // 标签
+@property (nonatomic, copy) NSString* desc;                 // 描述
+@property (nonatomic, strong) NSNumber* cateId;             // 分类
+@property (nonatomic, assign) BOOL isProcess;               //
+@property (nonatomic, assign) BOOL isShowWaterMark;         // 显示水印
+@property (nonatomic, strong) NSNumber* priority;           // 优先级
+@property (nonatomic, copy) NSString* storageLocation;      // 存储位置
+@property (nonatomic, copy) NSString* templateGroupId;      // 转码模板组id
 @end
 
 @interface AliyunPublishManager : NSObject
 
+/**
+ 导出回调
+ */
 @property (nonatomic, weak) id<AliyunIExporterCallback> exportCallback;
+
+/**
+ 上传回调
+ */
 @property (nonatomic, weak) id<AliyunIUploadCallback> uploadCallback;
 
-@property (nonatomic, copy, readonly) NSString *outputPath;
+/**
+ 导出视频路径
+ */
+@property (nonatomic, copy) NSString *outputPath;
 
+/**
+ 上传是否转码,默认值YES
+ */
 @property (nonatomic, assign) BOOL transcode;
 
+
+/**
+ 上传超时重试次数,默认值INT_MAX
+ */
 @property (nonatomic, assign) uint32_t maxRetryCount;
 
+
+/**
+ 上传超时重试间隔，默认30秒
+ */
 @property (nonatomic, assign) NSTimeInterval timeoutIntervalForRequest;
 
 

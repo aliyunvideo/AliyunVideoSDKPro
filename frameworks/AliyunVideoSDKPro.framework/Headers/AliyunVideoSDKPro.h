@@ -23,6 +23,7 @@ FOUNDATION_EXPORT const unsigned char QUSDKVersionString[];
 #import <AliyunVideoSDKPro/AliyunClipManager.h>
 #import <AliyunVideoSDKPro/AliyunVideoStitch.h>
 #import <AliyunVideoSDKPro/AliyunXianyuFaceMap.h>
+#import <AliyunVideoSDKPro/AliyunAudioRecorder.h>
 #import <AliyunVideoSDKPro/AliyunCrop.h>
 #import <AliyunVideoSDKPro/AliyunImageCrop.h>
 #import <AliyunVideoSDKPro/AliyunImporter.h>
@@ -46,6 +47,7 @@ FOUNDATION_EXPORT const unsigned char QUSDKVersionString[];
 #import <AliyunVideoSDKPro/AliyunEffectFilter.h>
 #import <AliyunVideoSDKPro/AliyunEffectImage.h>
 #import <AliyunVideoSDKPro/AliyunEffectMusic.h>
+#import <AliyunVideoSDKPro/AliyunEffectDub.h>
 #import <AliyunVideoSDKPro/AliyunEffectPasterBase.h>
 #import <AliyunVideoSDKPro/AliyunEffectPaster.h>
 #import <AliyunVideoSDKPro/AliyunEffectTimeFilter.h>
@@ -66,6 +68,26 @@ FOUNDATION_EXPORT const unsigned char QUSDKVersionString[];
 #import <AliyunVideoSDKPro/AliyunEffectStaticImage.h>
 #import <AliyunVideoSDKPro/AliyunIClipConstructor.h>
 #import <AliyunVideoSDKPro/AliyunErrorCode.h>
+#import <AliyunVideoSDKPro/AliyunAction.h>
+#import <AliyunVideoSDKPro/AliyunAlphaAction.h>
+#import <AliyunVideoSDKPro/AliyunMoveAction.h>
+#import <AliyunVideoSDKPro/AliyunScaleAction.h>
+#import <AliyunVideoSDKPro/AliyunRotateAction.h>
+#import <AliyunVideoSDKPro/AliyunRotateToAction.h>
+#import <AliyunVideoSDKPro/AliyunRotateByAction.h>
+#import <AliyunVideoSDKPro/AliyunRotateRepeatAction.h>
+#import <AliyunVideoSDKPro/AliyunCustomAction.h>
+#import <AliyunVideoSDKPro/AliyunTransitionEffect.h>
+#import <AliyunVideoSDKPro/AliyunTransitionEffectShuffer.h>
+#import <AliyunVideoSDKPro/AliyunTransitionEffectTranslate.h>
+#import <AliyunVideoSDKPro/AliyunTransitionEffectCircle.h>
+#import <AliyunVideoSDKPro/AliyunTransitionEffectPolygon.h>
+#import <AliyunVideoSDKPro/AliyunTransitionEffectFade.h>
+#import <AliyunVideoSDKPro/AliyunEffectBlurBackground.h>
+#import <AliyunVideoSDKPro/AliyunEffectRunningDisplayMode.h>
+#import <AliyunVideoSDKPro/AliyunEffectDub.h>
+#import <AliyunVideoSDKPro/AliyunActionProtocol.h>
+#import <AliyunVideoSDKPro/AliyunMediaInfo.h>
 #endif /* QUSDK_h */
 
 

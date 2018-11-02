@@ -56,14 +56,6 @@
  */
 - (AliyunPasterController *)addSubtitle:(NSString *)text bounds:(CGRect)bounds startTime:(CGFloat)st duration:(CGFloat)duration;
 
-/**
- 删除动图控制器，在删除动图时调用
-
- @param pasterController 需要删除的动图控制器
- @return YES：删除成功  NO:删除失败
- */
-- (BOOL)deletePasterController:(AliyunPasterController *)pasterController;
-
 
 /**
  获取所有的动图控制器
@@ -96,6 +88,16 @@
  删除所有动图控制器，即删除所有动图
  */
 - (void)removeAllPasterControllers;
+
+
+/**
+ API_AVAILABLE(3.7.0)
+ 
+ 删除pasterController 并立即从渲染里面移除
+
+ @param pasterController 动图控制器对象
+ */
+- (void)removePasterController:(AliyunPasterController *)pasterController;
 
 /**
  删除所有的普通动图

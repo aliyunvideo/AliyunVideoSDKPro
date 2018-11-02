@@ -20,8 +20,14 @@ id QUSDKObjectOrNull(id object);
 
 - (void)setEffectVid:(int)vid;
 
-- (id)initWithFile:(NSString *)path;
+/**
+ 初始化effect对象
 
-- (id)initWithDict:(NSDictionary *)dict;
+ @param path effect资源文件夹对象
+ @return effect实例对象
+ */
+- (instancetype)initWithFile:(NSString *)path;
+
+- (instancetype)initWithDict:(NSDictionary *)dict;
 
 @end

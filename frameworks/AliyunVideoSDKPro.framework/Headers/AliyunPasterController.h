@@ -60,7 +60,6 @@ typedef enum : NSUInteger {
 
 @interface AliyunPasterController : NSObject<AliyunPasterUIEventProtocol>
 
-@property (nonatomic, weak) id<AliyunPasterControllerDelegate> delegate;
 
 /**
  设置动图的view
@@ -107,7 +106,7 @@ typedef enum : NSUInteger {
 /**
  文字位置 相对于动图本身的位置大小
  */
-@property (nonatomic, assign, readonly) CGRect subtitleFrame;
+@property (nonatomic, assign) CGRect subtitleFrame;
 
 /**
  文字的后台配置字体
@@ -133,6 +132,11 @@ typedef enum : NSUInteger {
  文字描边颜色
  */
 @property (nonatomic, strong) UIColor *subtitleStrokeColor;
+
+/**
+ 文字的背景颜色
+ */
+@property (nonatomic, strong) UIColor *subtitleBackgroundColor;
 
 /**
  文字字体
@@ -252,6 +256,14 @@ typedef enum : NSUInteger {
  @param image 字幕的图片
  */
 - (void)editCompletedWithImage:(UIImage *)image;
+
+
+/**
+ 获取effectPaster
+
+ @return 获取effectPaster
+ */
+- (id)getEffectPaster;
 
 
 

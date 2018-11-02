@@ -70,7 +70,7 @@ typedef struct AliyunVideoEventInfo {
 
 - (AliyunVideoEventInfo)videoInfoWithPath:(NSString *)path;
 
-- (int64_t)crc64WithPath:(NSString *)path;
+- (uint64_t)crc64WithPath:(NSString *)path;
 
 - (void)refreshRequestID;
 

@@ -89,6 +89,12 @@
 - (void)redo;
 
 
+/**
+ 撤销本次涂鸦所有的操作
+ */
+- (void)undoAllChanges;
+
+
 
 /**
  完成

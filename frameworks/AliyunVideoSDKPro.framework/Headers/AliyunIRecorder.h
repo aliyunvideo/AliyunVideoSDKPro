@@ -61,9 +61,23 @@ enum {
 /**
  预览视图
  
- @warn 必须设置
+ 必须设置
  */
 @property (nonatomic, strong) UIView *preview;
+
+/**
+ 视频的输出路径
+ 
+ 必须设置
+ */
+@property (nonatomic, copy) NSString *outputPath;
+
+/**
+ taskPath文件夹路径
+ 
+ 需要保证文件夹已经创建，必须设置
+ */
+@property (nonatomic, copy) NSString *taskPath;
 
 /**
  Delegate
@@ -71,7 +85,7 @@ enum {
 @property (nonatomic, weak) id <AliyunIRecorderDelegate> delegate;
 
 /**
- 美颜状态
+ 美颜状态是否开启
  */
 @property (nonatomic, assign) BOOL beautifyStatus;
 
@@ -81,48 +95,21 @@ enum {
 @property (nonatomic, assign) int beautifyValue;
 
 /**
- 设备权限 包括麦克风和摄像头
- */
-@property (nonatomic, assign, readonly) AliyunIRecorderDeviceAuthor authorizationStatus;
-
-/**
- 曝光值
+ 曝光值 [0,1]
  */
 @property (nonatomic, assign) CGFloat exposureValue;
 
 /**
- 闪光灯是否可用
- */
-@property (nonatomic, assign, readonly) BOOL hasFlash;
-
-/**
- 手电筒是否可用
- */
-@property (nonatomic, assign, readonly) BOOL hasTorch;
-
-/**
- 闪光灯模式
- */
-@property (nonatomic, assign, readonly) AliyunIRecorderFlashMode flashMode;
-
-/**
- 电筒模式
- */
-@property (nonatomic, assign, readonly) AliyunIRecorderTorchMode torchMode;
-
-/**
- 摄像头位置
- */
-@property (nonatomic, assign, readonly) AliyunIRecorderCameraPosition cameraPosition;
-
-
-/**
- 前置摄像头采集分辨率 默认:AVCaptureSessionPreset640x480  更多参数参见：AVCaptureSession.h
+ 前置摄像头采集分辨率
+ 
+ 默认:AVCaptureSessionPreset640x480  更多参数参见：AVCaptureSession.h
  */
 @property (nonatomic, copy) NSString *frontCaptureSessionPreset;
 
 /**
- 后置摄像头采集分辨率 默认:AVCaptureSessionPreset640x480  更多参数参见：AVCaptureSession.h
+ 后置摄像头采集分辨率
+ 
+ 默认:AVCaptureSessionPreset1280x720  更多参数参见：AVCaptureSession.h
  */
 @property (nonatomic, copy) NSString *backCaptureSessionPreset;
 
@@ -132,49 +119,24 @@ enum {
 @property (nonatomic, assign) int cameraRotate;
 
 /**
- 手动对焦点
+ 手动对焦点，相对预览视图的位置
  */
 @property (nonatomic, assign) CGPoint focusPoint;
 
 /**
- 变焦系数
+ 调整变焦倍数
  
+ 每次调用videoZoomFactor,实际变焦值zoom为设定的1/100
+ 例：调用videoZoomFactor = 10.0f，实际zoom += 0.1f
+ 例：调用videoZoomFactor = -5.0f，实际zoom -= 0.05f
  前置摄像头时，该参数是无效的
  */
 @property (nonatomic, assign) CGFloat videoZoomFactor;
 
-
-/**
- 最大变焦系数
- */
-@property (nonatomic, assign, readonly) CGFloat videoMaxZoomFactor;
-
-/**
- 是否正在录制
- */
-@property (nonatomic, assign, readonly) BOOL isRecording;
-
-/**
- 视频的输出路径
- */
-@property (nonatomic, copy) NSString *outputPath;
-
-/**
- 视频缩略图路径
- */
-@property (nonatomic, copy) NSString *thumbnailPath;
-
-
-/**
- 文件配置路径
- */
-@property (nonatomic, copy) NSString *taskPath;
-
-
 /**
  编码方式
  
- 0软编  1硬编
+ 0软编  1硬编 iOS强制硬编
  */
 @property (nonatomic, assign) int encodeMode;
 
@@ -186,77 +148,116 @@ enum {
 @property (nonatomic, assign) int GOP;
 
 /**
- 录制帧率 默认25
+ 录制帧率
+ 
+ 默认25
  */
 @property (nonatomic, assign) int recordFps;
 
 /**
- 静音
+ 是否静音
  
  添加音乐后，静音无效
  */
 @property (nonatomic, assign) BOOL mute;
 
 /**
- 视频质量
+ 视频质量，设置bitrate参数后，该参数无效
  */
 @property (nonatomic, assign) AliyunVideoQuality videoQuality;
 
-
 /**
- 码率 bps
+ 输出视频码率 bps
  */
 @property (nonatomic, assign) int bitrate;
 
-/**
- 视频片段管理
- */
-@property (nonatomic, strong, readonly) AliyunClipManager *clipManager;
 
 /**
  提供三种格式：
  kCVPixelFormatType_420YpCbCr8BiPlanarFullRange，
  kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange，
  kCVPixelFormatType_32BGRA，
- 
  默认kCVPixelFormatType_420YpCbCr8BiPlanarFullRange格式 
  */
 @property (nonatomic, assign) AliyunIRecorderVideoOutputPixelFormatType outputType;
 
 
 /**
+ 是否开启人脸识别
+ 
  使用自带人脸识别，开启该功能，系统会在检测到有人脸动图加入时自动进行追踪显示
  */
 @property (nonatomic, assign) BOOL useFaceDetect;
 
-
 /**
- 设置识别人脸的个数  最大是3个 最小是1个  如果不需要检测人脸 使用:useFaceDetect = NO
+ 设置识别人脸的个数
+ 
+ 最大是3个 最小是1个  如果不需要检测人脸 使用:useFaceDetect = NO
  */
 @property (nonatomic, assign) int faceDetectCount;
 
-
 /**
- 是否同步贴合人脸，默认同步。说明：同步贴合人脸动图会在同步线程执行，优点是贴合性强，缺点是性能差的设备会有卡顿现象；非同步贴合人脸动图，有点是画面流畅但贴图贴合性不强。默认是YES。6及以下机型适合异步，以上适合同步
+ 是否同步贴合人脸
+ 
+ 同步贴合人脸动图会在同步线程执行，优点是贴合性强，缺点是性能差的设备会有卡顿现象
+ 非同步贴合人脸动图，有点是画面流畅但贴图贴合性不强
+ 默认是YES，6及以下机型建议异步，6以上建议同步
  */
 @property (nonatomic, assign) BOOL faceDectectSync;
 
 /**
- 人脸数量的回调，在useFaceDetect开启的状态下生效
+ 设备权限
+ 
+ 包括麦克风和摄像头权限
  */
-@property (nonatomic, copy) void (^faceNumbersCallback)(int num);
+@property (nonatomic, assign, readonly) AliyunIRecorderDeviceAuthor authorizationStatus;
 
+/**
+ 手电筒是否可用
+ */
+@property (nonatomic, assign, readonly) BOOL hasTorch;
 
+/**
+ 电筒模式
+ */
+@property (nonatomic, assign, readonly) AliyunIRecorderTorchMode torchMode;
+
+/**
+ 获取摄像头位置
+ */
+@property (nonatomic, assign, readonly) AliyunIRecorderCameraPosition cameraPosition;
+
+/**
+ 获取最大变焦系数
+ */
+@property (nonatomic, assign, readonly) CGFloat videoMaxZoomFactor;
+
+/**
+ 是否正在录制
+ */
+@property (nonatomic, assign, readonly) BOOL isRecording;
+
+/**
+ 获取视频片段管理器
+ */
+@property (nonatomic, strong, readonly) AliyunClipManager *clipManager;
+
+/**
+ 获取版本号
+
+ @return 版本号
+ */
 + (NSString *)version;
 
 /**
  初始化
  
  @param delegate 代理
- @param videoSize 视频分辨率
+ @param videoSize 视频分辨率，必须为偶数，不能是奇数，不能使用屏幕分辨率
+ 建议使用的分辨率 320*480,540*960,720*1280
  @return AliyunIRecorder 对象
  */
-- (instancetype)initWithDelegate:(id)delegate videoSize:(CGSize)videoSize;
+- (instancetype)initWithDelegate:(id<AliyunIRecorderDelegate>)delegate videoSize:(CGSize)videoSize;
 
 /**
  开始预览
@@ -274,48 +275,6 @@ enum {
  停止预览
  */
 - (void)stopPreview;
-
-/**
- 切换摄像头
- 
- @return 切换后的摄像头位置
- */
-- (AliyunIRecorderCameraPosition)switchCameraPosition;
-
-/**
- 循环切换闪光灯模式 (适用于照片模式)
- 默认为关 (off ---> on ---> auto)
- 
- @return 切换后的闪光灯模式
- */
-- (AliyunIRecorderFlashMode)switchFlashMode;
-
-/**
- 切换为指定闪光灯模式 (适用于照片模式)
- 
- @param flashMode 指定模式
- 
- @return  return YES if success
- */
-- (BOOL)switchFlashWithMode:(AliyunIRecorderFlashMode)flashMode;
-
-/**
- 循环切换手电筒模式 (适用于视频模式)
- 默认为关 (off ---> on ---> auto)
- 
- @return 切换后的手电筒模式
- */
-- (AliyunIRecorderTorchMode)switchTorchMode;
-
-/**
- 切换为指定手电筒模式 (适用于视频模式)
- 
- @param torchMode 指定模式
- 
- @return  return YES if success
- */
-- (BOOL)switchTorchWithMode:(AliyunIRecorderTorchMode)torchMode;
-
 
 /**
  改变视频分辨率
@@ -349,6 +308,44 @@ enum {
  */
 - (void)destroyRecorder;
 
+/**
+ 拍摄一张图片 异步获取
+ 
+ image 采集的渲染后图片
+ rawImage 采集的原始图片
+ */
+- (void)takePhoto:(void (^)(UIImage *image, UIImage *rawImage))handler;
+
+/**
+ 切换摄像头
+ 
+ @return 切换后的摄像头位置
+ */
+- (AliyunIRecorderCameraPosition)switchCameraPosition;
+
+/**
+ 循环切换手电筒模式
+ 默认为关 (off ---> on ---> auto)
+ 
+ @return 切换后的手电筒模式
+ */
+- (AliyunIRecorderTorchMode)switchTorchMode;
+
+/**
+ 切换为指定手电筒模式
+ 
+ @param torchMode 指定模式
+ 
+ @return  return YES if success
+ */
+- (BOOL)switchTorchWithMode:(AliyunIRecorderTorchMode)torchMode;
+
+/**
+ 人脸数量的回调
+ 
+ 在useFaceDetect开启的状态下生效
+ */
+@property (nonatomic, copy) void (^faceNumbersCallback)(int num);
 
 /**
  人脸追踪 用户可以选择其他地方人人脸识别库，但是传进来的数据须封装成AliyunFacePoint
@@ -385,8 +382,10 @@ enum {
 
  @param mv mv
  @return 返回值
+ 只能在录制开始前调用，录制过程或录制完一段或多段后不能调用该接口
+ Deprecated 不建议使用的API，未来版本将会移除
  */
-- (int)applyMV:(AliyunEffectMV *)mv;
+- (int)applyMV:(AliyunEffectMV *)mv __deprecated_msg("This method will not be supported any more. Do not use it.");
 
 /**
  添加水印
@@ -401,13 +400,14 @@ enum {
 
  @param music 音乐
  @return 错误码
+ 只能在录制开始前调用，录制过程或录制完一段或多段后不能调用该接口
  */
 - (int)applyMusic:(AliyunEffectMusic *)music;
 
 /**
  设置录制速率
  
- @param rate 录制速率
+ @param rate 录制速率 建议0.5-2之间
  */
 - (void)setRate:(CGFloat)rate;
 
@@ -444,12 +444,6 @@ enum {
 - (void)setEffectView:(CGRect)rect effect:(AliyunEffect *)effect;
 
 
-/**
- 拍摄一张图片 异步获取
- */
-- (void)takePhoto:(void (^)(UIImage *image, UIImage *rawImage))handler;
-
-
 @end
 
 
@@ -478,7 +472,6 @@ enum {
  */
 - (void)recorderOutputAudioRawSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 
-/**
 
 /**
  用户自定义渲染

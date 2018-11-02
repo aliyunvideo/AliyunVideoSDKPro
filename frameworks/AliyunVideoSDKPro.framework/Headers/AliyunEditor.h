@@ -18,10 +18,29 @@
 #import "AliyunEffectFilter.h"
 #import "AliyunEffectTimeFilter.h"
 #import "AliyunEffectMusic.h"
+#import "AliyunEffectDub.h"
 #import "AliyunEffectImage.h"
 #import "AliyunVideoParam.h"
 #import "AliyunIExporter.h"
 #import "AliyunIClipConstructor.h"
+#import "AliyunMoveAction.h"
+#import "AliyunScaleAction.h"
+#import "AliyunRotateByAction.h"
+#import "AliyunRotateToAction.h"
+#import "AliyunRotateAction.h"
+#import "AliyunRotateRepeatAction.h"
+#import "AliyunAlphaAction.h"
+#import "AliyunCustomAction.h"
+#import "AliyunActionProtocol.h"
+#import "AliyunTransitionEffect.h"
+#import "AliyunEffectBlurBackground.h"
+#import "AliyunEffectRunningDisplayMode.h"
+
+typedef enum : NSUInteger {
+    AliyunEditorModeNull,
+    AliyunEditorModePlay,       // 播放模式
+    AliyunEditorModeExport,    // 合成导出模式
+} AliyunEditorMode;
 
 @interface AliyunEditor : NSObject
 
@@ -30,7 +49,7 @@
 /**
  初始化Editor
  
- @param taskPath 配置文件路径
+ @param taskPath taskPath文件夹路径
  @param preview 编辑预览视图
  @return Editor
  */
@@ -38,22 +57,35 @@
 
 /**
  创建相关资源
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * 参数不正确 ALIVC_COMMON_INVALID_PARAM
- * 组件初始化失败 ALIVC_SVIDEO_EDITOR_INIT_FAILED
- * ALIVC_FRAMEWORK_AUDIO_PROCESS_CREATE_FAILED
- * ALIVC_FRAMEWORK_AUDIO_PROCESS_RE_CREATE
- * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 参数不正确 ALIVC_COMMON_INVALID_PARAM
+ 组件初始化失败 ALIVC_SVIDEO_EDITOR_INIT_FAILED
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_CREATE_FAILED
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_RE_CREATE
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  */
 - (int)startEdit;
 
 /**
  销毁相关资源
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
  */
 - (int)stopEdit;
+
+
+/**
+ 准备播放或导出
+ 预解码部分音视频数据，加快起播速度
+ 设定模式后，只能选择对应的play或startExport:
+ 调用需在startEdit方法执行后，play或startExport:方法执行前
+ 如无必要可不调用，不调用则play或startExport:方法内部会调用prepare:
+ @param mode 编辑模式
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 参数不正确 ALIVC_COMMON_INVALID_PARAM
+ */
+- (int)prepare:(AliyunEditorMode)mode;
 
 /**
  获取 媒体片段构造器
@@ -101,30 +133,33 @@
 /**
  使用mv
  
- @param mv mv配置文件路径
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * 解析动图失败 ALIVC_SVIDEO_EDITOR_PARSE_RESOURCE_FAILED
- * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- * ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
+ @param mv
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 解析动图失败 ALIVC_SVIDEO_EDITOR_PARSE_RESOURCE_FAILED
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
+ 调用后，播放器将处于暂停状态
  */
 - (int)applyMV:(AliyunEffectMV *)mv;
 
 /**
  移除MV
  
-* 正常返回 ALIVC_COMMON_RETURN_SUCCESS
-* 状态不正确 ALIVC_COMMON_INVALID_STATE
+正常返回 ALIVC_COMMON_RETURN_SUCCESS
+状态不正确 ALIVC_COMMON_INVALID_STATE
+ 调用后，播放器将处于暂停状态
 */
 - (int)removeMV;
 
 /**
  移除mv音乐
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * 解析动图失败 ALIVC_SVIDEO_EDITOR_PARSE_RESOURCE_FAILED
- * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- * ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 解析动图失败 ALIVC_SVIDEO_EDITOR_PARSE_RESOURCE_FAILED
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
+ 调用后，播放器将处于暂停状态
  */
 -(int)removeMVMusic;
 
@@ -132,73 +167,118 @@
  使用音乐
  
  @param music music配置文件路径
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
- * ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED
+ 调用后，播放器将处于暂停状态
  */
 - (int)applyMusic:(AliyunEffectMusic *)music;
+
+
+/**
+ 删除某一路音乐
+
+ @param music 音乐
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 调用后，播放器将处于暂停状态
+ */
+- (int)removeMusic:(AliyunEffectMusic *)music;
+
 
 /**
  移除所有音乐
  
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- * ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
- * ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED
+ 调用后，播放器将处于暂停状态
  */
 - (int)removeMusics;
+
+/**
+ 添加配音
+ 
+ @param dub 配音对象 支持变速功能
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED
+ 调用后，播放器将处于暂停状态
+ */
+- (int)applyDub:(AliyunEffectDub *)dub;
+
+/**
+ 移除配音
+
+ @param dub 配音对象
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 调用后，播放器将处于暂停状态
+ */
+- (int)removeDub:(AliyunEffectDub *)dub;
+
+/**
+ 移除所有配音
+
+ @return 返回值
+ 调用后，播放器将处于暂停状态
+ */
+- (int)removeDubs;
 
 /**
  使用滤镜
  
  @param filter filter配置文件路径
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- * ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
  */
 - (int)applyFilter:(AliyunEffectFilter *)filter;
 
 /**
  删除滤镜
  
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- * ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
  */
 - (int)removeFilter;
 
 /**
- 使用动效滤镜
+ 使用特效滤镜
  
  @param filter filter对象
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
- * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  */
 - (int)applyAnimationFilter:(AliyunEffectFilter *)filter;
 
 /**
- 更新动态滤镜
+ 更新特效滤镜
 
  @param filter filter对象
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- * ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
  */
 - (int)updateAnimationFilter:(AliyunEffectFilter *)filter;
 
 /**
- 移除某个动效滤镜
+ 移除某个特效滤镜
  
  @param filter filter对象
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  */
 - (int)removeAnimationFilter:(AliyunEffectFilter *)filter;
 
@@ -206,24 +286,39 @@
  使用时间特效
  
  @param filter 特效对象
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * 特效不支持（多个流的情况下）ALIVC_SVIDEO_EDITOR_TIME_EFFECT_NOT_SUPPORT
- * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- * ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
- * ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
- * ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 特效不支持（多个流的情况下）ALIVC_SVIDEO_EDITOR_TIME_EFFECT_NOT_SUPPORT
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILE
+ 调用后，播放器将处于暂停状态
  */
 - (int)applyTimeFilter:(AliyunEffectTimeFilter *)filter;
 
 /**
- 删除时间特效
+ API_AVAILABLE(3.7.0)
  
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- * ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
- * ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED]
+ 删除某一个时间特效 目前只能删变速的时间特效
+
+ @param filter 待删除的时间特效
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 调用后，播放器将处于暂停状态
+ */
+- (int)removeTimeFilter:(AliyunEffectTimeFilter *)filter;
+
+/**
+ 删除时间特效 删除全部的时间特效
+ 
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED]
+ 调用后，播放器将处于暂停状态
  */
 - (int)removeTimeFilter;
 
@@ -242,10 +337,10 @@
  加入静态贴纸
  
  @param staticImage 静态贴纸
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
- * 图片类型不支持 ALIVC_SVIDEO_EDITOR_VIEW_TYPE_NOT_SUPPORTED
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
+ 图片类型不支持 ALIVC_SVIDEO_EDITOR_VIEW_TYPE_NOT_SUPPORTED
  */
 - (int)applyStaticImage:(AliyunEffectStaticImage *)staticImage;
 
@@ -253,9 +348,9 @@
  移除静态贴纸
  
  @param staticImage 静态贴纸
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  */
 - (int)removeStaticImage:(AliyunEffectStaticImage *)staticImage;
 
@@ -264,50 +359,97 @@
  使用涂鸦
  
  @param paintImage 涂鸦图片
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
- * 图片类型不支持 ALIVC_SVIDEO_EDITOR_VIEW_TYPE_NOT_SUPPORTED
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
+ 图片类型不支持 ALIVC_SVIDEO_EDITOR_VIEW_TYPE_NOT_SUPPORTED
  */
 - (int)applyPaint:(AliyunEffectImage *)paintImage;
+
+/**
+ API_AVAILABLE(3.7.0)
+ 
+ 添加转场   注意：
+               ① 如果只有一个视频片段，不可调用此接口
+               ② 转场的时长不能超过前后两段视频中最短的视频时长
+               ③ 使用此接口前，先调用[_editor stopEdit]，然后调用此接口，接着调用 [_editor startEdit] 和[_player play]
+ 
+ [----A视频段----] [----B视频段----] [----C视频段----]...[----N段视频----]
+                 ^                ^                 ^
+ clipIndex:      0                1                N-1
+ 
+ 
+ @param transition 具体的转场
+ @param clipIdx 视频片段交叉序列点
+ @return 返回值为ALIVC_COMMON_RETURN_FAILED失败
+ ALIVC_COMMON_RETURN_SUCCESS成功
+ */
+- (int)applyTransition:(AliyunTransitionEffect *)transition atIndex:(int)clipIdx;
+
+/**
+ API_AVAILABLE(3.7.0)
+ 
+ 删除某个转场效果  注意：
+ 使用此接口前，先调用[_editor stopEdit]，然后调用此接口，接着调用 [_editor startEdit] 和[_player play]
+
+ @param clipIdx 序列号
+ */
+- (int)removeTransitionAtIndex:(int)clipIdx;
+
+/**
+ API_AVAILABLE(3.7.0)
+ 
+ 加帧动画 注意：主流不支持alpha帧动画
+
+ @param obj 动画作用的对象
+ @param action 动画
+ */
+- (void)add:(id<AliyunActionProtocol>)obj withFrameAnimation:(AliyunAction *)action;
+
+
+/**
+ API_AVAILABLE(3.7.0)
+ 
+ 删帧动画
+
+ @param obj 动画作用的对象
+ @param action 动画
+ */
+- (void)remove:(id<AliyunActionProtocol>)obj withFrameAnimation:(AliyunAction *)action;
 
 
 /**
  删除涂鸦
  
  @param paintImage 涂鸦图片
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  */
 - (int)removePaint:(AliyunEffectImage *)paintImage;
-
-/**
- 消除各种效果
- */
-- (int)destroyAllEffect;
-
 
 /**
  设置水印
 
  @param waterMark 水印
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
- * 图片类型不支持 ALIVC_SVIDEO_EDITOR_VIEW_TYPE_NOT_SUPPORTED
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
+ 图片类型不支持 ALIVC_SVIDEO_EDITOR_VIEW_TYPE_NOT_SUPPORTED
  */
 - (int)setWaterMark:(AliyunEffectImage *)waterMark;
 
 /**
  设置片尾水印
+ 
+ AliyunEffectImage对象需要设置endtime属性，此属性代表距离视频结尾的时长。
 
  @param waterMark 片尾水印
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
- * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- * ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
  */
 - (int)setTailWaterMark:(AliyunEffectImage *)waterMark;
 
@@ -315,9 +457,9 @@
  设置是否静音
  
  @param mute 静音
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * ALIVC_FRAMEWORK_AUDIO_PROCESS_CTL_INPUT_ERROR
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_CTL_INPUT_ERROR
  */
 - (int)setMute:(BOOL)mute;
 
@@ -327,9 +469,9 @@
  @param volume 音量：0-200
  默认值100,原始的音量大小
  大于100可能会破音，建议0-100
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * ALIVC_FRAMEWORK_AUDIO_PROCESS_CTL_INPUT_ERROR
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_CTL_INPUT_ERROR
  */
 - (int)setVolume:(int)volume;
 
@@ -340,54 +482,117 @@
  设为100时，主流权重为0，只有配乐
  设为0时，配乐流权重为0，只有原音
  设为50时，主流和配乐流权重都为100
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED
+ 如需单独调节每个流的音量权重，可以使用一下接口：
+ - (int)setAudioWeight:(int)weight streamId:(int)streamId;
+ - (int)setMainStreamsAudioWeight:(int)weight;
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED
  */
 - (int)setAudioMixWeight:(int)weight;
 
 
 /**
- 设置单路音频流的权重
+ 设置单路音频流音量权重
 
  @param weight 权重 0-100
  100 代表原始大小
  @param streamId 流id
- AliyunEffectMusic流id：effectVid
- AliyunEffectMV流id：audioEffectVid
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED
+ 主流id:AliyunClip.streamId
+ 配乐流id：AliyunEffectMusic.effectVid
+ MV音乐流id：AliyunEffectMV.audioEffectVid
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED
  */
 - (int)setAudioWeight:(int)weight streamId:(int)streamId;
 
 /**
- 设置主流混音权重
+ 设置主流音量权重
 
  @param weight 混音权重 0-100
  100 代表原始大小
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
  */
 - (int)setMainStreamsAudioWeight:(int)weight;
 
 /**
- 画面填充模式
+ 设置单路音频去噪
  
- @param mode 0:截断填充， 1:黑边填充
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
- * ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ @param denoise 是否去噪
+ @param streamId 流id
+ AliyunEffectMusic流id：effectVid
+ AliyunEffectMV流id：audioEffectVid
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED
  */
-- (int)setScaleMode:(int)mode;
+- (int)setAudioDenoise:(BOOL)denoise streamId:(int)streamId;
 
 /**
- 视频渲染最底层背景颜色 在填充模式下具有效果
+ 设置主流音频去噪
+ 
+ @param denoise 是否去噪
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ */
+- (int)setMainStreamsAudioDenoise:(BOOL)denoise;
+
+
+/**
+ 画面填充模式
+ 
+ @param mode  AliyunScaleModeFit = 0,          // 填充
+ AliyunScaleModeFill = 1          // 裁剪
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ */
+- (int)setScaleMode:(AliyunScaleMode)mode;
+
+/**
+ 视频渲染最底层背景颜色 在填充模式下具有效果   如果color设置为clearColor 那么默认背景为视频高斯模糊播放效果
  
  @param color 颜色
- * 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- * 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
  */
 - (int)setRenderBackgroundColor:(UIColor *)color;
+
+/**
+ API_AVAILABLE(3.7.0)
+ 
+ 在填充模式下，设置高斯模糊视频播放背景 支持多段时间段 注意：如果背景色为clearColor将默认是此效果，如果是非clearColor此接口才有效果
+ 
+ @param blur 视频高斯模糊效果
+ */
+- (void)applyBlurBackgroundPlay:(AliyunEffectBlurBackground *)blur;
+
+/**
+ API_AVAILABLE(3.7.0)
+ 
+ 移除视频高斯模糊播放背景
+
+ @param blur 视频高斯模糊效果
+ */
+- (void)removeBlurBackgroundPlay:(AliyunEffectBlurBackground *)blur;
+
+/**
+ API_AVAILABLE(3.7.0)
+ 
+ 添加动态播放模式
+
+ @param mode 播放模式
+ */
+- (void)applyRunningDisplayMode:(AliyunEffectRunningDisplayMode *)mode;
+
+/**
+ API_AVAILABLE(3.7.0)
+ 
+ 删除动态播放模式
+
+ @param mode 播放模式
+ */
+- (void)removeRunningDisplayMode:(AliyunEffectRunningDisplayMode *)mode;
 
 /**
  设置最大内存缓存大小
@@ -427,7 +632,7 @@
 #pragma mark - deprecated 不建议使用的API
 
 /**
- 添加视频路径
+ 添加视频路径 返回值为streamId
  
  @param path 视频路径
  Deprecated 建议使用getClipConstructor
@@ -435,7 +640,7 @@
 - (int)addPath:(NSString *)path startTime:(float)startTime duration:(float)duration fadeDuration:(float)fadeDuration inDuration:(float)inDuration outDruation:(float)outDuration mode:(int)mode __deprecated_msg("Use `IClipConstructor`");
 
 /**
- 添加图片路径
+ 添加图片路径 返回值为streamId
  
  @param path 图片路径
  Deprecated 建议使用getClipConstructor获取IClipConstructor进行管理
@@ -467,7 +672,7 @@
  @param inDuration 暂时无效
  @param outDuration 暂时无效
  @param index 视频index
- @return 返回结果
+ @return 返回结果 本接口弃用，返回值为0
  第一段视频设置无效,转场时长不能超过最短视频时长的一半
  Deprecated 建议使用getClipConstructor获取IClipConstructor进行管理
  */
@@ -480,6 +685,7 @@
  @param image 图片
  @param frame
  @param duration 时长
+ @return 返回值为片尾id或错误码  详细：如果返回值范围为 >0  && < ALIVC_FRAMEWORK_ERROR_START， 则为片尾id；否则为错误码。
  */
 - (int)setTailWaterMark:(UIImage *)image frame:(CGRect)frame duration:(CGFloat)duration __deprecated_msg("use setTailWaterMark:(AliyunEffectImage *)waterMark");
 
@@ -488,6 +694,7 @@
  
  @param imagePath 视频水印路径
  @param frame 水印frame
+ @return 返回值为水印id或者错误码 详细：如果返回值范围为 >0  && < ALIVC_FRAMEWORK_ERROR_START， 则为水印id；否则为错误码。
  */
 - (int)setWaterMark:(NSString *)imagePath frame:(CGRect)frame __deprecated_msg("use setWaterMark:(AliyunEffectImage *)waterMark");
 @end

@@ -20,26 +20,23 @@ typedef NS_ENUM(NSInteger, AliyunCropCutMode) {
 @protocol AliyunCropDelegate <NSObject>
 
 /**
- 裁剪失败时错误回调
-
+ 裁剪失败回调
  @param error 错误码
  */
 - (void)cropOnError:(int)error;
 
 /**
  裁剪进度回调
-
- @param progress 当前进度
+ @param progress 当前进度 0-1
  */
 - (void)cropTaskOnProgress:(float)progress;
 
 /**
- 退出回调  
- 裁剪完成时回调
+ 裁剪完成回调
  */
 - (void)cropTaskOnComplete;
+
 /**
- 取消回调
  主动取消或退后台时回调
  */
 - (void)cropTaskOnCancel;
@@ -49,18 +46,20 @@ typedef NS_ENUM(NSInteger, AliyunCropCutMode) {
 @interface AliyunCrop : NSObject
 
 @property (nonatomic, weak) id<AliyunCropDelegate> delegate;
+
 /**
- 视频/音乐源文件路径
+ 视频/音乐源文件路径，必选参数
  */
 @property (nonatomic, copy) NSString *inputPath;
 
 /**
- 裁剪完成后的文件存放路径
+ 裁剪完成后的文件存放路径，如果是多级目录，需要保证目录已经创建完成，必选参数
  */
 @property (nonatomic, copy) NSString *outputPath;
 
 /**
  裁剪后视频分辨率
+ 视频分辨率必须为偶数，裁剪音乐时无需设置
  */
 @property (nonatomic, assign) CGSize outputSize;
 
@@ -75,60 +74,69 @@ typedef NS_ENUM(NSInteger, AliyunCropCutMode) {
 @property (nonatomic, assign) float endTime;
 
 /**
- 视频片段过渡动画时间(单位：秒)
+ 视频片段过渡动画时间(单位：秒) 无效接口，已废弃
  */
 @property (nonatomic, assign) long fadeDuration;
 
 /**
  裁剪模式
+ 裁剪音乐时无需设置
  */
 @property (nonatomic, assign) AliyunCropCutMode cropMode;
 
 /**
  保留的视频尺寸 (cropMode为0时 无效) 裁剪的有效区域
+ 裁剪音乐时无需设置
  */
 @property (nonatomic, assign) CGRect rect;
 
 
 /**
  视频质量 默认：AliyunVideoQualityMedium
+ 裁剪音乐时无需设置
  */
 @property (nonatomic, assign) AliyunVideoQuality videoQuality;
 
 /**
  帧率 默认：25
+ 裁剪音乐时无需设置
  */
 @property (nonatomic, assign) int fps;
 
 /**
  关键帧间隔 默认：5
+ 裁剪音乐时无需设置
  */
 @property (nonatomic, assign) int gop;
 
 /**
- 编码方式 0软编   1硬编
+ 编码方式
+ 
+ 0软编  1硬编 iOS强制硬编
  */
 @property (nonatomic, assign) int encodeMode;  // 0软编   1硬编
 
 /**
  码率 bps
+ 裁剪音乐时无需设置
  */
 @property (nonatomic, assign) int bitrate;
 
 /**
  是否启用gpu裁剪
+ 裁剪音乐时无需设置
  */
 @property (nonatomic, assign) BOOL useHW;
 
-
 /**
-  是否开启优化，开启后只裁剪时间将不走编解码
-  默认开启
+ 是否开启优化，开启后只裁剪时间将不走编解码，默认关闭
+ 裁剪音乐时无需设置
  */
 @property (nonatomic, assign) BOOL shouldOptimize;
 
 /**
  视频填充模式下，填充的背景颜色
+ 裁剪音乐时无需设置
  */
 @property (nonatomic, strong) UIColor *fillBackgroundColor;
 

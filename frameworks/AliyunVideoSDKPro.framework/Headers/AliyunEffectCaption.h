@@ -27,6 +27,7 @@
 @property (nonatomic, assign) BOOL textStroke;
 @property (nonatomic, strong) UIColor *textColor;
 @property (nonatomic, strong) UIColor *textStrokeColor;
+@property (nonatomic, strong) UIColor *textLabelColor;
 @property (nonatomic, copy) NSString *fontName;//字体名称
 
 @property (nonatomic, copy) NSArray<AliyunEffectPasterTimeItem *> *timeItems;

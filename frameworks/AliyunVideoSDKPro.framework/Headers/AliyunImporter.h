@@ -14,6 +14,13 @@
 
 @interface AliyunImporter : NSObject <AliyunIClipConstructor>
 
+/**
+ 初始化AliyunImporter
+
+ @param taskPath taskPath文件夹地址，保证文件夹已存在
+ @param outputSize 导出视频分辨率设置，必须为偶数
+ @return AliyunImporter
+ */
 - (instancetype)initWithPath:(NSString *)taskPath outputSize:(CGSize)outputSize;
 
 /**

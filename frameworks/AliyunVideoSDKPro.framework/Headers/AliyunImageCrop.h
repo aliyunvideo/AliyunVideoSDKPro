@@ -17,12 +17,12 @@ typedef NS_ENUM(NSInteger, AliyunImageCropMode) {
 @interface AliyunImageCrop : NSObject
 
 /**
- 需要被裁剪的图片
+ 需要被裁剪的图片，必选参数
  */
 @property (nonatomic, strong) UIImage *originImage;
 
 /**
- 裁剪后的图片大小
+ 裁剪后的图片分辨率大小，必选参数
  */
 @property (nonatomic, assign) CGSize outputSize;
 
@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, AliyunImageCropMode) {
 /**
  裁剪生成图片
 
- @return 裁剪后的图片  如果裁剪失败 然后nil
+ @return 裁剪后的图片  如果裁剪失败，反回nil
  */
 - (UIImage *)generateImage;
 
