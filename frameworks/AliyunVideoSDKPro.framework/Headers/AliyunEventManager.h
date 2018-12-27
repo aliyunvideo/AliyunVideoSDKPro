@@ -24,6 +24,7 @@ typedef NS_ENUM(NSInteger, AliyunEvent) {
     AliyunEventRecordBeauty,
     AliyunEventRecordPosition,
     AliyunEventRecordStop,
+    AliyunEventRecordMV = 2014,
     AliyunEventEditInit = 3001,
     AliyunEventEditFilter = 3005,
     AliyunEventEditMV,

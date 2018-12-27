@@ -112,7 +112,7 @@ typedef NS_ENUM(NSInteger, AliyunCropCutMode) {
 /**
  编码方式
  
- 0软编  1硬编 iOS强制硬编
+ 0软编  1硬编 默认硬编
  */
 @property (nonatomic, assign) int encodeMode;  // 0软编   1硬编
 
