@@ -10,6 +10,6 @@
 
 @interface AliyunVideoStitch : NSObject
 
-- (BOOL)stitchVideos:(NSArray *)videoPaths output:(NSString *)output;
+- (BOOL)stitchVideos:(NSArray *)videoPaths output:(NSString *)output reportId:(int64_t)id;
 
 @end

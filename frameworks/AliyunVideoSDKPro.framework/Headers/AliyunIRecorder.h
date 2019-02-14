@@ -6,18 +6,18 @@
 //  Copyright (C) 2010-2017 Alibaba Group Holding Limited. All rights reserved.
 //
 
+#import "AliyunClipManager.h"
+#import "AliyunEffect.h"
+#import "AliyunEffectFilter.h"
+#import "AliyunEffectImage.h"
+#import "AliyunEffectMV.h"
+#import "AliyunEffectMusic.h"
+#import "AliyunEffectPaster.h"
+#import "AliyunFacePoint.h"
+#import "AliyunVideoParam.h"
+#import <AVFoundation/AVFoundation.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
-#import "AliyunFacePoint.h"
-#import "AliyunEffect.h"
-#import "AliyunClipManager.h"
-#import "AliyunVideoParam.h"
-#import "AliyunEffectPaster.h"
-#import "AliyunEffectImage.h"
-#import "AliyunEffectMusic.h"
-#import "AliyunEffectFilter.h"
-#import "AliyunEffectMV.h"
 
 typedef NS_ENUM(NSInteger, AliyunIRecorderCameraPosition) {
     AliyunIRecorderCameraPositionFront = 0,
@@ -25,14 +25,14 @@ typedef NS_ENUM(NSInteger, AliyunIRecorderCameraPosition) {
 };
 
 typedef NS_ENUM(NSInteger, AliyunIRecorderFlashMode) {
-    AliyunIRecorderFlashModeOff  = 0,
-    AliyunIRecorderFlashModeOn   = 1,
+    AliyunIRecorderFlashModeOff = 0,
+    AliyunIRecorderFlashModeOn = 1,
     AliyunIRecorderFlashModeAuto = 2
 };
 
 typedef NS_ENUM(NSInteger, AliyunIRecorderTorchMode) {
-    AliyunIRecorderTorchModeOff  = 0,
-    AliyunIRecorderTorchModeOn   = 1,
+    AliyunIRecorderTorchModeOff = 0,
+    AliyunIRecorderTorchModeOn = 1,
     AliyunIRecorderTorchModeAuto = 2,
 };
 
@@ -53,75 +53,74 @@ enum {
     AliyunIRecorderErrorCameraInterrupt = 101,
 };
 
-
 @protocol AliyunIRecorderDelegate;
 
 @interface AliyunIRecorder : NSObject
-    
+
 /**
  预览视图
  
  必须设置
  */
-@property (nonatomic, strong) UIView *preview;
+@property(nonatomic, strong) UIView *preview;
 
 /**
  视频的输出路径
  
  必须设置
  */
-@property (nonatomic, copy) NSString *outputPath;
+@property(nonatomic, copy) NSString *outputPath;
 
 /**
  taskPath文件夹路径
  
  需要保证文件夹已经创建，必须设置
  */
-@property (nonatomic, copy) NSString *taskPath;
+@property(nonatomic, copy) NSString *taskPath;
 
 /**
  Delegate
  */
-@property (nonatomic, weak) id <AliyunIRecorderDelegate> delegate;
+@property(nonatomic, weak) id<AliyunIRecorderDelegate> delegate;
 
 /**
  美颜状态是否开启
  */
-@property (nonatomic, assign) BOOL beautifyStatus;
+@property(nonatomic, assign) BOOL beautifyStatus;
 
 /**
  设置美颜度 [0,100]
  */
-@property (nonatomic, assign) int beautifyValue;
+@property(nonatomic, assign) int beautifyValue;
 
 /**
  曝光值 [0,1]
  */
-@property (nonatomic, assign) CGFloat exposureValue;
+@property(nonatomic, assign) CGFloat exposureValue;
 
 /**
  前置摄像头采集分辨率
  
  默认:AVCaptureSessionPreset640x480  更多参数参见：AVCaptureSession.h
  */
-@property (nonatomic, copy) NSString *frontCaptureSessionPreset;
+@property(nonatomic, copy) NSString *frontCaptureSessionPreset;
 
 /**
  后置摄像头采集分辨率
  
  默认:AVCaptureSessionPreset1280x720  更多参数参见：AVCaptureSession.h
  */
-@property (nonatomic, copy) NSString *backCaptureSessionPreset;
+@property(nonatomic, copy) NSString *backCaptureSessionPreset;
 
 /**
  摄像头角度
  */
-@property (nonatomic, assign) int cameraRotate;
+@property(nonatomic, assign) int cameraRotate;
 
 /**
  手动对焦点，相对预览视图的位置
  */
-@property (nonatomic, assign) CGPoint focusPoint;
+@property(nonatomic, assign) CGPoint focusPoint;
 
 /**
  调整变焦倍数
@@ -131,70 +130,68 @@ enum {
  例：调用videoZoomFactor = -5.0f，实际zoom -= 0.05f
  前置摄像头时，该参数是无效的
  */
-@property (nonatomic, assign) CGFloat videoZoomFactor;
+@property(nonatomic, assign) CGFloat videoZoomFactor;
 
 /**
  编码方式
  
  0软编  1硬编 iOS强制硬编
  */
-@property (nonatomic, assign) int encodeMode;
+@property(nonatomic, assign) int encodeMode;
 
 /**
- 关键帧间隔
+ 关键帧间隔,有效区间[0, 9000]，其中0和1都表示全I帧
  
- 建议1-300，默认5
+ 默认5
  */
-@property (nonatomic, assign) int GOP;
+@property(nonatomic, assign) int GOP;
 
 /**
- 录制帧率
+ 录制帧率, 取值区间(0,30]，区间外的值将视为无效值，依然使用默认值。
  
  默认25
  */
-@property (nonatomic, assign) int recordFps;
+@property(nonatomic, assign) int recordFps;
 
 /**
  是否静音
  
  添加音乐后，静音无效
  */
-@property (nonatomic, assign) BOOL mute;
+@property(nonatomic, assign) BOOL mute;
 
 /**
  视频质量，设置bitrate参数后，该参数无效
  */
-@property (nonatomic, assign) AliyunVideoQuality videoQuality;
+@property(nonatomic, assign) AliyunVideoQuality videoQuality;
 
 /**
- 输出视频码率 bps
+ 输出视频码率 bps  最小值200000bps 最大值20000000bps
  */
-@property (nonatomic, assign) int bitrate;
-
+@property(nonatomic, assign) int bitrate;
 
 /**
- 提供三种格式：
+ 提供三种格式：如果设置不是此三值，将会视情况分配此三种格式中的一种
  kCVPixelFormatType_420YpCbCr8BiPlanarFullRange，
  kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange，
  kCVPixelFormatType_32BGRA，
  默认kCVPixelFormatType_420YpCbCr8BiPlanarFullRange格式 
  */
-@property (nonatomic, assign) AliyunIRecorderVideoOutputPixelFormatType outputType;
-
+@property(nonatomic, assign) AliyunIRecorderVideoOutputPixelFormatType outputType;
 
 /**
  是否开启人脸识别
  
  使用自带人脸识别，开启该功能，系统会在检测到有人脸动图加入时自动进行追踪显示
  */
-@property (nonatomic, assign) BOOL useFaceDetect;
+@property(nonatomic, assign) BOOL useFaceDetect;
 
 /**
- 设置识别人脸的个数
+ 设置识别人脸的个数 当设置值小于1时，默认为1；当设置值大于3时，默认为3
  
  最大是3个 最小是1个  如果不需要检测人脸 使用:useFaceDetect = NO
  */
-@property (nonatomic, assign) int faceDetectCount;
+@property(nonatomic, assign) int faceDetectCount;
 
 /**
  是否同步贴合人脸
@@ -203,44 +200,44 @@ enum {
  非同步贴合人脸动图，有点是画面流畅但贴图贴合性不强
  默认是YES，6及以下机型建议异步，6以上建议同步
  */
-@property (nonatomic, assign) BOOL faceDectectSync;
+@property(nonatomic, assign) BOOL faceDectectSync;
 
 /**
  设备权限
  
  包括麦克风和摄像头权限
  */
-@property (nonatomic, assign, readonly) AliyunIRecorderDeviceAuthor authorizationStatus;
+@property(nonatomic, assign, readonly) AliyunIRecorderDeviceAuthor authorizationStatus;
 
 /**
  手电筒是否可用
  */
-@property (nonatomic, assign, readonly) BOOL hasTorch;
+@property(nonatomic, assign, readonly) BOOL hasTorch;
 
 /**
  电筒模式
  */
-@property (nonatomic, assign, readonly) AliyunIRecorderTorchMode torchMode;
+@property(nonatomic, assign, readonly) AliyunIRecorderTorchMode torchMode;
 
 /**
  获取摄像头位置
  */
-@property (nonatomic, assign, readonly) AliyunIRecorderCameraPosition cameraPosition;
+@property(nonatomic, assign, readonly) AliyunIRecorderCameraPosition cameraPosition;
 
 /**
  获取最大变焦系数
  */
-@property (nonatomic, assign, readonly) CGFloat videoMaxZoomFactor;
+@property(nonatomic, assign, readonly) CGFloat videoMaxZoomFactor;
 
 /**
  是否正在录制
  */
-@property (nonatomic, assign, readonly) BOOL isRecording;
+@property(nonatomic, assign, readonly) BOOL isRecording;
 
 /**
  获取视频片段管理器
  */
-@property (nonatomic, strong, readonly) AliyunClipManager *clipManager;
+@property(nonatomic, strong, readonly) AliyunClipManager *clipManager;
 
 /**
  获取版本号
@@ -287,7 +284,6 @@ enum {
  开始录制
  */
 - (int)startRecording;
-
 
 /**
  停止录制
@@ -345,7 +341,7 @@ enum {
  
  在useFaceDetect开启的状态下生效
  */
-@property (nonatomic, copy) void (^faceNumbersCallback)(int num);
+@property(nonatomic, copy) void (^faceNumbersCallback)(int num);
 
 /**
  人脸追踪 用户可以选择其他地方人人脸识别库，但是传进来的数据须封装成AliyunFacePoint
@@ -367,7 +363,6 @@ enum {
  @param filter 滤镜
  */
 - (int)applyFilter:(AliyunEffectFilter *)filter;
-
 
 /**
  添加动效滤镜
@@ -393,7 +388,6 @@ enum {
  @param image 水印
  */
 - (int)applyImage:(AliyunEffectImage *)image;
-
 
 /**
  添加音乐
@@ -443,9 +437,7 @@ enum {
  */
 - (void)setEffectView:(CGRect)rect effect:(AliyunEffect *)effect;
 
-
 @end
-
 
 @protocol AliyunIRecorderDelegate <NSObject>
 
@@ -471,7 +463,6 @@ enum {
  @param sampleBuffer 音频数据
  */
 - (void)recorderOutputAudioRawSampleBuffer:(CMSampleBufferRef)sampleBuffer;
-
 
 /**
  用户自定义渲染
@@ -514,7 +505,6 @@ enum {
  @return 处理后的纹理ID
  */
 - (NSInteger)recorderOutputVideoTextureName:(NSInteger)textureName textureSize:(CGSize)textureSie;
-
 
 /**
  摄像头返回的原始视频纹理  

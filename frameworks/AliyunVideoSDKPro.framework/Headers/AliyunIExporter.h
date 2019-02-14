@@ -56,6 +56,14 @@
 - (void)setVideoParam:(AliyunVideoParam *)videoParam;
 
 /**
+ 设置退后台是否取消导出合成
+ 
+ 默认值NO:退后台暂停合成，回到前台继续合成,YES:退后台取消合成
+ @param flag flag
+ */
+- (void)setCancelExportInResignActive:(BOOL)flag;
+
+/**
  开始导出视频
  
  @param outputPath 导出视频文件路径，需要保证多级目录文件夹已经创建
@@ -68,6 +76,20 @@
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  */
 - (int)startExport:(NSString *)outputPath;
+
+/**
+ 暂停导出视频
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ */
+- (int)pauseExport;
+
+/**
+ 继续导出视频
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ */
+- (int)resumeExport;
 
 /**
  取消导出视频

@@ -74,19 +74,6 @@ typedef enum : NSUInteger {
  */
 - (int)stopEdit;
 
-
-/**
- 准备播放或导出
- 预解码部分音视频数据，加快起播速度
- 设定模式后，只能选择对应的play或startExport:
- 调用需在startEdit方法执行后，play或startExport:方法执行前
- 如无必要可不调用，不调用则play或startExport:方法内部会调用prepare:
- @param mode 编辑模式
- 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- 参数不正确 ALIVC_COMMON_INVALID_PARAM
- */
-- (int)prepare:(AliyunEditorMode)mode;
-
 /**
  获取 媒体片段构造器
  对媒体片段修改操作，必须在startEdit之前或stopEdit后才能生效
@@ -612,14 +599,6 @@ typedef enum : NSUInteger {
 
 
 /**
- 获取视频需要的最大内存缓存大小
-
- @param path 视频路径
- @return 内存缓存大小
- */
-- (int)getMaxEstimatedCacheSize:(NSString *)path;
-
-/**
  request id
  */
 - (NSString *)getRequestId;
@@ -630,6 +609,26 @@ typedef enum : NSUInteger {
 + (NSString *)version;
 
 #pragma mark - deprecated 不建议使用的API
+
+/**
+ 获取视频需要的最大内存缓存大小
+ 已废弃
+ 判断视频是否支持倒播，可以通过[AliyunNativeParser getGopSize]获取gop
+ 建议gop > 35的视频倒播转码
+ @param path 视频路径
+ @return 内存缓存大小
+ */
+- (int)getMaxEstimatedCacheSize:(NSString *)path __deprecated_msg("deprecated, will remove");
+
+/**
+ 准备播放
+ 预解码部分音视频数据，加快起播速度
+ @param mode 编辑模式
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 参数不正确 ALIVC_COMMON_INVALID_PARAM
+ 已废弃，无需调用
+ */
+- (int)prepare:(AliyunEditorMode)mode __deprecated_msg("deprecated, will remove");
 
 /**
  添加视频路径 返回值为streamId

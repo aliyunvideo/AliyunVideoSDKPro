@@ -13,7 +13,7 @@
 /**
  开始播放
  */
-- (void)playerDidStart;
+- (void)playerDidStart __deprecated_msg("已废弃不再维护");
 
 /**
  播放结束
@@ -24,7 +24,8 @@
 /**
  seek结束
  */
-- (void)seekDidEnd;
+
+- (void)seekDidEnd __deprecated_msg("已废弃不再维护");
 
 /**
  播放进度

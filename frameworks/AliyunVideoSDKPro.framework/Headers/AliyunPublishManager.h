@@ -8,8 +8,28 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+#import "AliyunVodPublishManager.h"
 #import "AliyunEditor.h"
+
+
+@interface AliyunUploadSVideoInfo : NSObject
+// 标题
+@property (nonatomic, copy) NSString* title;
+// 标签
+@property (nonatomic, copy) NSString* tags;
+// 描述
+@property (nonatomic, copy) NSString* desc;
+// 分类
+@property (nonatomic, strong) NSNumber* cateId;
+
+@property (nonatomic, assign) BOOL isProcess;
+@property (nonatomic, assign) BOOL isShowWaterMark;
+@property (nonatomic, strong) NSNumber* priority;
+@property (nonatomic, copy) NSString* storageLocation;
+@property (nonatomic, copy) NSString* templateGroupId;
+
+@end
+
 
 @protocol AliyunIUploadCallback <NSObject>
 
@@ -52,18 +72,6 @@
  */
 - (void)uploadRetryResume;
 
-@end
-
-@interface AliyunUploadSVideoInfo : NSObject
-@property (nonatomic, copy) NSString* title;                // 标题
-@property (nonatomic, copy) NSString* tags;                 // 标签
-@property (nonatomic, copy) NSString* desc;                 // 描述
-@property (nonatomic, strong) NSNumber* cateId;             // 分类
-@property (nonatomic, assign) BOOL isProcess;               //
-@property (nonatomic, assign) BOOL isShowWaterMark;         // 显示水印
-@property (nonatomic, strong) NSNumber* priority;           // 优先级
-@property (nonatomic, copy) NSString* storageLocation;      // 存储位置
-@property (nonatomic, copy) NSString* templateGroupId;      // 转码模板组id
 @end
 
 @interface AliyunPublishManager : NSObject
@@ -124,6 +132,13 @@
  */
 - (void)setTailWaterMark:(UIImage *)image frame:(CGRect)frame duration:(CGFloat)duration __deprecated_msg("use setTailWaterMark:(AliyunEffectImage *)waterMark");
 
+/**
+ 设置退后台是否取消导出合成
+ 
+ 默认值NO:退后台暂停合成，回到前台继续合成,YES:退后台取消合成
+ @param flag flag
+ */
+- (void)setCancelExportInResignActive:(BOOL)flag;
 /**
  合成视频
 

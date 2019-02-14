@@ -5,21 +5,14 @@
 //  Created by Worthy on 2017/5/23.
 //  Copyright © 2017年 Alibaba Group Holding Limited. All rights reserved.
 // BUILD INFO
-// AliyunAlivcCommitId:c1cd3f40b
-// AliyunMediaCoreCommitId:bd6b7473
-// AliyunVideoSDKCommitId:1b5a823b
-// AliyunVideoSDKBuildId:10788273
+// AliyunAlivcCommitId:3d3b73c57
+// AliyunMediaCoreCommitId:90e1b3f7
+// AliyunVideoSDKCommitId:cbfdebac
+// AliyunVideoSDKBuildId:10998178
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, AlivcLogLevel) {
-    AlivcLogVerbose = 2,
-    AlivcLogDebug,
-    AlivcLogInfo,
-    AlivcLogWarn,
-    AlivcLogError,
-    AlivcLogFatal
-};
+typedef NS_ENUM(NSInteger, AlivcLogLevel) { AlivcLogVerbose = 2, AlivcLogDebug, AlivcLogInfo, AlivcLogWarn, AlivcLogError, AlivcLogFatal };
 
 @interface AliyunVideoSDKInfo : NSObject
 
@@ -66,7 +59,7 @@ typedef NS_ENUM(NSInteger, AlivcLogLevel) {
 /**
  注册SDK
  */
-+(void)registerSDK;
++ (void)registerSDK;
 
 /**
  设置日志等级
@@ -77,5 +70,33 @@ typedef NS_ENUM(NSInteger, AlivcLogLevel) {
  */
 + (void)setLogLevel:(AlivcLogLevel)level;
 
+/**
+ 设置用户id
+ 设置业务层用户id，用于线上用户反馈问题的日志排查
+
+ @param userId 用户id
+ */
++ (void)setUserId:(NSString *)userId;
+
+/**
+ 获取用户id
+
+ @return 用户id
+ */
++ (NSString *)userId;
+
+/**
+ 设备信息上传
+
+ @param conanUpload 是否上传
+ */
++ (void)setDeviceInfoUpload:(BOOL)conanUpload;
+
+/**
+ 获取设备信息上传
+
+ @return 结果
+ */
++ (BOOL)deviceInfoUpload;
 
 @end

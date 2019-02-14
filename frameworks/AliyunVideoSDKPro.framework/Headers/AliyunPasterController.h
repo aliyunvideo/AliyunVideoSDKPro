@@ -11,46 +11,7 @@
 #import "AliyunPasterUIEventProtocol.h"
 @class AliyunEffectPasterFrameItem;
 
-@protocol AliyunPasterControllerDelegate <NSObject>
 
-/**
- 移除动图控制器
-
- @param obj 动图控制器
- */
-- (void)onRemove:(id)obj;
-
-/**
- 动图控制器将要进入编辑
-
- @param obj 动图控制器
- */
-- (void)onEditWillBegin:(id)obj;
-
-/**
- 动图控制器进入编辑
-
- @param obj 动图控制器
- */
-- (void)onEditDidBegin:(id)obj;
-
-/**
- 动图控制器完成编辑
-
- @param obj 动图控制器
- */
-- (void)onEditEnd:(id)obj;
-
-/**
- 动图控制器完成编辑
-
- @param obj 动图控制器
- @param image 需要渲染的图片
- */
-- (void)onEditEnd:(id)obj image:(UIImage *)image;
-
-
-@end
 
 typedef enum : NSUInteger {
     AliyunPasterEffectTypeNormal = 0,

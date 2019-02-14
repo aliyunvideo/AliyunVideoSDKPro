@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-
+/**
+已废弃，请勿使用
+ */
+__attribute__((deprecated))
 @interface AliyunJSONModel : NSObject
 
 /**
