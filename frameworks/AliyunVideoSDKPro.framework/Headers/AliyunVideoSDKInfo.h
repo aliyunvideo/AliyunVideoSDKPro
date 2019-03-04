@@ -6,9 +6,9 @@
 //  Copyright © 2017年 Alibaba Group Holding Limited. All rights reserved.
 // BUILD INFO
 // AliyunAlivcCommitId:3d3b73c57
-// AliyunMediaCoreCommitId:90e1b3f7
-// AliyunVideoSDKCommitId:cbfdebac
-// AliyunVideoSDKBuildId:10998178
+// AliyunMediaCoreCommitId:fd87f125
+// AliyunVideoSDKCommitId:578300f3
+// AliyunVideoSDKBuildId:11078824
 
 #import <Foundation/Foundation.h>
 
