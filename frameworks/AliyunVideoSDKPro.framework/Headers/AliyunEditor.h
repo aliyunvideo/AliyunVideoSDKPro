@@ -6,49 +6,49 @@
 //  Copyright © 2018年 Alibaba Group Holding Limited. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import "AliyunIPlayer.h"
-#import "AliyunIPasterRender.h"
-#import "AliyunPasterManager.h"
-#import "AliyunIPlayerCallback.h"
-#import "AliyunIExporterCallback.h"
-#import "AliyunEffectStaticImage.h"
-#import "AliyunEffectMV.h"
-#import "AliyunEffectFilter.h"
-#import "AliyunEffectTimeFilter.h"
-#import "AliyunEffectMusic.h"
-#import "AliyunEffectDub.h"
-#import "AliyunEffectImage.h"
-#import "AliyunVideoParam.h"
-#import "AliyunIExporter.h"
-#import "AliyunIClipConstructor.h"
-#import "AliyunMoveAction.h"
-#import "AliyunScaleAction.h"
-#import "AliyunRotateByAction.h"
-#import "AliyunRotateToAction.h"
-#import "AliyunRotateAction.h"
-#import "AliyunRotateRepeatAction.h"
+#import "AliyunActionProtocol.h"
 #import "AliyunAlphaAction.h"
 #import "AliyunCustomAction.h"
-#import "AliyunActionProtocol.h"
-#import "AliyunTransitionEffect.h"
 #import "AliyunEffectBlurBackground.h"
+#import "AliyunEffectDub.h"
+#import "AliyunEffectFilter.h"
+#import "AliyunEffectImage.h"
+#import "AliyunEffectMV.h"
+#import "AliyunEffectMusic.h"
 #import "AliyunEffectRunningDisplayMode.h"
+#import "AliyunEffectStaticImage.h"
+#import "AliyunEffectTimeFilter.h"
+#import "AliyunIClipConstructor.h"
+#import "AliyunIExporter.h"
+#import "AliyunIExporterCallback.h"
+#import "AliyunIPasterRender.h"
+#import "AliyunIPlayer.h"
+#import "AliyunIPlayerCallback.h"
+#import "AliyunMoveAction.h"
+#import "AliyunPasterManager.h"
+#import "AliyunRotateAction.h"
+#import "AliyunRotateByAction.h"
+#import "AliyunRotateRepeatAction.h"
+#import "AliyunRotateToAction.h"
+#import "AliyunScaleAction.h"
+#import "AliyunTransitionEffect.h"
+#import "AliyunVideoParam.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 typedef enum : NSUInteger {
     AliyunEditorModeNull,
-    AliyunEditorModePlay,       // 播放模式
-    AliyunEditorModeExport,    // 合成导出模式
+    AliyunEditorModePlay,   // 播放模式
+    AliyunEditorModeExport, // 合成导出模式
 } AliyunEditorMode;
 
 @interface AliyunEditor : NSObject
 
-@property (nonatomic, weak) id<AliyunIPlayerCallback, AliyunIExporterCallback, AliyunIRenderCallback> delegate;
+@property(nonatomic, weak) id<AliyunIPlayerCallback, AliyunIExporterCallback, AliyunIRenderCallback> delegate;
 
 /**
  初始化Editor
- 
+
  @param taskPath taskPath文件夹路径
  @param preview 编辑预览视图
  @return Editor
@@ -83,32 +83,31 @@ typedef enum : NSUInteger {
 
 /**
  获取播放器接口实例
- 
+
  @return AliyunIPlayer
  */
 - (id<AliyunIPlayer>)getPlayer;
 
 /**
  获取导出接口实例
- 
+
  @return AliyunIExporter
  */
 - (id<AliyunIExporter>)getExporter;
 
 /**
  获取PasterRender实例
- 
+
  @return PasterRender
  */
 - (id<AliyunIPasterRender>)getPasterRender;
 
 /**
  获取动图管理类
- 
+
  @return AliyunPasterManager
  */
 - (AliyunPasterManager *)getPasterManager;
-
 
 /**
  获取渲染窗口像素大小
@@ -119,7 +118,7 @@ typedef enum : NSUInteger {
 
 /**
  使用mv
- 
+
  @param mv
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
@@ -132,7 +131,7 @@ typedef enum : NSUInteger {
 
 /**
  移除MV
- 
+
 正常返回 ALIVC_COMMON_RETURN_SUCCESS
 状态不正确 ALIVC_COMMON_INVALID_STATE
  调用后，播放器将处于暂停状态
@@ -148,11 +147,11 @@ typedef enum : NSUInteger {
  ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
  调用后，播放器将处于暂停状态
  */
--(int)removeMVMusic;
+- (int)removeMVMusic;
 
 /**
  使用音乐
- 
+
  @param music music配置文件路径
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
@@ -161,7 +160,6 @@ typedef enum : NSUInteger {
  调用后，播放器将处于暂停状态
  */
 - (int)applyMusic:(AliyunEffectMusic *)music;
-
 
 /**
  删除某一路音乐
@@ -173,10 +171,9 @@ typedef enum : NSUInteger {
  */
 - (int)removeMusic:(AliyunEffectMusic *)music;
 
-
 /**
  移除所有音乐
- 
+
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
@@ -188,7 +185,7 @@ typedef enum : NSUInteger {
 
 /**
  添加配音
- 
+
  @param dub 配音对象 支持变速功能
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
@@ -219,7 +216,7 @@ typedef enum : NSUInteger {
 
 /**
  使用滤镜
- 
+
  @param filter filter配置文件路径
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
@@ -230,7 +227,7 @@ typedef enum : NSUInteger {
 
 /**
  删除滤镜
- 
+
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
@@ -240,7 +237,7 @@ typedef enum : NSUInteger {
 
 /**
  使用特效滤镜
- 
+
  @param filter filter对象
  状态不正确 ALIVC_COMMON_INVALID_STATE
  文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
@@ -261,7 +258,7 @@ typedef enum : NSUInteger {
 
 /**
  移除某个特效滤镜
- 
+
  @param filter filter对象
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
@@ -271,7 +268,7 @@ typedef enum : NSUInteger {
 
 /**
  使用时间特效
- 
+
  @param filter 特效对象
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
@@ -286,7 +283,7 @@ typedef enum : NSUInteger {
 
 /**
  API_AVAILABLE(3.7.0)
- 
+
  删除某一个时间特效 目前只能删变速的时间特效
 
  @param filter 待删除的时间特效
@@ -299,7 +296,7 @@ typedef enum : NSUInteger {
 
 /**
  删除时间特效 删除全部的时间特效
- 
+
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
@@ -309,20 +306,19 @@ typedef enum : NSUInteger {
  */
 - (int)removeTimeFilter;
 
-
 /**
  获取当前的时间特效类型
 
  @return 时间特效种类  TIME_EFFECT_NONE = 0, 无效果
  TIME_EFFECT_SPEED = 1,加速或者减速
  TIME_EFFECT_REPEAT = 2,反复
- TIME_EFFECT_INVERT = 3 导致
+ TIME_EFFECT_INVERT = 3 倒放
  */
 - (int)getTimeFilter;
 
 /**
  加入静态贴纸
- 
+
  @param staticImage 静态贴纸
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
@@ -333,7 +329,7 @@ typedef enum : NSUInteger {
 
 /**
  移除静态贴纸
- 
+
  @param staticImage 静态贴纸
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
@@ -341,10 +337,9 @@ typedef enum : NSUInteger {
  */
 - (int)removeStaticImage:(AliyunEffectStaticImage *)staticImage;
 
-
 /**
  使用涂鸦
- 
+
  @param paintImage 涂鸦图片
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
@@ -355,17 +350,17 @@ typedef enum : NSUInteger {
 
 /**
  API_AVAILABLE(3.7.0)
- 
+
  添加转场   注意：
                ① 如果只有一个视频片段，不可调用此接口
                ② 转场的时长不能超过前后两段视频中最短的视频时长
                ③ 使用此接口前，先调用[_editor stopEdit]，然后调用此接口，接着调用 [_editor startEdit] 和[_player play]
- 
+
  [----A视频段----] [----B视频段----] [----C视频段----]...[----N段视频----]
                  ^                ^                 ^
  clipIndex:      0                1                N-1
- 
- 
+
+
  @param transition 具体的转场
  @param clipIdx 视频片段交叉序列点
  @return 返回值为ALIVC_COMMON_RETURN_FAILED失败
@@ -375,7 +370,7 @@ typedef enum : NSUInteger {
 
 /**
  API_AVAILABLE(3.7.0)
- 
+
  删除某个转场效果  注意：
  使用此接口前，先调用[_editor stopEdit]，然后调用此接口，接着调用 [_editor startEdit] 和[_player play]
 
@@ -385,18 +380,17 @@ typedef enum : NSUInteger {
 
 /**
  API_AVAILABLE(3.7.0)
- 
- 加帧动画 注意：主流不支持alpha帧动画
+
+ 加帧动画 注意：1.主流不支持alpha帧动画  2.在倒播特效下，不支持此功能
 
  @param obj 动画作用的对象
  @param action 动画
  */
 - (void)add:(id<AliyunActionProtocol>)obj withFrameAnimation:(AliyunAction *)action;
 
-
 /**
  API_AVAILABLE(3.7.0)
- 
+
  删帧动画
 
  @param obj 动画作用的对象
@@ -404,10 +398,9 @@ typedef enum : NSUInteger {
  */
 - (void)remove:(id<AliyunActionProtocol>)obj withFrameAnimation:(AliyunAction *)action;
 
-
 /**
  删除涂鸦
- 
+
  @param paintImage 涂鸦图片
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
@@ -428,7 +421,7 @@ typedef enum : NSUInteger {
 
 /**
  设置片尾水印
- 
+
  AliyunEffectImage对象需要设置endtime属性，此属性代表距离视频结尾的时长。
 
  @param waterMark 片尾水印
@@ -442,7 +435,7 @@ typedef enum : NSUInteger {
 
 /**
  设置是否静音
- 
+
  @param mute 静音
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
@@ -452,7 +445,7 @@ typedef enum : NSUInteger {
 
 /**
  设置音量
- 
+
  @param volume 音量：0-200
  默认值100,原始的音量大小
  大于100可能会破音，建议0-100
@@ -464,7 +457,7 @@ typedef enum : NSUInteger {
 
 /**
  设置混音权重
- 
+
  @param weight 混音权重0-100
  设为100时，主流权重为0，只有配乐
  设为0时，配乐流权重为0，只有原音
@@ -477,7 +470,6 @@ typedef enum : NSUInteger {
  ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED
  */
 - (int)setAudioMixWeight:(int)weight;
-
 
 /**
  设置单路音频流音量权重
@@ -505,7 +497,7 @@ typedef enum : NSUInteger {
 
 /**
  设置单路音频去噪
- 
+
  @param denoise 是否去噪
  @param streamId 流id
  AliyunEffectMusic流id：effectVid
@@ -517,17 +509,54 @@ typedef enum : NSUInteger {
 
 /**
  设置主流音频去噪
- 
+
  @param denoise 是否去噪
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
 - (int)setMainStreamsAudioDenoise:(BOOL)denoise;
 
+/**
+ 设置单路流音效
+ 如果素材无音轨，该接口返回成功，但是没有效果
+
+ @param type 音效类型
+ @param weight 音效权重0-100
+ @param streamId 流id
+ @return 返回值
+ */
+- (int)setAudioEffect:(AliyunAudioEffectType)type weight:(int)weight streamId:(int)streamId;
+
+/**
+ 去除单路流音效
+
+ @param type 音效类型
+ @param streamId 流id
+ @return 返回值
+ */
+- (int)removeAudioEffect:(AliyunAudioEffectType)type streamId:(int)streamId;
+
+/**
+ 设置主流音效
+ 如果素材无音轨，该接口返回成功，但是没有效果
+
+ @param type 音效类型
+ @param weight 音效权重0-100
+ @return 返回值
+ */
+- (int)setMainStreamsAudioEffect:(AliyunAudioEffectType)type weight:(int)weight;
+
+/**
+ 去除主流音效
+
+ @param typ 音效类型
+ @return 返回值
+ */
+- (int)removeMainStreamsAudioEffect:(AliyunAudioEffectType)typ;
 
 /**
  画面填充模式
- 
+
  @param mode  AliyunScaleModeFit = 0,          // 填充
  AliyunScaleModeFill = 1          // 裁剪
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
@@ -538,7 +567,7 @@ typedef enum : NSUInteger {
 
 /**
  视频渲染最底层背景颜色 在填充模式下具有效果   如果color设置为clearColor 那么默认背景为视频高斯模糊播放效果
- 
+
  @param color 颜色
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
@@ -547,16 +576,16 @@ typedef enum : NSUInteger {
 
 /**
  API_AVAILABLE(3.7.0)
- 
+
  在填充模式下，设置高斯模糊视频播放背景 支持多段时间段 注意：如果背景色为clearColor将默认是此效果，如果是非clearColor此接口才有效果
- 
+
  @param blur 视频高斯模糊效果
  */
 - (void)applyBlurBackgroundPlay:(AliyunEffectBlurBackground *)blur;
 
 /**
  API_AVAILABLE(3.7.0)
- 
+
  移除视频高斯模糊播放背景
 
  @param blur 视频高斯模糊效果
@@ -565,7 +594,7 @@ typedef enum : NSUInteger {
 
 /**
  API_AVAILABLE(3.7.0)
- 
+
  添加动态播放模式
 
  @param mode 播放模式
@@ -574,7 +603,7 @@ typedef enum : NSUInteger {
 
 /**
  API_AVAILABLE(3.7.0)
- 
+
  删除动态播放模式
 
  @param mode 播放模式
@@ -589,14 +618,12 @@ typedef enum : NSUInteger {
  */
 - (void)setMaxCacheSize:(int)cacheSize;
 
-
 /**
  获取当前设置的最大内存缓存大小
 
  @return 内存缓存大小
  */
 - (int)getMaxCacheSize;
-
 
 /**
  request id
@@ -632,7 +659,7 @@ typedef enum : NSUInteger {
 
 /**
  添加视频路径 返回值为streamId
- 
+
  @param path 视频路径
  Deprecated 建议使用getClipConstructor
  */
@@ -640,7 +667,7 @@ typedef enum : NSUInteger {
 
 /**
  添加图片路径 返回值为streamId
- 
+
  @param path 图片路径
  Deprecated 建议使用getClipConstructor获取IClipConstructor进行管理
  */
@@ -648,25 +675,23 @@ typedef enum : NSUInteger {
 
 /**
  获取所有播放的视频的本地路径
- 
+
  @return 路径数组
  Deprecated 建议使用getClipConstructor获取IClipConstructor进行管理
  */
 - (NSArray *)getVideoUrls __deprecated_msg("Use `IClipConstructor`");
 
-
 /**
  获取媒体片段
- 
+
  @return 媒体片段数组
  Deprecated 建议使用getClipConstructor获取IClipConstructor进行管理
  */
 - (NSArray *)getMediaClips __deprecated_msg("Use `IClipConstructor`");
 
-
 /**
  设置转场时长
- 
+
  @param fadeDuration 转场时长
  @param inDuration 暂时无效
  @param outDuration 暂时无效
@@ -677,10 +702,9 @@ typedef enum : NSUInteger {
  */
 - (int)setClipFadeDuration:(CGFloat)fadeDuration inDuration:(CGFloat)inDuration outDuration:(CGFloat)outDuration atIndex:(NSInteger)index __deprecated_msg("Use `IClipConstructor`");
 
-
 /**
  添加片尾水印
- 
+
  @param image 图片
  @param frame
  @param duration 时长
@@ -690,7 +714,7 @@ typedef enum : NSUInteger {
 
 /**
  添加视频水印
- 
+
  @param imagePath 视频水印路径
  @param frame 水印frame
  @return 返回值为水印id或者错误码 详细：如果返回值范围为 >0  && < ALIVC_FRAMEWORK_ERROR_START， 则为水印id；否则为错误码。

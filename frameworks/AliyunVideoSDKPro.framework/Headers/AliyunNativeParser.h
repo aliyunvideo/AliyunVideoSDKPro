@@ -93,6 +93,13 @@
 - (NSInteger)getVideoFrameCount;
 
 /**
+ 获取视频帧率
+
+ @return 视频帧率
+内部封装了getValueForKey:方法
+ */
+-(NSInteger)getVideoFrameRate;
+/**
  获取视频码率
 
  @return 视频码率

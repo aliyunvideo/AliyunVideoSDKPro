@@ -6,15 +6,24 @@
 //  Copyright (C) 2010-2017 Alibaba Group Holding Limited. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "AliyunJSONModel.h"
+#import <Foundation/Foundation.h>
+
+typedef NS_ENUM(NSInteger, AliyunAudioEffectType) {
+    AliyunAudioEffectDefault = 0,
+    AliyunAudioEffectLolita,  // 萝莉
+    AliyunAudioEffectUncle,   // 大叔
+    AliyunAudioEffectReverb,  // 混响
+    AliyunAudioEffectEcho,    // 回声
+    AliyunAudioEffectDenoise, // 去噪
+};
 
 id QUSDKObjectOrNull(id object);
 @interface AliyunEffect : AliyunJSONModel
 
-@property (nonatomic, copy) NSString *path;
-@property (nonatomic, copy) NSString *icon;//icon path
-@property (nonatomic, copy) NSString *name;
+@property(nonatomic, copy) NSString *path;
+@property(nonatomic, copy) NSString *icon; // icon path
+@property(nonatomic, copy) NSString *name;
 
 - (int)effectVid;
 
@@ -30,4 +39,17 @@ id QUSDKObjectOrNull(id object);
 
 - (instancetype)initWithDict:(NSDictionary *)dict;
 
+@end
+
+@interface AliyunAudioEffect : AliyunJSONModel
+
+/**
+ 音效类型
+ */
+@property(nonatomic, assign) AliyunAudioEffectType type;
+
+/**
+ 音效值0-100
+ */
+@property(nonatomic, assign) int weight;
 @end

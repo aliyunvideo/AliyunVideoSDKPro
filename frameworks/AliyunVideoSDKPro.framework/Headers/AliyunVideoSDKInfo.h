@@ -5,10 +5,10 @@
 //  Created by Worthy on 2017/5/23.
 //  Copyright © 2017年 Alibaba Group Holding Limited. All rights reserved.
 // BUILD INFO
-// AliyunAlivcCommitId:37ed9c037
-// AliyunMediaCoreCommitId:8af156c7
-// AliyunVideoSDKCommitId:1dfeba5b
-// AliyunVideoSDKBuildId:11169972
+// AliyunAlivcCommitId:ee9254da3
+// AliyunMediaCoreCommitId:139eb424
+// AliyunVideoSDKCommitId:6fa1e2b9
+// AliyunVideoSDKBuildId:11279125
 
 #import <Foundation/Foundation.h>
 

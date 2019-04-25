@@ -6,21 +6,15 @@
 //  Copyright (C) 2010-2017 Alibaba Group Holding Limited. All rights reserved.
 //
 
+#import "AliyunAction.h"
+#import "AliyunEffect.h"
+#import "AliyunJSONModel.h"
+#import "AliyunTransitionEffect.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "AliyunJSONModel.h"
-#import "AliyunAction.h"
-#import "AliyunTransitionEffect.h"
-
-
 
 @protocol AliyunClip;
-typedef NS_ENUM(NSInteger,AliyunClipType) {
-    AliyunClipVideo = 0,
-    AliyunClipImage = 1,
-    AliyunClipAudio = 2,
-    AliyunClipGif = 3
-};
+typedef NS_ENUM(NSInteger, AliyunClipType) { AliyunClipVideo = 0, AliyunClipImage = 1, AliyunClipAudio = 2, AliyunClipGif = 3 };
 
 @interface AliyunClip : AliyunJSONModel
 /*
@@ -37,18 +31,19 @@ typedef NS_ENUM(NSInteger,AliyunClipType) {
  transitionEffect: 转场效果 是与前一段视频段进行转场
  recordStartTime: 音频录制开始时间，在播放轴上的时间
  */
-@property (nonatomic, assign) AliyunClipType mediaType;
-@property (nonatomic, assign) int mediaHeight;
-@property (nonatomic, assign) int mediaWidth;
-@property (nonatomic, copy) NSString *src;
-@property (nonatomic, assign) CGFloat startTime;
-@property (nonatomic, assign) CGFloat fadeDuration;
-@property (nonatomic, assign) int displayMode;
-@property (nonatomic, assign) int rotation;
-@property (nonatomic, assign) CGFloat duration;
-@property (nonatomic, assign) int streamId;
-@property (nonatomic, strong) AliyunTransitionEffect *transitionEffect;
-@property (nonatomic, assign) CGFloat audioRecordStartTime;
+@property(nonatomic, assign) AliyunClipType mediaType;
+@property(nonatomic, assign) int mediaHeight;
+@property(nonatomic, assign) int mediaWidth;
+@property(nonatomic, copy) NSString *src;
+@property(nonatomic, assign) CGFloat startTime;
+@property(nonatomic, assign) CGFloat fadeDuration;
+@property(nonatomic, assign) int displayMode;
+@property(nonatomic, assign) int rotation;
+@property(nonatomic, assign) CGFloat duration;
+@property(nonatomic, assign) int streamId;
+@property(nonatomic, strong) AliyunTransitionEffect *transitionEffect;
+@property(nonatomic, assign) CGFloat audioRecordStartTime;
+@property(nonatomic, strong) NSMutableArray<AliyunAudioEffect *> *audioEffects;
 
 /**
  创建一个图片片段
@@ -58,10 +53,7 @@ typedef NS_ENUM(NSInteger,AliyunClipType) {
  @param animDuration 过渡动画时长
  @return 图片片段
  */
-- (instancetype)initWithImagePath:(NSString *)path
-                         duration:(CGFloat)duration
-                     animDuration:(CGFloat)animDuration;
-
+- (instancetype)initWithImagePath:(NSString *)path duration:(CGFloat)duration animDuration:(CGFloat)animDuration;
 
 /**
  创建一个gif片段
@@ -71,7 +63,6 @@ typedef NS_ENUM(NSInteger,AliyunClipType) {
  */
 - (instancetype)initWithGifPath:(NSString *)path;
 
-
 /**
  创建一个gif片段
 
@@ -80,10 +71,7 @@ typedef NS_ENUM(NSInteger,AliyunClipType) {
  @param duration 指定gif的持续播放时间
  @return gif片段
  */
-- (instancetype)initWithGifPath:(NSString *)path
-                      startTime:(CGFloat)startTime
-                       duration:(CGFloat)duration;
-
+- (instancetype)initWithGifPath:(NSString *)path startTime:(CGFloat)startTime duration:(CGFloat)duration;
 
 /**
  创建一个视频片段
@@ -92,11 +80,7 @@ typedef NS_ENUM(NSInteger,AliyunClipType) {
  @param animDuration 过渡动画时长
  @return 视频片段
  */
-- (instancetype)initWithVideoPath:(NSString *)path
-                     animDuration:(CGFloat)animDuration;
-
-
-
+- (instancetype)initWithVideoPath:(NSString *)path animDuration:(CGFloat)animDuration;
 
 /**
  创建一个视频片段
@@ -107,16 +91,12 @@ typedef NS_ENUM(NSInteger,AliyunClipType) {
  @param animDuration 过渡动画时长
  @return 视频片段
  */
-- (instancetype)initWithVideoPath:(NSString *)path
-                        startTime:(CGFloat)startTime
-                         duration:(CGFloat)duration
-                     animDuration:(CGFloat)animDuration;
-
+- (instancetype)initWithVideoPath:(NSString *)path startTime:(CGFloat)startTime duration:(CGFloat)duration animDuration:(CGFloat)animDuration;
 
 /**
  API_AVAILABLE(3.7.0)
- 
- 添加动画 注意：主流不支持alpha帧动画
+
+ 添加动画 注意：1.主流不支持alpha帧动画 2.在倒播特效下，不支持此功能
 
  @param action 动画
  */
@@ -124,17 +104,16 @@ typedef NS_ENUM(NSInteger,AliyunClipType) {
 
 /**
  API_AVAILABLE(3.7.0)
- 
+
  停止动画
 
  @param action 动画
  */
 - (void)stopAction:(AliyunAction *)action;
 
-
 /**
  API_AVAILABLE(3.7.0)
- 
+
  获取所有的动画
 
  @return 动画数组
@@ -143,13 +122,12 @@ typedef NS_ENUM(NSInteger,AliyunClipType) {
 
 @end
 
-
 @protocol AliyunClip;
 
 @interface AliyunTrack : AliyunJSONModel
 
-@property (nonatomic, assign) int idTrack;
-@property (nonatomic, assign) float volume;
-@property (nonatomic, strong) NSMutableArray<AliyunClip *> *clipList;
+@property(nonatomic, assign) int idTrack;
+@property(nonatomic, assign) float volume;
+@property(nonatomic, strong) NSMutableArray<AliyunClip *> *clipList;
 
 @end

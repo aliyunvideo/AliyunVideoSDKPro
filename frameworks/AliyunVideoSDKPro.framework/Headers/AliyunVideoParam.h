@@ -17,10 +17,9 @@ typedef NS_ENUM(NSInteger, AliyunVideoQuality) {
     AliyunVideoQualityExtraPoor
 };
 
-
 typedef NS_ENUM(NSInteger, AliyunScaleMode) {
-    AliyunScaleModeFit = 0,          // 裁剪
-    AliyunScaleModeFill = 1          // 填充
+    AliyunScaleModeFit = 0, // 裁剪
+    AliyunScaleModeFill = 1 // 填充
 };
 
 typedef NS_ENUM(NSInteger, AliyunVideoCodecType) {
@@ -28,7 +27,6 @@ typedef NS_ENUM(NSInteger, AliyunVideoCodecType) {
     AliyunVideoCodecHardware,
     AliyunVideoCodecFFmpeg,
     AliyunVideoCodecOpenh264,
-    AliyunVideoCodecMix,
     AliyunVideoCodecX264
 };
 
@@ -37,12 +35,12 @@ typedef NS_ENUM(NSInteger, AliyunVideoCodecType) {
 /**
  帧率 默认25 建议20 - 60 不超过60
  */
-@property (nonatomic, assign) int fps;
+@property(nonatomic, assign) int fps;
 
 /**
  关键帧间隔 >1
  */
-@property (nonatomic, assign) int gop;
+@property(nonatomic, assign) int gop;
 
 /**
  码率  单位bps
@@ -53,23 +51,22 @@ typedef NS_ENUM(NSInteger, AliyunVideoCodecType) {
  1080:2000000-6000000
  设置bitrate参数后，videoQuality设置无效
  */
-@property (nonatomic, assign) int bitrate;
+@property(nonatomic, assign) int bitrate;
 
 /**
  视频质量
  */
-@property (nonatomic, assign) AliyunVideoQuality videoQuality;
+@property(nonatomic, assign) AliyunVideoQuality videoQuality;
 
 /**
  裁剪或者填充模式
  */
-@property (nonatomic, assign) AliyunScaleMode scaleMode;
+@property(nonatomic, assign) AliyunScaleMode scaleMode;
 
 /**
  编码类型
  */
-@property (nonatomic, assign) AliyunVideoCodecType codecType;
-
+@property(nonatomic, assign) AliyunVideoCodecType codecType;
 
 /**
  创建一个AliyunVideoParam对象，并设置为默认属性

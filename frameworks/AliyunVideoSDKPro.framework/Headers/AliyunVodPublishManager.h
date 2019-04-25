@@ -47,6 +47,13 @@ typedef NS_OPTIONS(NSInteger, AliyunVodUploadState) {
 
 #pragma mark - export
 
+/**
+ 合成导出视频
+
+ @param taskPath taskPath
+ @param outputPath 导出视频路径
+ @return 返回值
+ */
 - (int)exportWithTaskPath:(NSString *)taskPath outputPath:(NSString *)outputPath;
 
 - (int)pauseExport;
@@ -57,10 +64,26 @@ typedef NS_OPTIONS(NSInteger, AliyunVodUploadState) {
 
 #pragma mark - upload
 
+/**
+ 上传封面
+
+ @param imagePath 封面图片路径
+ @param vodUploadAddress 点播上传地址
+ @param vodUploadAuth 点播上传凭证
+ @return 返回值
+ */
 - (int)uploadImageWithPath:(NSString *)imagePath
               uploadAddress:(NSString *)vodUploadAddress
                  uploadAuth:(NSString *)vodUploadAuth;
 
+/**
+ 上传视频
+
+ @param videoPath 视频路径
+ @param vodUploadAddress 点播上传地址
+ @param vodUploadAuth 点播上传凭证
+ @return 返回值
+ */
 - (int)uploadVideoWithPath:(NSString *)videoPath
               uploadAddress:(NSString *)vodUploadAddress
                  uploadAuth:(NSString *)vodUploadAuth;
