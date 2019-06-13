@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #define DefaultEventManager [AliyunEventManager sharedManager]
 
-typedef NS_ENUM(NSInteger, AliyunEvent) {
+__deprecated_msg("已废弃") typedef NS_ENUM(NSInteger, AliyunEvent) {
     AliyunEventRecordInit = 2001,
     AliyunEventRecordStart,
     AliyunEventRecordSuccess,
@@ -41,9 +41,9 @@ typedef NS_ENUM(NSInteger, AliyunEvent) {
     AliyunEventImporterFinish = 9003,
 };
 
-typedef NS_ENUM(NSInteger, AliyunSubmoduleType) { AliyunSubmoduleTypeNull, AliyunSubmoduleTypeRecord, AliyunSubmoduleTypeCut, AliyunSubmoduleTypeEdit, AliyunSubmoduleTypeImport };
+__deprecated_msg("已废弃") typedef NS_ENUM(NSInteger, AliyunSubmoduleType) { AliyunSubmoduleTypeNull, AliyunSubmoduleTypeRecord, AliyunSubmoduleTypeCut, AliyunSubmoduleTypeEdit, AliyunSubmoduleTypeImport };
 
-typedef struct AliyunVideoEventInfo {
+__deprecated_msg("已废弃") typedef struct AliyunVideoEventInfo {
     int bitrate;
     int fps;
     int vduration;
@@ -51,7 +51,7 @@ typedef struct AliyunVideoEventInfo {
     uint64_t crc;
 } AliyunVideoEventInfo;
 
-@interface AliyunEventManager : NSObject
+__deprecated_msg("已废弃") @interface AliyunEventManager : NSObject
 
 @property(nonatomic, copy) NSString *requestID;
 @property(nonatomic, assign) BOOL enabled;

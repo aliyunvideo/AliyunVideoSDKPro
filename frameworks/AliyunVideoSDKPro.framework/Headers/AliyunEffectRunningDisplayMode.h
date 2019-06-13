@@ -7,19 +7,42 @@
 //
 
 #import "AliyunEffect.h"
+/**
+ 播放模式
+ 
+ - AliyunRunningModeFit：裁剪模式
+ - AliyunRunningModeFill：填充模式
+ */
+typedef NS_ENUM(NSInteger, AliyunRunningMode) { AliyunRunningModeFit = 0, AliyunRunningModeFill = 1 };
 
-typedef NS_ENUM(NSInteger, AliyunRunningMode) {
-    AliyunRunningModeFit = 0,          // 裁剪
-    AliyunRunningModeFill = 1          // 填充
-};
-
+/**
+ 动态切换播放模式的效果类
+ */
 @interface AliyunEffectRunningDisplayMode : AliyunEffect
 
+/**
+ 特效开始时间
+ */
 @property(nonatomic, assign) float streamStartTime;
-@property(nonatomic, assign) float streamEndTime;
-@property(nonatomic, assign) AliyunRunningMode mode;//填充:0 裁剪:1
-@property(nonatomic, assign) int targetStreamId;//作用的目标流的id
 
-- (id)initWithRestore:(NSDictionary *)dict;
+/**
+ 特效结束时间
+ */
+@property(nonatomic, assign) float streamEndTime;
+
+/**
+ 播放模式
+ 
+ 0：填充
+ 1：裁剪
+ */
+@property(nonatomic, assign) AliyunRunningMode mode;
+
+/**
+ 指定目标视频的id
+ */
+@property(nonatomic, assign) int targetStreamId;
+
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
 
 @end

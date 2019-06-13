@@ -9,11 +9,20 @@
 //  endTime（静态图片消失的时间）
 //  path（静态图片的资源文件路径）
 
-#import <UIKit/UIKit.h>
 #import "AliyunEffectPasterBase.h"
+#import <UIKit/UIKit.h>
 
+/**
+ 静态图片model类
+ */
 @interface AliyunEffectStaticImage : AliyunEffectPasterBase
 
-- (id)initWithRestore:(NSDictionary *)dict;
+/**
+ 内部调用方法
+
+ @param dict dict
+ @return AliyunEffectImage
+ */
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
 
 @end

@@ -13,17 +13,28 @@
 
 
 
-typedef enum : NSUInteger {
+/**
+ 动图类型
+
+ - AliyunPasterEffectTypeNormal: 仅动图
+ - AliyunPasterEffectTypeSubtitle: 仅文
+ - AliyunPasterEffectTypeCaption: 动图+文字
+ */
+typedef NS_ENUM(NSInteger, AliyunPasterEffectType) {
     AliyunPasterEffectTypeNormal = 0,
     AliyunPasterEffectTypeSubtitle = 1,
     AliyunPasterEffectTypeCaption = 2,
-} AliyunPasterEffectType;//动图类型  0:仅动图 1：仅文字 2:动图+文字
+} ;
 
+/**
+ 动图控制器类
+ */
 @interface AliyunPasterController : NSObject<AliyunPasterUIEventProtocol>
 
 
 /**
  设置动图的view
+ 
  @warning:一定要设置
  */
 @property (nonatomic, strong) UIView *pasterView;
@@ -35,7 +46,9 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign, readonly) AliyunPasterEffectType pasterType;
 
 /**
- 动图的旋转角度  单位：弧度
+ 动图的旋转角度
+ 
+ 单位：弧度
  */
 @property (nonatomic, assign) CGFloat pasterRotate;
 
@@ -65,7 +78,9 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy) NSString *subtitle;
 
 /**
- 文字位置 相对于动图本身的位置大小
+ 文字位置
+ 
+ 相对于动图本身的位置大小
  */
 @property (nonatomic, assign) CGRect subtitleFrame;
 
@@ -110,22 +125,30 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong, readonly) UIImage *kernelImage;
 
 /**
- 动图开始时间  单位：s
+ 动图开始时间
+ 
+ 单位：秒
  */
 @property (nonatomic, assign) CGFloat pasterStartTime;
 
 /**
- 动图结束时间  单位：s
+ 动图结束时间
+ 
+ 单位：秒
  */
 @property (nonatomic, assign) CGFloat pasterEndTime;
 
 /**
- 动图持续时间 单位：s
+ 动图持续时间
+ 
+ 单位：秒
  */
 @property (nonatomic, assign) CGFloat pasterDuration;
 
 /**
- 动图最小持续时间 单位：s
+ 动图最小持续时间
+ 
+ 单位：秒
  */
 @property (nonatomic, assign) CGFloat pasterMinDuration;
 
@@ -166,21 +189,22 @@ typedef enum : NSUInteger {
 /**
  原始时间
 
- @return 时间 单位秒
+ @return 时间 单位：秒
  */
 - (CGFloat)originDuration;
 
 /**
- 文字原始时长  相对于动图
-
- @return 时间 单位秒
+ 文字原始时长
+ 
+ 相对于动图
+ @return 时间 单位：秒
  */
 - (CGFloat)originTextDuration;
 
 /**
  文字开始出现的时间 相对于动图
 
- @return 时间 单位秒
+ @return 时间 单位：秒
  */
 - (CGFloat)originTextBeginTime;
 

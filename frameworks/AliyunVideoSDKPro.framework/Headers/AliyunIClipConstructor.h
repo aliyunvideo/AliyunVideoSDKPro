@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "AliyunClip.h"
 
+/**
+ 媒体片段构造器协议
+ */
 @protocol AliyunIClipConstructor <NSObject>
 /**
  增加媒体片段
@@ -73,6 +76,7 @@
 /**
  添加视频路径
  
+ 已废弃
  @param videoPath 视频路径
  @param animDuration 转场动画时长,单位秒
  
@@ -86,6 +90,7 @@
 /**
  添加视频路径
  
+ 已废弃
  @param videoPath 视频路径
  @param animDuration 转场动画时长,单位秒
  
@@ -97,10 +102,10 @@
 /**
  增加图片
  
+ 已废弃
  @param image 照片
  @param duration 播放时间
  @param animDuration 动画过渡时间
- 
  @return 图片路径
  Deprecated 建议使用addMediaClip:
  */

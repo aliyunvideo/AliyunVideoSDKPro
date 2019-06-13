@@ -9,7 +9,16 @@
 #import "AliyunEffectPasterBase.h"
 #import <CoreGraphics/CoreGraphics.h>
 
+/**
+ 图片效果model类
+ */
 @interface AliyunEffectImage : AliyunEffectPasterBase
 
-- (id)initWithRestore:(NSDictionary *)dict;
+/**
+ 内部调用方法
+
+ @param dict dict
+ @return AliyunEffectImage
+ */
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
 @end

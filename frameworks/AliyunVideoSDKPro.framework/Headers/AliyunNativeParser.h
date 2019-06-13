@@ -46,6 +46,9 @@
 #define ALIYUN_FILE_BIT_RATE (ALIYUN_FILE_DIC_KEY_START + 4)
 #define DIC_KEY_END 30
 
+/**
+ 视频参数解析器
+ */
 @interface AliyunNativeParser : NSObject
 
 /**
@@ -96,7 +99,7 @@
  获取视频帧率
 
  @return 视频帧率
-内部封装了getValueForKey:方法
+ 内部封装了getValueForKey:方法
  */
 -(NSInteger)getVideoFrameRate;
 /**
@@ -207,19 +210,19 @@
 
  @return 是否存在b帧
  */
-- (BOOL)checkBFrame;
+- (BOOL)checkBFrame __deprecated_msg("已废弃");
 
 /**
  检查视频是否支持倒播
 
  @return 是否支持倒播
  */
-- (BOOL)checkInvertAvailable;
+- (BOOL)checkInvertAvailable __deprecated_msg("已废弃");
 
 /**
  获取视频最大缓存大小
 
  @return 视频最大缓存大小
  */
-- (int)getMaxEstimatedCacheSize;
+- (int)getMaxEstimatedCacheSize __deprecated_msg("已废弃");
 @end

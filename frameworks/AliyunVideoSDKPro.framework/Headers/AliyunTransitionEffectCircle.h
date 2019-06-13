@@ -6,11 +6,20 @@
 //  Copyright © 2018年 Alibaba Group Holding Limited. All rights reserved.
 //
 
-#import <AliyunVideoSDKPro/AliyunVideoSDKPro.h>
 #import "AliyunTransitionEffect.h"
+#import <AliyunVideoSDKPro/AliyunVideoSDKPro.h>
 
+/**
+ 圆形效果转场
+ */
 @interface AliyunTransitionEffectCircle : AliyunTransitionEffect
 
-- (id)initWithRestore:(NSDictionary *)dict;
+/**
+ 初始化方法
+
+ @param dict 初始化参数
+ @return 圆形转场实例
+ */
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
 
 @end

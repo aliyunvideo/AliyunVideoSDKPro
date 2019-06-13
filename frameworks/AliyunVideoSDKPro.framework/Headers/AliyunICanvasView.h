@@ -27,6 +27,9 @@
 - (void)endDrawingWithCurrentPoint:(CGPoint)endPoint;
 @end
 
+/**
+ 画布view
+ */
 @interface AliyunICanvasView : UIView
 
 
@@ -51,7 +54,7 @@
 
 
 /**
- init
+ 初始化方法
 
  @param frame 画板frame
  @param paint 画笔

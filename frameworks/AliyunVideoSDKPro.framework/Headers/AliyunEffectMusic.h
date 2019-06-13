@@ -17,6 +17,9 @@
 #import "AliyunEffect.h"
 #include <CoreGraphics/CoreGraphics.h>
 
+/**
+ 音乐model类
+ */
 @interface AliyunEffectMusic : AliyunEffect
 
 /**
@@ -40,17 +43,21 @@
 @property(nonatomic, assign) CGFloat streamDuration;
 
 /**
- 仅对mv和音乐有效，0-100 音量大小 （0 - 100）
+ 音量大小
+ 
+ 0-100
  */
 @property(nonatomic, assign) int audioMixWeight;
 
 /**
  是否去噪
+ 
+ 已废弃，请使用音效列表AliyunAudioEffect代替
  */
-@property(nonatomic, assign) BOOL denoise;
+@property(nonatomic, assign) BOOL denoise __deprecated_msg("已废弃");
 
 /**
- 音效
+ 音效列表
  */
 @property(nonatomic, strong) NSMutableArray<AliyunAudioEffect *> *audioEffects;
 

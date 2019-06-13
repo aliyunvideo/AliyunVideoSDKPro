@@ -8,6 +8,9 @@
 
 #import "AliyunEffectMusic.h"
 
+/**
+ 配音model类
+ */
 @interface AliyunEffectDub : AliyunEffectMusic
 
 @end

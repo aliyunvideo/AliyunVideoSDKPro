@@ -390,6 +390,8 @@ typedef enum : int {
      * 裁剪退后台
      */
     ERROR_TRANS_BACKGROUND = ERROR_PUB_ - 3,
+
+    ERROR_ALREADY_CALLING = ERROR_PUB_ - 4,
 } AliyunIErrorCode;
 
 // 内部错误
@@ -572,8 +574,17 @@ enum AliyunVideoError {
     ALIV_FRAMEWORK_MEDIA_POOL_CACHE_DATA_SIZE_OVERFLOW = ALIVC_FRAMEWORK_MEDIA_POOL_CACHE_DATA_SIZE_OVERFLOW,
 };
 
+/**
+ 错误码工具类
+ */
 @interface AliyunErrorCode : NSObject
 
+/**
+ 转换错误码
+
+ @param err 原始错误码
+ @return 转换后的错误码
+ */
 + (AliyunIErrorCode)code:(int)err;
 
 @end

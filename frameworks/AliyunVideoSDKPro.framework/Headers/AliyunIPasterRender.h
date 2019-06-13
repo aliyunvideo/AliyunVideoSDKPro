@@ -12,6 +12,9 @@
 #import "AliyunEffectCaption.h"
 #import "AliyunEffectSubtitle.h"
 
+/**
+ 动图渲染协议
+ */
 @protocol AliyunIPasterRender <NSObject>
 
 /**

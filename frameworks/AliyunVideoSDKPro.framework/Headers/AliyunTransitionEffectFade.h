@@ -8,9 +8,17 @@
 
 #import "AliyunTransitionEffect.h"
 
+/**
+ 淡入淡出转场
+ */
 @interface AliyunTransitionEffectFade : AliyunTransitionEffect
 
+/**
+ 初始化方法
 
-- (id)initWithRestore:(NSDictionary *)dict;
+ @param dict 初始化参数
+ @return 淡入淡出转场实例
+ */
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
 
 @end

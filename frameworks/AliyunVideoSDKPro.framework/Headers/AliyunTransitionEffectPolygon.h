@@ -6,13 +6,27 @@
 //  Copyright © 2018年 Alibaba Group Holding Limited. All rights reserved.
 //
 
-#import <AliyunVideoSDKPro/AliyunVideoSDKPro.h>
 #import "AliyunTransitionEffect.h"
+#import <AliyunVideoSDKPro/AliyunVideoSDKPro.h>
 
+/**
+ 多边形转场效果
+ */
 @interface AliyunTransitionEffectPolygon : AliyunTransitionEffect
 
-@property (nonatomic, assign) int n;//几边形
+/**
+ 设置几变形
+ 
+ n >= 3
+ */
+@property(nonatomic, assign) int n;
 
-- (id)initWithRestore:(NSDictionary *)dict;
+/**
+ 初始化方法
+
+ @param dict 初始化参数
+ @return 多边形转场实例
+ */
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
 
 @end

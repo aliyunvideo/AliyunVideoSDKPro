@@ -55,6 +55,9 @@ enum {
 
 @protocol AliyunIRecorderDelegate;
 
+/**
+ 录制类，提供录制能力，短视频的核心类之一
+ */
 @interface AliyunIRecorder : NSObject
 
 /**
@@ -439,6 +442,9 @@ enum {
 
 @end
 
+/**
+ 录制回调协议
+ */
 @protocol AliyunIRecorderDelegate <NSObject>
 
 @required
@@ -451,15 +457,17 @@ enum {
 
 @optional
 /**
- 摄像头返回的原始视频数据  开放出来的目的是用于做人脸识别
-
+ 摄像头返回的原始视频数据
+ 
+ 开放出来的目的是用于做人脸识别
  @param sampleBuffer 视频数据
  */
 - (void)recorderOutputVideoRawSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 
 /**
- 返回原始的音频数据 用来做语音识别一类的业务
-
+ 返回原始的音频数据
+ 
+ 用来做语音识别一类的业务
  @param sampleBuffer 音频数据
  */
 - (void)recorderOutputAudioRawSampleBuffer:(CMSampleBufferRef)sampleBuffer;
@@ -473,8 +481,9 @@ enum {
 - (CVPixelBufferRef)customRenderedPixelBufferWithRawSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 
 /**
- 用户自定义渲染，开放pixelBuffer和纹理id给用户自渲染 （仅支持BGRA格式）
-
+ 用户自定义渲染
+ 
+ 开放pixelBuffer和纹理id给用户自渲染 （仅支持BGRA格式）
  @param pixelBuffer 摄像头数据
  @param textureName 摄像头数据纹理
  @return 自定义渲染后的纹理id
@@ -499,8 +508,8 @@ enum {
 
 /**
  摄像头返回的原始视频纹理
+ 
  摄像头数据格式为BGRA、YUV时都需实现
-
  @param textureName 原始纹理ID
  @return 处理后的纹理ID
  */
@@ -508,8 +517,8 @@ enum {
 
 /**
  摄像头返回的原始视频纹理
+ 
  摄像头数据格式仅为YUV时须实现，反之不实现
-
  @param textureName  原始UV分量的纹理ID
  @return 处理后的纹理ID
  */

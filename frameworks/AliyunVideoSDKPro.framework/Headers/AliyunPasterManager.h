@@ -10,14 +10,28 @@
 #import "AliyunPasterController.h"
 #import <CoreGraphics/CoreGraphics.h>
 
+/**
+ 动图管理器协议
+ */
 @protocol AliyunPasterManagerDelegate <NSObject>
 
+/**
+ 动图控制器即将被删除
+
+ @param pasterController 动图控制器
+ */
 - (void)pasterManagerWillDeletePasterController:(AliyunPasterController *)pasterController;
 
 @end
 
+/**
+ 动图管理器
+ */
 @interface AliyunPasterManager : NSObject
 
+/**
+ 动图管理器回调
+ */
 @property (nonatomic, weak) id<AliyunPasterManagerDelegate> delegate;
 
 /**

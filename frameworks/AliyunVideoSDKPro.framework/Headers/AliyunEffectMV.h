@@ -8,10 +8,37 @@
 
 #import "AliyunEffect.h"
 
+/**
+ mv效果model类
+ */
 @interface AliyunEffectMV : AliyunEffect
-@property(nonatomic, assign) int audioEffectVid; // mv音乐流id
-@property(nonatomic, assign) int disableAudio;   // 是否打开mv音乐
-@property(nonatomic, assign) int audioMixWeight; // 仅对mv和音乐有效，0-100
-@property(nonatomic, assign) BOOL denoise;       // 是否去噪
+
+/**
+ mv音乐流id
+ */
+@property(nonatomic, assign) int audioEffectVid;
+
+/**
+ 是否关闭mv音乐
+ */
+@property(nonatomic, assign) int disableAudio;
+
+/**
+ mv音量大小
+ 
+ 0-100
+ */
+@property(nonatomic, assign) int audioMixWeight;
+
+/**
+ 是否对mv去燥
+ 
+ 已废弃，请使用音效列表AliyunAudioEffect代替
+ */
+@property(nonatomic, assign) BOOL denoise __deprecated_msg("已废弃");
+
+/**
+ 音效列表
+ */
 @property(nonatomic, strong) NSMutableArray<AliyunAudioEffect *> *audioEffects;
 @end

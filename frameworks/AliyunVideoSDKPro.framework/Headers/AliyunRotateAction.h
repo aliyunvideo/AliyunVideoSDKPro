@@ -8,11 +8,33 @@
 
 #import "AliyunAction.h"
 
+/**
+ 旋转动画类
+ */
 @interface AliyunRotateAction : AliyunAction
 
-@property (nonatomic, assign) bool clockwise;//true:顺时针 false:逆时针
-@property (nonatomic, assign) float fromDegree;//开始旋转时的弧度 （注意：统一为弧度）
+/**
+ 旋转方向
+ 
+ 可以设置为顺时针或者逆时针
+ true:顺时针
+ false:逆时针
+ */
+@property(nonatomic, assign) bool clockwise;
 
-- (id)initWithRestore:(NSDictionary *)dict;
+/**
+ 开始旋转时的弧度
+ 
+ 单位：弧度
+ */
+@property(nonatomic, assign) float fromDegree;
+
+/**
+ 初始化方法
+
+ @param dict 初始化参数
+ @return 旋转动画实例对象
+ */
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
 
 @end

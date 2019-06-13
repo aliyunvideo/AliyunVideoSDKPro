@@ -10,18 +10,45 @@
 #import <UIKit/UIKit.h>
 
 /**
- 纯文字
+ 纯文字model类
  */
 @interface AliyunEffectSubtitle : AliyunEffectPasterBase
 
-@property (nonatomic, copy) NSString *text;
-@property (nonatomic, copy) NSString *fontName;
-@property (nonatomic, strong) UIColor *textColor;
-@property (nonatomic, strong) UIColor *strokeColor;
-@property (nonatomic, assign) BOOL isStroke;
-@property (nonatomic, strong) UIColor *textLabelColor;
-@property (nonatomic, assign) BOOL hasTextLabel;
+/**
+ 文字
+ */
+@property(nonatomic, copy) NSString *text;
 
-- (id)initWithRestore:(NSDictionary *)dict;
+/**
+ 字体
+ */
+@property(nonatomic, copy) NSString *fontName;
+
+/**
+ 文字颜色
+ */
+@property(nonatomic, strong) UIColor *textColor;
+
+/**
+ 描边颜色
+ */
+@property(nonatomic, strong) UIColor *strokeColor;
+
+/**
+ 是否描边
+ */
+@property(nonatomic, assign) BOOL isStroke;
+
+/**
+ 文字背景颜色
+ */
+@property(nonatomic, strong) UIColor *textLabelColor;
+
+/**
+ 是否有文字背景色
+ */
+@property(nonatomic, assign) BOOL hasTextLabel;
+
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
 
 @end

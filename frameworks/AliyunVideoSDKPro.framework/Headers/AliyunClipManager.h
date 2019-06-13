@@ -9,15 +9,22 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/**
+ 片段管理器
+ */
 @interface AliyunClipManager : NSObject
 
 /**
- 视频最大时长 默认8
+ 视频最大时长
+ 
+ 默认8
  */
 @property (nonatomic, assign) CGFloat maxDuration;
 
 /**
- 视频最小时长 默认0.5
+ 视频最小时长
+ 
+ 默认0.5
  */
 @property (nonatomic, assign) CGFloat minDuration;
 

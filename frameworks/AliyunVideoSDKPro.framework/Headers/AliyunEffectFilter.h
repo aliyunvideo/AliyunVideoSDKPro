@@ -8,13 +8,45 @@
 
 #import "AliyunEffect.h"
 
+/**
+ 滤镜效果model类
+ */
 @interface AliyunEffectFilter : AliyunEffect
 
-@property (nonatomic, assign) float startTime;
-@property (nonatomic, assign) float endTime;
-@property (nonatomic, assign) float streamStartTime;
-@property (nonatomic, assign) float streamEndTime;
+/**
+ 开始时间
 
-- (id)initWithRestore:(NSDictionary *)dict;
+ 预留字段，无需设置
+ */
+@property(nonatomic, assign) float startTime;
+
+/**
+ 结束时间
+
+ 预留字段，无需设置
+ */
+@property(nonatomic, assign) float endTime;
+
+/**
+ 滤镜开始时间
+
+ 只在设置动效滤镜时有效
+ */
+@property(nonatomic, assign) float streamStartTime;
+
+/**
+ 滤镜结束时间
+
+ 只在设置动效滤镜时有效
+ */
+@property(nonatomic, assign) float streamEndTime;
+
+/**
+ 内部调用方法
+
+ @param dict dict
+ @return AliyunEffectFilter
+ */
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
 
 @end

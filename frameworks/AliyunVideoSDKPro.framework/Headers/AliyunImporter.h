@@ -12,6 +12,12 @@
 #import <Photos/PHAsset.h>
 #import "AliyunIClipConstructor.h"
 
+/**
+ 编辑导入类
+ 
+ 用于构建编辑初始化配置文件
+ 实现了AliyunIClipConstructor协议，用于配置媒体片段
+ */
 @interface AliyunImporter : NSObject <AliyunIClipConstructor>
 
 /**

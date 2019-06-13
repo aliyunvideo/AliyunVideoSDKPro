@@ -6,14 +6,6 @@
 //  Copyright (C) 2010-2017 Alibaba Group Holding Limited. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-//! Project version number for QUSDK.
-FOUNDATION_EXPORT double QUSDKVersionNumber;
-
-//! Project version string for QUSDK.
-FOUNDATION_EXPORT const unsigned char QUSDKVersionString[];
-
 // In this header, you should import all the public headers of your framework using statements like #import <AliyunVideoSDKPro/PublicHeader.h>
 
 #ifndef AliyunVideoSDKPro_h
@@ -70,6 +62,7 @@ FOUNDATION_EXPORT const unsigned char QUSDKVersionString[];
 #import <AliyunVideoSDKPro/AliyunEventManager.h>
 #import <AliyunVideoSDKPro/AliyunHttpClient.h>
 #import <AliyunVideoSDKPro/AliyunIClipConstructor.h>
+#import <AliyunVideoSDKPro/AliyunIEffectRecovery.h>
 #import <AliyunVideoSDKPro/AliyunJSONModel.h>
 #import <AliyunVideoSDKPro/AliyunMediaInfo.h>
 #import <AliyunVideoSDKPro/AliyunMoveAction.h>

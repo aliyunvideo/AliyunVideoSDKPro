@@ -43,6 +43,7 @@
 
 /**
  设置编码模式
+ 
  iOS强制硬编
  @param encodeMode 编码模式 参见AliyunVideoParam中codecType的定义
  */
@@ -79,6 +80,7 @@
 
 /**
  暂停导出视频
+ 
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
@@ -86,6 +88,7 @@
 
 /**
  继续导出视频
+ 
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
@@ -93,6 +96,7 @@
 
 /**
  取消导出视频
+ 
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */

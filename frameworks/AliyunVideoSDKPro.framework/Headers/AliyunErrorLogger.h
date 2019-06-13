@@ -8,8 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AliyunErrorLogger : NSObject
+/**
+ 错误处理类
 
+ */
+__deprecated_msg("已废弃") @interface AliyunErrorLogger : NSObject
+
+/**
+ log回调
+ */
 @property (nonatomic, copy) void (^logCb)(int code, NSString *msg);
 
 @end

@@ -8,11 +8,27 @@
 
 #import "AliyunAction.h"
 
+/**
+ 缩放动画类
+ */
 @interface AliyunScaleAction : AliyunAction
 
-@property (nonatomic, assign) float fromScale;//开始缩放时的缩放比例
-@property (nonatomic, assign) float toScale;  //目标的缩放比例
+/**
+ 缩放的起始缩放比例
+ */
+@property(nonatomic, assign) float fromScale;
 
-- (id)initWithRestore:(NSDictionary *)dict;
+/**
+ 缩放的终点缩放比例
+ */
+@property(nonatomic, assign) float toScale;
+
+/**
+ 初始化方法
+
+ @param dict 初始化参数
+ @return 缩放动画实例
+ */
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
 
 @end

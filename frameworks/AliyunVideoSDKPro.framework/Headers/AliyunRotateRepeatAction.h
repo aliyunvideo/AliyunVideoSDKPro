@@ -8,10 +8,22 @@
 
 #import "AliyunRotateAction.h"
 
+/**
+ 重复旋转类 不停地旋转
+ */
 @interface AliyunRotateRepeatAction : AliyunRotateAction
 
-@property(nonatomic, assign) float durationPerCircle;//旋转一圈需要的时间
+/**
+ 旋转一圈需要的时间
+ */
+@property(nonatomic, assign) float durationPerCircle;
 
-- (id)initWithRestore:(NSDictionary *)dict;
+/**
+ 初始化方法
+
+ @param dict 初始化参数
+ @return 重复旋转类实例
+ */
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
 
 @end

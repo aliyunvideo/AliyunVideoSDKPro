@@ -8,8 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AliyunEffectFactory : NSObject
+/**
+ effect工厂类
+ */
+__deprecated_msg("已废弃") @interface AliyunEffectFactory : NSObject
 
+/**
+ 创建一个AliyunEffect
+
+ @param path 路径
+ @return AliyunEffect
+ */
 + (id)createEffect:(NSString *)path;
 
 @end

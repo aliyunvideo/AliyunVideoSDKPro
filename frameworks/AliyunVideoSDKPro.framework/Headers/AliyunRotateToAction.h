@@ -8,11 +8,24 @@
 
 #import "AliyunRotateAction.h"
 
-//旋转到某个角度
+/**
+ 旋转到某个角度类
+ 
+ 继承自AliyunRotateAction
+ */
 @interface AliyunRotateToAction : AliyunRotateAction
 
-@property (nonatomic, assign) float toDegree;//旋转到目标角度
+/**
+ 旋转到目标角度
+ */
+@property(nonatomic, assign) float toDegree;
 
-- (id)initWithRestore:(NSDictionary *)dict;
+/**
+ 初始化方法
+
+ @param dict 初始化参数
+ @return 旋转实例对象
+ */
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
 
 @end

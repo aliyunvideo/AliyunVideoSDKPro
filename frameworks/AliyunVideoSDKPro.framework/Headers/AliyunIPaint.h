@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/**
+ 画笔
+ */
 @interface AliyunIPaint : NSObject
 
 
@@ -37,7 +40,7 @@
 
 
 /**
- init
+ 初始化方法
 
  @param lineWidth 线条宽度
  @param lineColor 线条颜色

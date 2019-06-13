@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/**
+ 动图UI事件回调协议
+ */
 @protocol AliyunPasterUIEventProtocol <NSObject>
 
 /**

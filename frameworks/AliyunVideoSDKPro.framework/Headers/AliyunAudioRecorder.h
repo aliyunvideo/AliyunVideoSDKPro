@@ -9,15 +9,33 @@
 #import <Foundation/Foundation.h>
 #import "AliyunClip.h"
 
+/**
+ 音频录制回调协议
+ */
 @protocol AliyunAudioRecorderDelegate<NSObject>
 
+/**
+ 录制进度
+
+ @param second 秒
+ */
 - (void)audioRecorderProgress:(float)second;
 
 @end
 
-@interface AliyunAudioRecorder : NSObject
+/**
+ 音频录制类
+ */
+__deprecated_msg("已废弃") @interface AliyunAudioRecorder : NSObject
 
+/**
+ 是否正在录制
+ */
 @property (nonatomic, assign) BOOL isRecording;
+
+/**
+ 录制回调类
+ */
 @property (nonatomic, assign) id<AliyunAudioRecorderDelegate> delegate;
 
 /**

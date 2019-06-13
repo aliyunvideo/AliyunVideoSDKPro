@@ -8,12 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol AliyunIExporterCallback <NSObject>
-
 /**
- 开始导出
+ 编辑合成导出回调协议
  */
-- (void)exporterDidStart;
+@protocol AliyunIExporterCallback <NSObject>
 
 /**
  导出结束
@@ -33,7 +31,6 @@
  @param progress 0-1
  */
 - (void)exportProgress:(float)progress;
-
 
 /**
  导出异常
@@ -56,6 +53,11 @@
 - (void)exportError:(int)errorCode;
 
 #pragma mark - 不建议使用的API
+
+/**
+ 开始导出
+ */
+- (void)exporterDidStart __deprecated_msg("已废弃不再维护");
 
 @optional
 /**

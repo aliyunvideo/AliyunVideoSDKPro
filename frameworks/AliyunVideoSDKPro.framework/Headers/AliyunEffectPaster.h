@@ -6,31 +6,61 @@
 //  Copyright (C) 2010-2017 Alibaba Group Holding Limited. All rights reserved.
 //
 
-
-
 #import "AliyunEffectPasterBase.h"
-#import <UIKit/UIKit.h>
-#import "AliyunEffectPasterTimeItem.h"
 #import "AliyunEffectPasterFrameItem.h"
+#import "AliyunEffectPasterTimeItem.h"
+#import "AliyunIEffectRecovery.h"
+#import <UIKit/UIKit.h>
 
+/**
+ 动图类型
+
+ - AliyunPasterTypeNormal: 普通动图
+ - AliyunPasterTypeFace: 人脸动图
+ */
 typedef NS_ENUM(NSInteger, AliyunPasterType) {
     AliyunPasterTypeNormal,
     AliyunPasterTypeFace,
 };
 
 /**
- 动图（纯序列帧的动图,包含人脸和普通两种类型）
+ 动图model类（纯序列帧的动图,包含人脸和普通两种类型）
  */
-@interface AliyunEffectPaster : AliyunEffectPasterBase
+@interface AliyunEffectPaster : AliyunEffectPasterBase <AliyunIEffectRecovery>
 
-@property (nonatomic, assign) AliyunPasterType type;
-@property (nonatomic, strong) UIImage *kernelImage;//关键帧图片
-@property (nonatomic, copy) NSArray<AliyunEffectPasterTimeItem *> *timeItems;
-@property (nonatomic, copy) NSArray<AliyunEffectPasterFrameItem *> *frameItems;
-@property (nonatomic, assign) CGFloat originDuration;//原始时长
+/**
+ 动图类型
+ */
+@property(nonatomic, assign) AliyunPasterType type;
 
-- (AliyunEffectPaster*)copyAnother;
+/**
+ 关键帧图片
+ */
+@property(nonatomic, strong) UIImage *kernelImage;
 
-- (id)initWithRestore:(NSDictionary *)dict;
+/**
+ 动画的场景集合
+ 
+ 例如：动画场景可以分为进场、场中和出场
+ */
+@property(nonatomic, copy) NSArray<AliyunEffectPasterTimeItem *> *timeItems;
+
+/**
+ 动画帧集合
+ 
+ 即指定在某时间播放某一张图片
+ */
+@property(nonatomic, copy) NSArray<AliyunEffectPasterFrameItem *> *frameItems;
+
+/**
+ 动图原始时长
+ 
+ 从动图的配置文件解析而来
+ */
+@property(nonatomic, assign, readonly) CGFloat originDuration;
+
+- (AliyunEffectPaster *)copyAnother __deprecated_msg("已废弃");
+
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
 
 @end

@@ -9,7 +9,17 @@
 #ifndef AliyunErrorCodeEnum_h
 #define AliyunErrorCodeEnum_h
 
-typedef NS_ENUM(int, AliyunErrorMedia) {
+/**
+ 错误类型
+ 已废弃
+
+ - AliyunErrorMediaThreshold: AliyunErrorMediaThreshold
+ - AliyunErrorMediaVideoNotSupport: AliyunErrorMediaVideoNotSupport
+ - AliyunErrorMediaAudioNotSupport: AliyunErrorMediaAudioNotSupport
+ - AliyunErrorMediaImageFormatNotSupport: AliyunErrorMediaImageFormatNotSupport
+ - AliyunErrorMediaVideoEncoderInternal: AliyunErrorMediaVideoEncoderInternal
+ */
+__deprecated_msg("已废弃") typedef NS_ENUM(int, AliyunErrorMedia) {
     AliyunErrorMediaThreshold = 100001,
     AliyunErrorMediaVideoNotSupport,
     AliyunErrorMediaAudioNotSupport,

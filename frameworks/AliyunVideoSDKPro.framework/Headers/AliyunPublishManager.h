@@ -12,26 +12,63 @@
 #import "AliyunEditor.h"
 
 
-@interface AliyunUploadSVideoInfo : NSObject
-// 标题
+/**
+ 上传视频信息设置类
+ */
+__attribute__((deprecated)) @interface AliyunUploadSVideoInfo : NSObject
+
+/**
+ 视频点播参数，标题
+ */
 @property (nonatomic, copy) NSString* title;
-// 标签
+
+/**
+ 视频点播参数，标签
+ */
 @property (nonatomic, copy) NSString* tags;
-// 描述
+
+/**
+ 视频点播参数，描述
+ */
 @property (nonatomic, copy) NSString* desc;
-// 分类
+
+/**
+ 视频点播参数，分类
+ */
 @property (nonatomic, strong) NSNumber* cateId;
 
+/**
+ 视频点播参数，isProcess
+ */
 @property (nonatomic, assign) BOOL isProcess;
+
+/**
+ 视频点播参数，是否现显示水印
+ */
 @property (nonatomic, assign) BOOL isShowWaterMark;
+
+/**
+ 视频点播参数，优先级
+ */
 @property (nonatomic, strong) NSNumber* priority;
+
+/**
+ 视频点播参数，存储位置
+ */
 @property (nonatomic, copy) NSString* storageLocation;
+
+/**
+ 视频点播参数，转码模版组id
+ */
 @property (nonatomic, copy) NSString* templateGroupId;
 
 @end
 
 
-@protocol AliyunIUploadCallback <NSObject>
+/**
+ 上传回调协议
+ */
+__attribute__((deprecated)) @protocol AliyunIUploadCallback <NSObject>
 
 /**
  上传成功
@@ -74,7 +111,12 @@
 
 @end
 
-@interface AliyunPublishManager : NSObject
+/**
+ 导出合成与上传管理器
+
+ deprecated 已废弃，请使用AliyunVodPublishManager代替
+ */
+__attribute__((deprecated)) @interface AliyunPublishManager : NSObject
 
 /**
  导出回调

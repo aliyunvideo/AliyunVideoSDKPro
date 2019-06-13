@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ 输出视频质量
+
+ - AliyunVideoQualityVeryHight: VeryHight
+ - AliyunVideoQualityHight: Hight
+ - AliyunVideoQualityMedium: Medium
+ - AliyunVideoQualityLow: Low
+ - AliyunVideoQualityPoor: Poor
+ - AliyunVideoQualityExtraPoor: ExtraPoor
+ */
 typedef NS_ENUM(NSInteger, AliyunVideoQuality) {
     AliyunVideoQualityVeryHight,
     AliyunVideoQualityHight,
@@ -17,11 +27,27 @@ typedef NS_ENUM(NSInteger, AliyunVideoQuality) {
     AliyunVideoQualityExtraPoor
 };
 
+/**
+ 裁剪模式
+
+ - AliyunScaleModeFit: 裁剪
+ - AliyunScaleModeFill: 填充
+ */
 typedef NS_ENUM(NSInteger, AliyunScaleMode) {
-    AliyunScaleModeFit = 0, // 裁剪
-    AliyunScaleModeFill = 1 // 填充
+    AliyunScaleModeFit = 0,
+    AliyunScaleModeFill = 1
 };
 
+/**
+ 编码器类型
+ 
+ ios只开放部分编码类型
+ - AliyunVideoCodecTypeAuto: 自动
+ - AliyunVideoCodecHardware: 硬编
+ - AliyunVideoCodecFFmpeg: ffmpeg
+ - AliyunVideoCodecOpenh264: Openh264
+ - AliyunVideoCodecX264: X264
+ */
 typedef NS_ENUM(NSInteger, AliyunVideoCodecType) {
     AliyunVideoCodecTypeAuto = 0,
     AliyunVideoCodecHardware,
@@ -30,21 +56,29 @@ typedef NS_ENUM(NSInteger, AliyunVideoCodecType) {
     AliyunVideoCodecX264
 };
 
+/**
+ 视频参数设置类
+ */
 @interface AliyunVideoParam : NSObject
 
 /**
- 帧率 默认25 建议20 - 60 不超过60
+ 帧率
+ 
+ 默认25 建议20 - 60 不超过60
  */
 @property(nonatomic, assign) int fps;
 
 /**
- 关键帧间隔 >1
+ 关键帧间隔
+ 
+ gop > 1
  */
 @property(nonatomic, assign) int gop;
 
 /**
- 码率  单位bps
- 建议
+ 码率
+ 
+ 单位bps 建议：
  480P:1000000-2000000
  540P:2000000-3000000
  720P:2000000-4000000

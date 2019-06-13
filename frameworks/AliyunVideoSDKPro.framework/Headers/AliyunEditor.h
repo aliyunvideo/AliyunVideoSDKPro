@@ -36,27 +36,41 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-typedef enum : NSUInteger {
+/**
+ 编辑模式枚举值
+
+ - AliyunEditorModeNull:    Null
+ - AliyunEditorModePlay:    播放模式
+ - AliyunEditorModeExport:  合成导出模式
+ */
+typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
     AliyunEditorModeNull,
     AliyunEditorModePlay,   // 播放模式
-    AliyunEditorModeExport, // 合成导出模式
-} AliyunEditorMode;
+    AliyunEditorModeExport // 合成导出模式
+};
 
+/**
+ 编辑器
+ */
 @interface AliyunEditor : NSObject
 
+/**
+ 播放，合成，渲染回调类
+ */
 @property(nonatomic, weak) id<AliyunIPlayerCallback, AliyunIExporterCallback, AliyunIRenderCallback> delegate;
 
 /**
  初始化Editor
 
  @param taskPath taskPath文件夹路径
- @param preview 编辑预览视图
+ @param preview 编辑预览视图 
  @return Editor
  */
 - (instancetype)initWithPath:(NSString *)taskPath preview:(UIView *)preview;
 
 /**
  创建相关资源
+ 
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  参数不正确 ALIVC_COMMON_INVALID_PARAM
@@ -69,13 +83,15 @@ typedef enum : NSUInteger {
 
 /**
  销毁相关资源
+ 
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
 - (int)stopEdit;
 
 /**
- 获取 媒体片段构造器
+ 获取媒体片段构造器
+ 
  对媒体片段修改操作，必须在startEdit之前或stopEdit后才能生效
  @return 媒体片段构造器
  */
@@ -140,6 +156,7 @@ typedef enum : NSUInteger {
 
 /**
  移除mv音乐
+ 
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  解析动图失败 ALIVC_SVIDEO_EDITOR_PARSE_RESOURCE_FAILED
@@ -272,6 +289,7 @@ typedef enum : NSUInteger {
  @param filter 特效对象
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
+ 参数设置不正确 ALIVC_COMMON_INVALID_PARAM
  特效不支持（多个流的情况下）ALIVC_SVIDEO_EDITOR_TIME_EFFECT_NOT_SUPPORT
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
@@ -381,8 +399,9 @@ typedef enum : NSUInteger {
 /**
  API_AVAILABLE(3.7.0)
 
- 加帧动画 注意：1.主流不支持alpha帧动画  2.在倒播特效下，不支持此功能
-
+ 加帧动画
+ 
+ 注意：1.主流不支持alpha帧动画  2.在倒播特效下，不支持此功能
  @param obj 动画作用的对象
  @param action 动画
  */
@@ -474,8 +493,7 @@ typedef enum : NSUInteger {
 /**
  设置单路音频流音量权重
 
- @param weight 权重 0-100
- 100 代表原始大小
+ @param weight 权重 0-100，100 代表原始大小
  @param streamId 流id
  主流id:AliyunClip.streamId
  配乐流id：AliyunEffectMusic.effectVid
@@ -518,8 +536,8 @@ typedef enum : NSUInteger {
 
 /**
  设置单路流音效
+ 
  如果素材无音轨，该接口返回成功，但是没有效果
-
  @param type 音效类型
  @param weight 音效权重0-100
  @param streamId 流id
@@ -538,8 +556,8 @@ typedef enum : NSUInteger {
 
 /**
  设置主流音效
+ 
  如果素材无音轨，该接口返回成功，但是没有效果
-
  @param type 音效类型
  @param weight 音效权重0-100
  @return 返回值
@@ -566,8 +584,10 @@ typedef enum : NSUInteger {
 - (int)setScaleMode:(AliyunScaleMode)mode;
 
 /**
- 视频渲染最底层背景颜色 在填充模式下具有效果   如果color设置为clearColor 那么默认背景为视频高斯模糊播放效果
+ 视频渲染最底层背景颜色
 
+ 在填充模式下具有效果
+ 如果color设置为clearColor 那么默认背景为视频高斯模糊播放效果
  @param color 颜色
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
@@ -610,32 +630,32 @@ typedef enum : NSUInteger {
  */
 - (void)removeRunningDisplayMode:(AliyunEffectRunningDisplayMode *)mode;
 
+#pragma mark - deprecated 不建议使用的API
+
+/**
+ request id
+ */
+- (NSString *)getRequestId __deprecated_msg("deprecated, will remove");
+
+/**
+ 版本号
+ */
++ (NSString *)version __deprecated_msg("deprecated, will remove");
+
 /**
  设置最大内存缓存大小
  默认值250Mb，建议200M以上
  必须在startEdit之前或stopEdit后才能生效
  @param cacheSize 内存缓存大小，单位：byte
  */
-- (void)setMaxCacheSize:(int)cacheSize;
+- (void)setMaxCacheSize:(int)cacheSize __deprecated_msg("deprecated, will remove");
 
 /**
  获取当前设置的最大内存缓存大小
-
+ 
  @return 内存缓存大小
  */
-- (int)getMaxCacheSize;
-
-/**
- request id
- */
-- (NSString *)getRequestId;
-
-/**
- 版本号
- */
-+ (NSString *)version;
-
-#pragma mark - deprecated 不建议使用的API
+- (int)getMaxCacheSize __deprecated_msg("deprecated, will remove");
 
 /**
  获取视频需要的最大内存缓存大小

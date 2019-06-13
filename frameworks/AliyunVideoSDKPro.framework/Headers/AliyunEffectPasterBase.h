@@ -13,55 +13,86 @@
 
 static const double kQUSDKPasterBase = 640.f;
 
-struct PasterPosition {
-    double centerX;
-    double centerY;
-    double width;
-    double height;
-};
-typedef struct PasterPosition PasterPosition;
+/**
+ 所有动图/字幕的基类
+ */
+@interface AliyunEffectPasterBase : AliyunEffect
 
 /**
- 所有动图 字幕的基类
+ 设置开始时间
+ 
+ 单位：秒
  */
-@interface AliyunEffectPasterBase : AliyunEffect <AliyunActionProtocol>
+@property(nonatomic, assign) CGFloat startTime;
 
-@property(nonatomic, assign) CGFloat startTime;   //开始时间
-@property(nonatomic, assign) CGFloat endTime;     //结束时间
-@property(nonatomic, assign) CGFloat minDuration; //最短时间
-@property(nonatomic, assign) CGFloat rotate;      //旋转角度
-@property(nonatomic, assign) CGSize displaySize;  // editzoneview
-@property(nonatomic, assign) CGSize outputSize;   //动图所在的视频的输入分辨率
-@property(nonatomic, assign) CGRect frame;        //位置大小
-@property(nonatomic, assign) CGPoint position;    //位置
-@property(nonatomic, assign) CGSize size;         //大小
+/**
+ 设置结束时间
+ 
+ 单位：秒
+ */
+@property(nonatomic, assign) CGFloat endTime;
+
+/**
+ 动图最小播放时长
+ 
+ 配置文件内配置
+ */
+@property(nonatomic, assign, readonly) CGFloat minDuration;
+
+/**
+ 旋转角度
+ */
+@property(nonatomic, assign) CGFloat rotate;
+
+/**
+ 动图的展示区域
+ 
+ 即动图的父视图 例如在编辑demo中的editzoneview
+ */
+@property(nonatomic, assign) CGSize displaySize;
+
+/**
+ 视频导出分辨率
+ */
+@property(nonatomic, assign) CGSize outputSize;
+
+/**
+ 动图的位置大小
+ */
+@property(nonatomic, assign) CGRect frame;
+
+/**
+ 动图的位置
+ */
+@property(nonatomic, assign) CGPoint position;
+
+/**
+ 动图的大小
+ */
+@property(nonatomic, assign) CGSize size;
+
+/**
+ 动图的宽
+ */
 @property(nonatomic, assign) double width;
+
+/**
+ 动图的高
+ */
 @property(nonatomic, assign) double height;
+
+/**
+ 动图是否镜像
+ */
 @property(nonatomic, assign) BOOL mirror;
 
+/**
+ 初始化方法
+
+ @param dict 初始化参数
+ @return 动图实例
+ */
 - (id)initWithDict:(NSDictionary *)dict;
-
-- (PasterPosition)convertToPasterBaseSize;
-
-/**
-   API_AVAILABLE(3.7.0)
-
- @return 返回相对位置
- */
-- (PasterPosition)convertToRatioPasterSize;
-
-- (PasterPosition)convertToDisplaySize;
-
-/**
- API_AVAILABLE(3.7.0)
-
- @return 返回相对位置
- */
-- (PasterPosition)convertToRatioDisplaySize;
-
-- (NSMutableArray *)convertActions;
-
-- (void)convertFromJsonActions:(NSArray *)jsonActions;
 
 /**
  API_AVAILABLE(3.7.0)
@@ -81,8 +112,16 @@ typedef struct PasterPosition PasterPosition;
  */
 - (void)stopAction:(AliyunAction *)action;
 
+/**
+ 停止所有动画
+ */
 - (void)stopAllActions;
 
+/**
+ 获取所有动画
+
+ @return 动画集合
+ */
 - (NSArray *)allActions;
 
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface AliyunXianyuFaceMap : NSObject
+__deprecated_msg("已废弃") @interface AliyunXianyuFaceMap : NSObject
 
 
 /**

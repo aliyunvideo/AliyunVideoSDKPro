@@ -10,11 +10,29 @@
 
 #import "AliyunAction.h"
 
+/**
+ 透明度动画
+ 
+ 注意：不支持主流添加此动画
+ */
 @interface AliyunAlphaAction : AliyunAction
 
-@property (nonatomic, assign) float fromAlpha;
-@property (nonatomic, assign) float toAlpha;
+/**
+ 起始透明度
+ */
+@property(nonatomic, assign) float fromAlpha;
 
-- (id)initWithRestore:(NSDictionary *)dict;
+/**
+ 终点透明度
+ */
+@property(nonatomic, assign) float toAlpha;
+
+/**
+ 初始化方法
+
+ @param dict 初始化参数
+ @return 透明度动画实例
+ */
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
 
 @end

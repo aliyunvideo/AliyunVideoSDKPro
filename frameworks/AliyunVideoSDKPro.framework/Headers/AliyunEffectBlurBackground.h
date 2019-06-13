@@ -8,13 +8,41 @@
 
 #import "AliyunEffect.h"
 
+/**
+ 背景模糊效果model类
+ */
 @interface AliyunEffectBlurBackground : AliyunEffect
 
+/**
+ 开始时间
+ */
 @property(nonatomic, assign) float streamStartTime;
-@property(nonatomic, assign) float streamEndTime;
-@property(nonatomic, assign) int targetStreamId;//作用的目标流的ID 一定需要设置
-@property(nonatomic, assign) float blurRadius; // 0-29的范围
 
-- (id)initWithRestore:(NSDictionary *)dict;
+/**
+ 结束时间
+ */
+@property(nonatomic, assign) float streamEndTime;
+
+/**
+ 作用的目标流id
+
+ 该参数必须设置
+ */
+@property(nonatomic, assign) int targetStreamId;
+
+/**
+ 模糊半径
+
+ 数值越大越模糊，范围0-29
+ */
+@property(nonatomic, assign) float blurRadius;
+
+/**
+ 内部调用方法
+
+ @param dict dict
+ @return AliyunEffectBlurBackground
+ */
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
 
 @end

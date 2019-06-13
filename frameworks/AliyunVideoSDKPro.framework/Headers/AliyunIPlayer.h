@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ 播放器协议
+ */
 @protocol AliyunIPlayer <NSObject>
 
 
 /**
  开始播放
+ 
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  参数不正确 ALIVC_COMMON_INVALID_PARAM
@@ -35,7 +39,17 @@
 -(int)seek:(float)time;
 
 /**
+ 绘制一帧
+ 
+ @param time time 时间，单位：秒
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ */
+-(int)draw:(float)time;
+
+/**
  暂停播放
+ 
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
@@ -43,6 +57,7 @@
 
 /**
  继续播放
+ 
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
@@ -57,6 +72,7 @@
 
 /**
  重新开始播放
+ 
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  参数不正确 ALIVC_COMMON_INVALID_PARAM
@@ -70,30 +86,39 @@
 
 /**
  停止播放
+ 
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
 - (int)stop;
 
 /**
- 获取总时长，单位：秒
+ 获取总时长
+ 
+ 单位：秒
  @return 总时长
  */
 - (double)getDuration;
 
 /**
- 获取当前播放时间，单位：秒
+ 获取当前播放时间
+ 
+ 单位：秒
  */
 - (double)getCurrentTime;
 
 /**
- 获取原始视频流时长，单位：秒
+ 获取原始视频流时长
+ 
+ 单位：秒
  @return 总时长
  */
 - (double)getStreamDuration;
 
 /**
- 获取原始视频流播放时间，单位：秒
+ 获取原始视频流播放时间
+ 
+ 单位：秒
  */
 - (double)getCurrentStreamTime;
 
@@ -106,8 +131,9 @@
 - (double)getClipStartTimeAtIndex:(int)idx;
 
 /**
- 设置播放器的刷新频率 默认30帧/s 最大60帧/s 建议不低于20帧/s
-
+ 设置播放器的刷新频率
+ 
+ 默认30帧/s 最大60帧/s 建议不低于20帧/s
  @param fps 帧
  */
 - (void)setRefreshFps:(double)fps;
