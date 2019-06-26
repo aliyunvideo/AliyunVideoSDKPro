@@ -25,14 +25,14 @@
 
 /**
  mv音量大小
- 
+
  0-100
  */
 @property(nonatomic, assign) int audioMixWeight;
 
 /**
  是否对mv去燥
- 
+
  已废弃，请使用音效列表AliyunAudioEffect代替
  */
 @property(nonatomic, assign) BOOL denoise __deprecated_msg("已废弃");

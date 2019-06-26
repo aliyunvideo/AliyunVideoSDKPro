@@ -15,7 +15,7 @@
 
 /**
  旋转方向
- 
+
  可以设置为顺时针或者逆时针
  true:顺时针
  false:逆时针
@@ -24,7 +24,7 @@
 
 /**
  开始旋转时的弧度
- 
+
  单位：弧度
  */
 @property(nonatomic, assign) float fromDegree;

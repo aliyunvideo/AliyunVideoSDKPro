@@ -10,6 +10,4 @@
 
 __deprecated_msg("已废弃") @interface AliyunMediaInfo : NSObject
 
-
-
 @end

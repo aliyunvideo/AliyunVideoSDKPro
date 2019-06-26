@@ -12,7 +12,7 @@
 
 /**
  透明度动画
- 
+
  注意：不支持主流添加此动画
  */
 @interface AliyunAlphaAction : AliyunAction

@@ -6,13 +6,13 @@
 //  Copyright (C) 2010-2017 Alibaba Group Holding Limited. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "AliyunVideoParam.h"
+#import <Foundation/Foundation.h>
 
 @protocol AliyunIExporter <NSObject>
 /**
  添加片尾水印
- 
+
  @param image 水印图片
  @return 返回值为片尾id或者错误码 详细：如果返回值范围为 >0  && < ALIVC_FRAMEWORK_ERROR_START， 则为片尾水印id；否则为错误码。
  */
@@ -20,7 +20,7 @@
 
 /**
  设置水印
- 
+
  @param waterMark 水印
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
@@ -31,7 +31,7 @@
 
 /**
  设置片尾水印
- 
+
  @param waterMark 片尾水印
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
@@ -43,7 +43,7 @@
 
 /**
  设置编码模式
- 
+
  iOS强制硬编
  @param encodeMode 编码模式 参见AliyunVideoParam中codecType的定义
  */
@@ -51,14 +51,14 @@
 
 /**
  设置视频输出参数
- 
+
  @param videoParam 视频输出参数
  */
 - (void)setVideoParam:(AliyunVideoParam *)videoParam;
 
 /**
  设置退后台是否取消导出合成
- 
+
  默认值NO:退后台暂停合成，回到前台继续合成,YES:退后台取消合成
  @param flag flag
  */
@@ -66,7 +66,7 @@
 
 /**
  开始导出视频
- 
+
  @param outputPath 导出视频文件路径，需要保证多级目录文件夹已经创建
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
@@ -80,7 +80,7 @@
 
 /**
  暂停导出视频
- 
+
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
@@ -88,7 +88,7 @@
 
 /**
  继续导出视频
- 
+
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
@@ -96,10 +96,10 @@
 
 /**
  取消导出视频
- 
+
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
--(int)cancelExport;
+- (int)cancelExport;
 
 @end

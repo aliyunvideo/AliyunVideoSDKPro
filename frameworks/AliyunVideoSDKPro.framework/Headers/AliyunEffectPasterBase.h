@@ -20,21 +20,21 @@ static const double kQUSDKPasterBase = 640.f;
 
 /**
  设置开始时间
- 
+
  单位：秒
  */
 @property(nonatomic, assign) CGFloat startTime;
 
 /**
  设置结束时间
- 
+
  单位：秒
  */
 @property(nonatomic, assign) CGFloat endTime;
 
 /**
  动图最小播放时长
- 
+
  配置文件内配置
  */
 @property(nonatomic, assign, readonly) CGFloat minDuration;
@@ -46,7 +46,7 @@ static const double kQUSDKPasterBase = 640.f;
 
 /**
  动图的展示区域
- 
+
  即动图的父视图 例如在编辑demo中的editzoneview
  */
 @property(nonatomic, assign) CGSize displaySize;

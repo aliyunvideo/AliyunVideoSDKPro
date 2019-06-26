@@ -15,7 +15,7 @@
 
 /**
  导出结束
- 
+
  @param outputPath 输出文件路径
  */
 - (void)exporterDidEnd:(NSString *)outputPath;
@@ -27,14 +27,14 @@
 
 /**
  导出进度
- 
+
  @param progress 0-1
  */
 - (void)exportProgress:(float)progress;
 
 /**
  导出异常
- 
+
  @param errorCode 错误码
  状态错误 ALIVC_FRAMEWORK_MEDIA_POOL_WRONG_STATE
  DEMUXER重复创建 ALIVC_FRAMEWORK_DEMUXER_INIT_MULTI_TIMES
@@ -48,7 +48,7 @@
  解码HEVC参数创建失败 ALIVC_FRAMEWORK_VIDEO_DECODER_CREATE_HEVC_PARAM_SET_FAILED
  缓存数据已满 ALIVC_FRAMEWORK_MEDIA_POOL_CACHE_DATA_SIZE_OVERFLOW
  解码器内部返回错误码
- 
+
  */
 - (void)exportError:(int)errorCode;
 

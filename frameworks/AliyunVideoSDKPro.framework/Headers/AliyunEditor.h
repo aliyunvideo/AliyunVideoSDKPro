@@ -45,7 +45,7 @@
  */
 typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
     AliyunEditorModeNull,
-    AliyunEditorModePlay,   // 播放模式
+    AliyunEditorModePlay,  // 播放模式
     AliyunEditorModeExport // 合成导出模式
 };
 
@@ -63,14 +63,14 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  初始化Editor
 
  @param taskPath taskPath文件夹路径
- @param preview 编辑预览视图 
+ @param preview 编辑预览视图
  @return Editor
  */
 - (instancetype)initWithPath:(NSString *)taskPath preview:(UIView *)preview;
 
 /**
  创建相关资源
- 
+
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  参数不正确 ALIVC_COMMON_INVALID_PARAM
@@ -83,7 +83,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  销毁相关资源
- 
+
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
@@ -91,7 +91,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  获取媒体片段构造器
- 
+
  对媒体片段修改操作，必须在startEdit之前或stopEdit后才能生效
  @return 媒体片段构造器
  */
@@ -156,7 +156,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  移除mv音乐
- 
+
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  解析动图失败 ALIVC_SVIDEO_EDITOR_PARSE_RESOURCE_FAILED
@@ -400,7 +400,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  API_AVAILABLE(3.7.0)
 
  加帧动画
- 
+
  注意：1.主流不支持alpha帧动画  2.在倒播特效下，不支持此功能
  @param obj 动画作用的对象
  @param action 动画
@@ -536,7 +536,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  设置单路流音效
- 
+
  如果素材无音轨，该接口返回成功，但是没有效果
  @param type 音效类型
  @param weight 音效权重0-100
@@ -556,7 +556,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  设置主流音效
- 
+
  如果素材无音轨，该接口返回成功，但是没有效果
  @param type 音效类型
  @param weight 音效权重0-100
@@ -652,7 +652,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  获取当前设置的最大内存缓存大小
- 
+
  @return 内存缓存大小
  */
 - (int)getMaxCacheSize __deprecated_msg("deprecated, will remove");

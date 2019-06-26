@@ -16,40 +16,37 @@
 
 /**
  视频最大时长
- 
+
  默认8
  */
-@property (nonatomic, assign) CGFloat maxDuration;
+@property(nonatomic, assign) CGFloat maxDuration;
 
 /**
  视频最小时长
- 
+
  默认0.5
  */
-@property (nonatomic, assign) CGFloat minDuration;
+@property(nonatomic, assign) CGFloat minDuration;
 
 /**
  视频总时长
  */
-@property (nonatomic, assign, readonly) CGFloat duration;
+@property(nonatomic, assign, readonly) CGFloat duration;
 
 /**
  视频段数
  */
-@property (nonatomic, assign, readonly) NSInteger partCount;
-
+@property(nonatomic, assign, readonly) NSInteger partCount;
 
 /**
  分段视频存储路径(物理路径)
  */
-@property (nonatomic, strong, readonly) NSArray *videoAbsolutePaths;
-
+@property(nonatomic, strong, readonly) NSArray *videoAbsolutePaths;
 
 /**
  第一段视频旋转角度
  */
-@property (nonatomic, assign, readonly) int firstClipVideoRotation;
-
+@property(nonatomic, assign, readonly) int firstClipVideoRotation;
 
 /**
  删除所有视频片段
@@ -67,6 +64,5 @@
  @param index 视频段序列数
  */
 - (void)deletePart:(NSInteger)index;
-
 
 @end

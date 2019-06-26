@@ -13,9 +13,7 @@
  已废弃
  @return AliyunHttpClient
  */
-__attribute__ ((deprecated("该接口已废弃不再维护，请自行封装HTTP请求接口或使用第三方库")))
-@interface AliyunHttpClient : NSObject
-
+__attribute__((deprecated("该接口已废弃不再维护，请自行封装HTTP请求接口或使用第三方库"))) @interface AliyunHttpClient : NSObject
 
 /**
  初始化
@@ -32,9 +30,7 @@ __attribute__ ((deprecated("该接口已废弃不再维护，请自行封装HTTP
  @param parameters 参数
  @param completionHandler 完成回调
  */
-- (void)GET:(NSString *)path
- parameters:(NSDictionary *)parameters
-completionHandler:(void (^)(NSURLResponse *response, id responseObject,  NSError * error))completionHandler __deprecated_msg("已废弃不再维护");
+- (void)GET:(NSString *)path parameters:(NSDictionary *)parameters completionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler __deprecated_msg("已废弃不再维护");
 
 /**
  下载请求
@@ -44,10 +40,6 @@ completionHandler:(void (^)(NSURLResponse *response, id responseObject,  NSError
  @param downloadProgressBlock 参数
  @param completionHandler 完成回调
  */
-- (void)download:(NSString *)remotePath
-     destination:(NSString *)destination
-        progress:(void (^)(NSProgress*downloadProgress))downloadProgressBlock
-completionHandler:(void(^)(NSURL *filePath, NSError *error))completionHandler __deprecated_msg("已废弃不再维护");
-
+- (void)download:(NSString *)remotePath destination:(NSString *)destination progress:(void (^)(NSProgress *downloadProgress))downloadProgressBlock completionHandler:(void (^)(NSURL *filePath, NSError *error))completionHandler __deprecated_msg("已废弃不再维护");
 
 @end

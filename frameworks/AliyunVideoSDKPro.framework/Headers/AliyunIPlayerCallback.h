@@ -44,7 +44,6 @@
  */
 - (void)playError:(int)errorCode;
 
-
 #pragma mark - 不建议使用的API
 
 /**
@@ -62,11 +61,10 @@
 @optional
 /**
  播放进度
- 
+
  @param sec 单位：s
  */
 - (void)playProgress:(double)sec;
-
 
 @end
 
@@ -79,7 +77,7 @@
 
 /**
  自定义渲染接口,渲染前纹理回调
- 
+
  @param srcTexture 原始视频帧纹理id
  @param size 原始视频帧纹理size
  @return 返回纹理id
@@ -88,7 +86,7 @@
 
 /**
  自定义渲染接口，渲染后纹理回调
- 
+
  @param srcTexture 原始视频帧纹理id
  @param size 原始视频帧纹理size
  @return 返回纹理id

@@ -13,10 +13,9 @@
  */
 @protocol AliyunIPlayer <NSObject>
 
-
 /**
  开始播放
- 
+
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  参数不正确 ALIVC_COMMON_INVALID_PARAM
@@ -29,27 +28,27 @@
 
 /**
  seek到某一时间点
- 
+
  @param time 时间，单位：秒
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  seek在最小间隔区间中 ALIVC_SVIDEO_EDITOR_SEEK_IN_OFFSET
  ALIVC_FRAMEWORK_AUDIO_PROCESS_SEEK_FAILED
  */
--(int)seek:(float)time;
+- (int)seek:(float)time;
 
 /**
  绘制一帧
- 
+
  @param time time 时间，单位：秒
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
--(int)draw:(float)time;
+- (int)draw:(float)time;
 
 /**
  暂停播放
- 
+
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
@@ -57,7 +56,7 @@
 
 /**
  继续播放
- 
+
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
@@ -72,7 +71,7 @@
 
 /**
  重新开始播放
- 
+
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  参数不正确 ALIVC_COMMON_INVALID_PARAM
@@ -86,7 +85,7 @@
 
 /**
  停止播放
- 
+
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
@@ -94,7 +93,7 @@
 
 /**
  获取总时长
- 
+
  单位：秒
  @return 总时长
  */
@@ -102,14 +101,14 @@
 
 /**
  获取当前播放时间
- 
+
  单位：秒
  */
 - (double)getCurrentTime;
 
 /**
  获取原始视频流时长
- 
+
  单位：秒
  @return 总时长
  */
@@ -117,7 +116,7 @@
 
 /**
  获取原始视频流播放时间
- 
+
  单位：秒
  */
 - (double)getCurrentStreamTime;
@@ -132,7 +131,7 @@
 
 /**
  设置播放器的刷新频率
- 
+
  默认30帧/s 最大60帧/s 建议不低于20帧/s
  @param fps 帧
  */
@@ -142,7 +141,7 @@
 
 /**
  设置播放器激活状态
- 
+
  @param active
  接收到系统Active通知，调用该方法设置播放器是否active
  UIApplicationDidBecomeActiveNotification
@@ -154,6 +153,5 @@
  由于无法保证通知接收的先后顺序，需要先调用该方法保证处于播放器active状态
  */
 - (void)setActive:(BOOL)active __deprecated_msg("deprecated");
-
 
 @end

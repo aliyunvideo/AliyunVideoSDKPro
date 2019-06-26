@@ -6,13 +6,13 @@
 //  Copyright © 2018年 Alibaba Group Holding Limited. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "AliyunClip.h"
+#import <Foundation/Foundation.h>
 
 /**
  音频录制回调协议
  */
-@protocol AliyunAudioRecorderDelegate<NSObject>
+@protocol AliyunAudioRecorderDelegate <NSObject>
 
 /**
  录制进度
@@ -31,12 +31,12 @@ __deprecated_msg("已废弃") @interface AliyunAudioRecorder : NSObject
 /**
  是否正在录制
  */
-@property (nonatomic, assign) BOOL isRecording;
+@property(nonatomic, assign) BOOL isRecording;
 
 /**
  录制回调类
  */
-@property (nonatomic, assign) id<AliyunAudioRecorderDelegate> delegate;
+@property(nonatomic, assign) id<AliyunAudioRecorderDelegate> delegate;
 
 /**
  初始化
@@ -56,12 +56,10 @@ __deprecated_msg("已废弃") @interface AliyunAudioRecorder : NSObject
  */
 - (void)stopRecord;
 
-
 /**
  结束录制流程
  */
 - (void)finishRecord;
-
 
 /**
  所有片段
@@ -69,7 +67,6 @@ __deprecated_msg("已废弃") @interface AliyunAudioRecorder : NSObject
  @return 获取所有片段集合
  */
 - (NSArray<AliyunClip *> *)allClips;
-
 
 /**
  删除clip
@@ -89,7 +86,5 @@ __deprecated_msg("已废弃") @interface AliyunAudioRecorder : NSObject
  @return 时长
  */
 - (float)totalDuration;
-
-
 
 @end

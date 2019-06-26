@@ -10,12 +10,17 @@
 
 #ifndef AliyunVideoSDKPro_h
 #define AliyunVideoSDKPro_h
-#import <AliyunVideoSDKPro/AliyunIRecorder.h>
-#import <AliyunVideoSDKPro/AliyunFacePoint.h>
+#import <AliyunVideoSDKPro/AliyunMixMediaInfoParam.h>
+#import <AliyunVideoSDKPro/AliyunMixRecorder.h>
+#import <AliyunVideoSDKPro/AliyunMixStream.h>
+#import <AliyunVideoSDKPro/AliyunMixTrack.h>
+#import <AliyunVideoSDKPro/AliyunMixComposer.h>
+#import <AliyunVideoSDKPro/AliyunAudioRecorder.h>
 #import <AliyunVideoSDKPro/AliyunClipManager.h>
+#import <AliyunVideoSDKPro/AliyunFacePoint.h>
+#import <AliyunVideoSDKPro/AliyunIRecorder.h>
 #import <AliyunVideoSDKPro/AliyunVideoStitch.h>
 #import <AliyunVideoSDKPro/AliyunXianyuFaceMap.h>
-#import <AliyunVideoSDKPro/AliyunAudioRecorder.h>
 #import <AliyunVideoSDKPro/AliyunCrop.h>
 #import <AliyunVideoSDKPro/AliyunImageCrop.h>
 #import <AliyunVideoSDKPro/AliyunImporter.h>
@@ -81,5 +86,3 @@
 #import <AliyunVideoSDKPro/AliyunVideoParam.h>
 #import <AliyunVideoSDKPro/AliyunVideoSDKInfo.h>
 #endif /* QUSDK_h */
-
-

@@ -6,15 +6,15 @@
 //  Copyright (C) 2010-2017 Alibaba Group Holding Limited. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import "AliyunVideoParam.h"
-#import <Photos/PHAsset.h>
 #import "AliyunIClipConstructor.h"
+#import "AliyunVideoParam.h"
+#import <Foundation/Foundation.h>
+#import <Photos/PHAsset.h>
+#import <UIKit/UIKit.h>
 
 /**
  编辑导入类
- 
+
  用于构建编辑初始化配置文件
  实现了AliyunIClipConstructor协议，用于配置媒体片段
  */
@@ -31,7 +31,7 @@
 
 /**
  设置视频输出参数
- 
+
  @param videoParam 视频输出参数
  */
 - (void)setVideoParam:(AliyunVideoParam *)videoParam;

@@ -11,13 +11,12 @@
 
 __deprecated_msg("已废弃") @interface AliyunXianyuFaceMap : NSObject
 
-
 /**
  输出宽宽
- 
+
  * @param width 输出宽
  * @param height 输出高
- 
+
  */
 - (id)initWithOutputWidth:(int)width height:(int)height;
 
@@ -26,13 +25,13 @@ __deprecated_msg("已废弃") @interface AliyunXianyuFaceMap : NSObject
  * @param fm float[16]
  * @param texture_asp 输入的纹理的宽高比
  */
-- (void)setTransforamMatrix:(float*) fm texture_asp:(float)texture_asp;
+- (void)setTransforamMatrix:(float *)fm texture_asp:(float)texture_asp;
 
 /*
  * 用于android
  * @param isProceed 0, GL_TEXTURE_EXTERNAL_OES; 1, texture2D
  */
-//void textureProceed(int isProceed);
+// void textureProceed(int isProceed);
 
 /*
  * 添加动图
@@ -44,7 +43,6 @@ __deprecated_msg("已废弃") @interface AliyunXianyuFaceMap : NSObject
  */
 //- (int)addGif:(int vid, char const* dongtu_dir, int64_t duration);
 - (int)addGif:(int)vid path:(char const *)dongtu_dir duration:(int64_t)duration;
-
 
 /*
  * 删除动图
@@ -58,7 +56,7 @@ __deprecated_msg("已废弃") @interface AliyunXianyuFaceMap : NSObject
  *              mouth_x, mouth_y]
  * @param size 目前必须是6，只用到3个点
  */
-- (void)setFace:(int)vid face:(float*)face size:(int)size;
+- (void)setFace:(int)vid face:(float *)face size:(int)size;
 
 /*
  * 渲染

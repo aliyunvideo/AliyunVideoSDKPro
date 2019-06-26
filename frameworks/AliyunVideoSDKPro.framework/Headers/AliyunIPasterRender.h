@@ -6,11 +6,11 @@
 //  Copyright (C) 2010-2017 Alibaba Group Holding Limited. All rights reserved.
 //
 
+#import "AliyunEffectCaption.h"
+#import "AliyunEffectPaster.h"
+#import "AliyunEffectSubtitle.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "AliyunEffectPaster.h"
-#import "AliyunEffectCaption.h"
-#import "AliyunEffectSubtitle.h"
 
 /**
  动图渲染协议
@@ -28,7 +28,6 @@
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  */
 - (int)addGifPaster:(AliyunEffectPaster *)paster;
-
 
 /**
  底层接口，添加纯文字
@@ -62,7 +61,5 @@
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  */
 - (int)removePaster:(AliyunEffectPasterBase *)basePaster;
-
-
 
 @end

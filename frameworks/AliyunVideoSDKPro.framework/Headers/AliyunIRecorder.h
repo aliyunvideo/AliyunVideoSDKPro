@@ -24,11 +24,7 @@ typedef NS_ENUM(NSInteger, AliyunIRecorderCameraPosition) {
     AliyunIRecorderCameraPositionBack,
 };
 
-typedef NS_ENUM(NSInteger, AliyunIRecorderFlashMode) {
-    AliyunIRecorderFlashModeOff = 0,
-    AliyunIRecorderFlashModeOn = 1,
-    AliyunIRecorderFlashModeAuto = 2
-};
+typedef NS_ENUM(NSInteger, AliyunIRecorderFlashMode) { AliyunIRecorderFlashModeOff = 0, AliyunIRecorderFlashModeOn = 1, AliyunIRecorderFlashModeAuto = 2 };
 
 typedef NS_ENUM(NSInteger, AliyunIRecorderTorchMode) {
     AliyunIRecorderTorchModeOff = 0,
@@ -36,11 +32,7 @@ typedef NS_ENUM(NSInteger, AliyunIRecorderTorchMode) {
     AliyunIRecorderTorchModeAuto = 2,
 };
 
-typedef NS_ENUM(NSInteger, AliyunIRecorderDeviceAuthor) {
-    AliyunIRecorderDeviceAuthorEnabled,
-    AliyunIRecorderDeviceAuthorAudioDenied,
-    AliyunIRecorderDeviceAuthorVideoDenied
-};
+typedef NS_ENUM(NSInteger, AliyunIRecorderDeviceAuthor) { AliyunIRecorderDeviceAuthorEnabled, AliyunIRecorderDeviceAuthorAudioDenied, AliyunIRecorderDeviceAuthorVideoDenied };
 
 typedef NS_ENUM(NSInteger, AliyunIRecorderVideoOutputPixelFormatType) {
     AliyunIRecorderVideoOutputPixelFormatType420f,
@@ -458,7 +450,7 @@ enum {
 @optional
 /**
  摄像头返回的原始视频数据
- 
+
  开放出来的目的是用于做人脸识别
  @param sampleBuffer 视频数据
  */
@@ -466,7 +458,7 @@ enum {
 
 /**
  返回原始的音频数据
- 
+
  用来做语音识别一类的业务
  @param sampleBuffer 音频数据
  */
@@ -482,7 +474,7 @@ enum {
 
 /**
  用户自定义渲染
- 
+
  开放pixelBuffer和纹理id给用户自渲染 （仅支持BGRA格式）
  @param pixelBuffer 摄像头数据
  @param textureName 摄像头数据纹理
@@ -508,7 +500,7 @@ enum {
 
 /**
  摄像头返回的原始视频纹理
- 
+
  摄像头数据格式为BGRA、YUV时都需实现
  @param textureName 原始纹理ID
  @return 处理后的纹理ID
@@ -517,7 +509,7 @@ enum {
 
 /**
  摄像头返回的原始视频纹理
- 
+
  摄像头数据格式仅为YUV时须实现，反之不实现
  @param textureName  原始UV分量的纹理ID
  @return 处理后的纹理ID

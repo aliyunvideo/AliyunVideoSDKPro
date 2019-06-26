@@ -16,7 +16,7 @@
 
 /**
  设置几变形
- 
+
  n >= 3
  */
 @property(nonatomic, assign) int n;

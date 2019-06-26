@@ -16,7 +16,7 @@
 
 /**
  移动的起始坐标
- 
+
  坐标参考系是为系统屏幕坐标系 （0，0）为左上角  和系统view行为一致
  */
 @property(nonatomic, assign) CGPoint fromePoint;

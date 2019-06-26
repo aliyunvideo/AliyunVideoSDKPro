@@ -18,14 +18,7 @@
  - AliyunVideoQualityPoor: Poor
  - AliyunVideoQualityExtraPoor: ExtraPoor
  */
-typedef NS_ENUM(NSInteger, AliyunVideoQuality) {
-    AliyunVideoQualityVeryHight,
-    AliyunVideoQualityHight,
-    AliyunVideoQualityMedium,
-    AliyunVideoQualityLow,
-    AliyunVideoQualityPoor,
-    AliyunVideoQualityExtraPoor
-};
+typedef NS_ENUM(NSInteger, AliyunVideoQuality) { AliyunVideoQualityVeryHight, AliyunVideoQualityHight, AliyunVideoQualityMedium, AliyunVideoQualityLow, AliyunVideoQualityPoor, AliyunVideoQualityExtraPoor };
 
 /**
  裁剪模式
@@ -33,14 +26,11 @@ typedef NS_ENUM(NSInteger, AliyunVideoQuality) {
  - AliyunScaleModeFit: 裁剪
  - AliyunScaleModeFill: 填充
  */
-typedef NS_ENUM(NSInteger, AliyunScaleMode) {
-    AliyunScaleModeFit = 0,
-    AliyunScaleModeFill = 1
-};
+typedef NS_ENUM(NSInteger, AliyunScaleMode) { AliyunScaleModeFit = 0, AliyunScaleModeFill = 1 };
 
 /**
  编码器类型
- 
+
  ios只开放部分编码类型
  - AliyunVideoCodecTypeAuto: 自动
  - AliyunVideoCodecHardware: 硬编
@@ -48,36 +38,36 @@ typedef NS_ENUM(NSInteger, AliyunScaleMode) {
  - AliyunVideoCodecOpenh264: Openh264
  - AliyunVideoCodecX264: X264
  */
-typedef NS_ENUM(NSInteger, AliyunVideoCodecType) {
-    AliyunVideoCodecTypeAuto = 0,
-    AliyunVideoCodecHardware,
-    AliyunVideoCodecFFmpeg,
-    AliyunVideoCodecOpenh264,
-    AliyunVideoCodecX264
+typedef NS_ENUM(NSInteger, AliyunVideoCodecType) { AliyunVideoCodecTypeAuto = 0, AliyunVideoCodecHardware, AliyunVideoCodecFFmpeg, AliyunVideoCodecOpenh264, AliyunVideoCodecX264 };
+
+typedef NS_ENUM(NSInteger, AlivcContentMode) {
+    AlivcContentModeScaleAspectFit = 1,  //填充模式
+    AlivcContentModeScaleAspectFill = 0, //裁剪模式
 };
 
 /**
  视频参数设置类
  */
+
 @interface AliyunVideoParam : NSObject
 
 /**
  帧率
- 
+
  默认25 建议20 - 60 不超过60
  */
 @property(nonatomic, assign) int fps;
 
 /**
  关键帧间隔
- 
+
  gop > 1
  */
 @property(nonatomic, assign) int gop;
 
 /**
  码率
- 
+
  单位bps 建议：
  480P:1000000-2000000
  540P:2000000-3000000

@@ -9,7 +9,7 @@
 #import "AliyunEffect.h"
 /**
  播放模式
- 
+
  - AliyunRunningModeFit：裁剪模式
  - AliyunRunningModeFill：填充模式
  */
@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger, AliyunRunningMode) { AliyunRunningModeFit = 0, Aliyun
 
 /**
  播放模式
- 
+
  0：填充
  1：裁剪
  */

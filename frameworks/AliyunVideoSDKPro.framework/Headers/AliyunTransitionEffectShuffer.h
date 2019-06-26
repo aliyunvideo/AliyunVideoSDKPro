@@ -10,7 +10,7 @@
 #import <AliyunVideoSDKPro/AliyunVideoSDKPro.h>
 /**
  平移方向
- 
+
  ORIENTATION_HORIZONTAL:横向
  ORIENTATION_VERTICAL:纵向
  */

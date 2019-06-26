@@ -6,9 +6,9 @@
 //  Copyright (C) 2010-2017 Alibaba Group Holding Limited. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "AliyunPasterController.h"
 #import <CoreGraphics/CoreGraphics.h>
+#import <Foundation/Foundation.h>
 
 /**
  动图管理器协议
@@ -32,22 +32,22 @@
 /**
  动图管理器回调
  */
-@property (nonatomic, weak) id<AliyunPasterManagerDelegate> delegate;
+@property(nonatomic, weak) id<AliyunPasterManagerDelegate> delegate;
 
 /**
  设置编辑区域
  */
-@property (nonatomic, assign) CGSize displaySize;
+@property(nonatomic, assign) CGSize displaySize;
 
 /**
  视频输出分辨率
  */
-@property (nonatomic, assign) CGSize outputSize;
+@property(nonatomic, assign) CGSize outputSize;
 
 /**
  渲染时size
  */
-@property (nonatomic, assign) CGSize previewRenderSize;
+@property(nonatomic, assign) CGSize previewRenderSize;
 
 /**
  添加动图
@@ -70,14 +70,12 @@
  */
 - (AliyunPasterController *)addSubtitle:(NSString *)text bounds:(CGRect)bounds startTime:(CGFloat)st duration:(CGFloat)duration;
 
-
 /**
  获取所有的动图控制器
 
  @return 动图控制器数组
  */
 - (NSArray *)getAllPasterControllers;
-
 
 /**
  通过id获取pasterController
@@ -86,7 +84,6 @@
  @return pasterController
  */
 - (AliyunPasterController *)getPasterControllerByObj:(id)obj;
-
 
 /**
  动图上某个位置是否存在动图
@@ -97,16 +94,14 @@
  */
 - (AliyunPasterController *)touchPoint:(CGPoint)point atTime:(double)time;
 
-
 /**
  删除所有动图控制器，即删除所有动图
  */
 - (void)removeAllPasterControllers;
 
-
 /**
  API_AVAILABLE(3.7.0)
- 
+
  删除pasterController 并立即从渲染里面移除
 
  @param pasterController 动图控制器对象
@@ -128,14 +123,11 @@
  */
 - (void)removeAllSubtitlePasterControllers;
 
-
 /**
  获取当前正在编辑的动图控制器
- 
+
  @return 动图控制器
  */
 - (AliyunPasterController *)getCurrentEditPasterController;
-
-
 
 @end

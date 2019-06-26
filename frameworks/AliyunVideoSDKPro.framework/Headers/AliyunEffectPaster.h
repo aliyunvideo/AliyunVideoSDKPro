@@ -40,21 +40,21 @@ typedef NS_ENUM(NSInteger, AliyunPasterType) {
 
 /**
  动画的场景集合
- 
+
  例如：动画场景可以分为进场、场中和出场
  */
 @property(nonatomic, copy) NSArray<AliyunEffectPasterTimeItem *> *timeItems;
 
 /**
  动画帧集合
- 
+
  即指定在某时间播放某一张图片
  */
 @property(nonatomic, copy) NSArray<AliyunEffectPasterFrameItem *> *frameItems;
 
 /**
  动图原始时长
- 
+
  从动图的配置文件解析而来
  */
 @property(nonatomic, assign, readonly) CGFloat originDuration;

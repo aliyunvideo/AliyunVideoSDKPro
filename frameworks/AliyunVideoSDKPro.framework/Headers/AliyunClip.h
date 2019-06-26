@@ -23,12 +23,7 @@
  - AliyunClipAudio: 音频
  - AliyunClipGif: gif
  */
-typedef NS_ENUM(NSInteger, AliyunClipType) {
-    AliyunClipVideo = 0,
-    AliyunClipImage = 1,
-    AliyunClipAudio = 2,
-    AliyunClipGif = 3
-};
+typedef NS_ENUM(NSInteger, AliyunClipType) { AliyunClipVideo = 0, AliyunClipImage = 1, AliyunClipAudio = 2, AliyunClipGif = 3 };
 
 /**
  媒体片段
