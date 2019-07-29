@@ -12,11 +12,11 @@
  错误处理类
 
  */
-__deprecated_msg("已废弃") @interface AliyunErrorLogger : NSObject
+__deprecated_msg("deprecated") @interface AliyunErrorLogger : NSObject
 
 /**
  log回调
  */
-@property(nonatomic, copy) void (^logCb)(int code, NSString *msg);
+@property (nonatomic, copy) void (^logCb)(int code, NSString *msg);
 
 @end

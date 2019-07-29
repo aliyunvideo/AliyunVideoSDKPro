@@ -26,6 +26,7 @@
 @interface AliyunMixComposer : NSObject
 
 @property(nonatomic, weak) id<AlivcMixComposerDelegate> delegate;
+
 /**
  视频最终导出分辨率
  */

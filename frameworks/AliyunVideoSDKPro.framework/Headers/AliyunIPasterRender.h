@@ -18,9 +18,10 @@
 @protocol AliyunIPasterRender <NSObject>
 
 /**
- 底层接口，添加动图渲染
+ 添加动图渲染
 
  @param paster 动图对象
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
@@ -30,10 +31,11 @@
 - (int)addGifPaster:(AliyunEffectPaster *)paster;
 
 /**
- 底层接口，添加纯文字
+ 添加纯文字
 
  @param subtitle 纯文字动图对象
  @param textImage 文字截图
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
@@ -41,10 +43,11 @@
 - (int)addSubtitlePaster:(AliyunEffectSubtitle *)subtitle textImage:(UIImage *)textImage;
 
 /**
- 底层接口，添加字幕动图
+ 添加字幕动图
 
  @param caption 字幕动图对象
  @param textImage 文字截图
+ @return
  状态不正确 ALIVC_COMMON_INVALID_STATE
  文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
  解析动图失败 ALIVC_SVIDEO_EDITOR_PARSE_RESOURCE_FAILED
@@ -56,6 +59,7 @@
  移除动图
 
  @param basePaster 动图对象
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID

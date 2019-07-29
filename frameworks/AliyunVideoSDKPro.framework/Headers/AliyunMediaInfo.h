@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-__deprecated_msg("已废弃") @interface AliyunMediaInfo : NSObject
+__deprecated_msg("deprecated") @interface AliyunMediaInfo : NSObject
 
 @end

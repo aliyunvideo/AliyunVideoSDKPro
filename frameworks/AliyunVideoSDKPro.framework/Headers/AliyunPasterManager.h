@@ -32,22 +32,22 @@
 /**
  动图管理器回调
  */
-@property(nonatomic, weak) id<AliyunPasterManagerDelegate> delegate;
+@property (nonatomic, weak) id<AliyunPasterManagerDelegate> delegate;
 
 /**
  设置编辑区域
  */
-@property(nonatomic, assign) CGSize displaySize;
+@property (nonatomic, assign) CGSize displaySize;
 
 /**
  视频输出分辨率
  */
-@property(nonatomic, assign) CGSize outputSize;
+@property (nonatomic, assign) CGSize outputSize;
 
 /**
  渲染时size
  */
-@property(nonatomic, assign) CGSize previewRenderSize;
+@property (nonatomic, assign) CGSize previewRenderSize;
 
 /**
  添加动图
@@ -62,7 +62,7 @@
 /**
  添加字幕
 
- @param text 文字 如果为空 则会第一次会进入编辑  如果不为空 则直接显示 不会进入编辑状态
+ @param text 文字
  @param bounds 大小
  @param st 字幕开始时间
  @param duration 字幕持续时间
@@ -86,7 +86,7 @@
 - (AliyunPasterController *)getPasterControllerByObj:(id)obj;
 
 /**
- 动图上某个位置是否存在动图
+ 动图显示区域上某个位置是否存在动图
 
  @param point 点击的位置
  @param time 当前视频播放的当前时间

@@ -13,6 +13,7 @@
  媒体片段构造器协议
  */
 @protocol AliyunIClipConstructor <NSObject>
+
 /**
  增加媒体片段
 
@@ -75,7 +76,9 @@
  */
 - (NSArray<AliyunClip *> *)mediaClips;
 
-#pragma mark - 不建议使用的API
+
+#pragma mark - It is not recommended to use the following methods.
+
 
 /**
  添加视频路径
@@ -103,6 +106,7 @@
  Deprecated 建议使用addMediaClip:
  */
 - (void)addVideoWithPath:(NSString *)videoPath startTime:(CGFloat)startTime duration:(CGFloat)duration animDuration:(CGFloat)animDuration __deprecated_msg("Use `addMediaClip`");
+
 /**
  增加图片
 

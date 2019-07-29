@@ -42,7 +42,7 @@
 
  @return BOOL值
  */
-- (BOOL)isVideoStream; //是否是视频流
+- (BOOL)isVideoStream;
 
 @end
 

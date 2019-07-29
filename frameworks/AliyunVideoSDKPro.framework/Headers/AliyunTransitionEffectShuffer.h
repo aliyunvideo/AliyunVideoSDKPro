@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, ORIENTATION_TYPE) {
     ORIENTATION_HORIZONTAL = 0,
     ORIENTATION_VERTICAL,
 };
+
 /**
  百叶窗效果的转场
  */
@@ -39,6 +40,6 @@ typedef NS_ENUM(NSInteger, ORIENTATION_TYPE) {
  @param dict 初始化参数
  @return 百叶窗实例对象
  */
-- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("deprecated");
 
 @end

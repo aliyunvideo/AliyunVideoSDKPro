@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /**
-已废弃，请勿使用
+ 已废弃，请勿使用
  */
 __attribute__((deprecated)) @interface AliyunJSONModel : NSObject
 
@@ -44,7 +44,7 @@ __attribute__((deprecated)) @interface AliyunJSONModel : NSObject
 - (void)jsonToFile:(NSString *)path;
 
 /**
- 重写 防止无属性时候setKeyValue crash
+ 重写 防止无属性时候 setKeyValue crash
 
  @param value value
  @param key  key

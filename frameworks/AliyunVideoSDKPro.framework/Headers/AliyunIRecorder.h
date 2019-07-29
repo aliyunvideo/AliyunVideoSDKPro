@@ -17,7 +17,7 @@
 #import "AliyunVideoParam.h"
 #import <AVFoundation/AVFoundation.h>
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import <UIKit/UIKit.h> 
 
 typedef NS_ENUM(NSInteger, AliyunIRecorderCameraPosition) {
     AliyunIRecorderCameraPositionFront = 0,
@@ -339,7 +339,7 @@ enum {
 @property(nonatomic, copy) void (^faceNumbersCallback)(int num);
 
 /**
- 人脸追踪 用户可以选择其他地方人人脸识别库，但是传进来的数据须封装成AliyunFacePoint
+ 人脸追踪 用户可以选择其他人脸识别库，但是传进来的数据须封装成AliyunFacePoint
 
  @param facePoints 人脸点数组
  */
@@ -448,6 +448,7 @@ enum {
 - (void)recorderDeviceAuthorization:(AliyunIRecorderDeviceAuthor)status;
 
 @optional
+
 /**
  摄像头返回的原始视频数据
 
@@ -467,7 +468,7 @@ enum {
 /**
  用户自定义渲染
 
- @param sampleBuffer 原始数据
+ @param sampleBuffer 原始视频数据
  @return 用户自渲染后的PixelBuffer
  */
 - (CVPixelBufferRef)customRenderedPixelBufferWithRawSampleBuffer:(CMSampleBufferRef)sampleBuffer;
@@ -490,8 +491,8 @@ enum {
  @return 返回纹理id
  */
 - (int)customRender:(int)srcTexture size:(CGSize)size;
-/**
 
+/**
  录制实时时长
 
  @param duration 录制时长

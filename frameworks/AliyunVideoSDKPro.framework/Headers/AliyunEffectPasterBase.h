@@ -30,6 +30,7 @@ static const double kQUSDKPasterBase = 640.f;
 
  单位：秒
  */
+
 @property(nonatomic, assign) CGFloat endTime;
 
 /**

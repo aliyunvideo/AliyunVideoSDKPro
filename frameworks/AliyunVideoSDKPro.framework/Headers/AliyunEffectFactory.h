@@ -11,7 +11,7 @@
 /**
  effect工厂类
  */
-__deprecated_msg("已废弃") @interface AliyunEffectFactory : NSObject
+__deprecated_msg("deprecated") @interface AliyunEffectFactory : NSObject
 
 /**
  创建一个AliyunEffect

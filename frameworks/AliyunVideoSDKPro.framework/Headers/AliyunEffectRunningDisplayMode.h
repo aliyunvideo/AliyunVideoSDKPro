@@ -43,6 +43,6 @@ typedef NS_ENUM(NSInteger, AliyunRunningMode) { AliyunRunningModeFit = 0, Aliyun
  */
 @property(nonatomic, assign) int targetStreamId;
 
-- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("deprecated");
 
 @end

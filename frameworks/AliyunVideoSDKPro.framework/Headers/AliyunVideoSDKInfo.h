@@ -5,10 +5,10 @@
 //  Created by Worthy on 2017/5/23.
 //  Copyright © 2017年 Alibaba Group Holding Limited. All rights reserved.
 // BUILD INFO
-// AliyunAlivcCommitId:57ea826
-// AliyunMediaCoreCommitId:0b3efb7
-// AliyunVideoSDKCommitId:27740a3
-// AliyunVideoSDKBuildId:11548702
+// AliyunAlivcCommitId:f05f625
+// AliyunMediaCoreCommitId:7c61f1a
+// AliyunVideoSDKCommitId:29041a6
+// AliyunVideoSDKBuildId:11709683
 
 #import <Foundation/Foundation.h>
 
@@ -27,6 +27,7 @@ extern NSString *const kAliyunVideoSDKModuleStandard;
  */
 extern NSString *const kAliyunVideoSDKModuleBasic;
 
+
 /**
  log等级
 
@@ -37,7 +38,14 @@ extern NSString *const kAliyunVideoSDKModuleBasic;
  - AlivcLogError: Error
  - AlivcLogFatal: Fatal
  */
-typedef NS_ENUM(NSInteger, AlivcLogLevel) { AlivcLogVerbose = 2, AlivcLogDebug, AlivcLogInfo, AlivcLogWarn, AlivcLogError, AlivcLogFatal };
+typedef NS_ENUM(NSInteger, AlivcLogLevel) {
+    AlivcLogVerbose = 2,
+    AlivcLogDebug,
+    AlivcLogInfo,
+    AlivcLogWarn,
+    AlivcLogError,
+    AlivcLogFatal
+};
 
 /**
  sdk基础信息与设置类
@@ -53,13 +61,14 @@ typedef NS_ENUM(NSInteger, AlivcLogLevel) { AlivcLogVerbose = 2, AlivcLogDebug, 
 
 /**
  获取module
-
- kAliyunVideoSDKModulePro
- kAliyunVideoSDKModuleStandard
- kAliyunVideoSDKModuleBasic
+ 
+ kAliyunModulePro
+ kAliyunModuleStandard
+ kAliyunModuleBasic
  @return module类型
  */
 + (NSString *)module;
+
 
 /**
  获取alivc commit id
@@ -76,9 +85,9 @@ typedef NS_ENUM(NSInteger, AlivcLogLevel) { AlivcLogVerbose = 2, AlivcLogDebug, 
 + (NSString *)mediaCoreCommitId;
 
 /**
- 获取video sdk commid id
+ 获取video sdk commit id
  版本build相关，开发者无需关心
- @return video sdk commid id
+ @return video sdk commit id
  */
 + (NSString *)videoSDKCommitId;
 

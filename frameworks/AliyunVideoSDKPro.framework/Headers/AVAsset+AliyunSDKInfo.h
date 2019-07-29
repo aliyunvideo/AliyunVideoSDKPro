@@ -61,6 +61,6 @@
  该方法耗时
  @return 关键帧间隔
  */
-- (CGFloat)aliyunEstimatedKeyframeInterval __deprecated_msg("已废弃");
+- (CGFloat)aliyunEstimatedKeyframeInterval __deprecated_msg("deprecated");
 
 @end

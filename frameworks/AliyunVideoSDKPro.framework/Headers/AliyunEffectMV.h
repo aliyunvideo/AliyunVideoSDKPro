@@ -35,7 +35,7 @@
 
  已废弃，请使用音效列表AliyunAudioEffect代替
  */
-@property(nonatomic, assign) BOOL denoise __deprecated_msg("已废弃");
+@property(nonatomic, assign) BOOL denoise __deprecated_msg("deprecated");
 
 /**
  音效列表

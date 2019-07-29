@@ -45,8 +45,8 @@
  */
 typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
     AliyunEditorModeNull,
-    AliyunEditorModePlay,  // 播放模式
-    AliyunEditorModeExport // 合成导出模式
+    AliyunEditorModePlay,   
+    AliyunEditorModeExport
 };
 
 /**
@@ -70,7 +70,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  创建相关资源
-
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  参数不正确 ALIVC_COMMON_INVALID_PARAM
@@ -83,7 +83,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  销毁相关资源
-
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
@@ -136,6 +136,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  使用mv
 
  @param mv
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  解析动图失败 ALIVC_SVIDEO_EDITOR_PARSE_RESOURCE_FAILED
@@ -147,16 +148,16 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  移除MV
-
-正常返回 ALIVC_COMMON_RETURN_SUCCESS
-状态不正确 ALIVC_COMMON_INVALID_STATE
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
  调用后，播放器将处于暂停状态
 */
 - (int)removeMV;
 
 /**
  移除mv音乐
-
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  解析动图失败 ALIVC_SVIDEO_EDITOR_PARSE_RESOURCE_FAILED
@@ -168,8 +169,8 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  使用音乐
-
- @param music music配置文件路径
+ @param music music对象
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
@@ -180,8 +181,8 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  删除某一路音乐
-
  @param music 音乐
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  调用后，播放器将处于暂停状态
@@ -190,7 +191,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  移除所有音乐
-
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
@@ -202,8 +203,8 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  添加配音
-
  @param dub 配音对象 支持变速功能
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
@@ -214,7 +215,6 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  移除配音
-
  @param dub 配音对象
  @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
@@ -225,7 +225,6 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  移除所有配音
-
  @return 返回值
  调用后，播放器将处于暂停状态
  */
@@ -233,8 +232,8 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  使用滤镜
-
- @param filter filter配置文件路径
+ @param filter filter对象
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
@@ -244,7 +243,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  删除滤镜
-
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
@@ -254,18 +253,17 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  使用特效滤镜
-
  @param filter filter对象
+ @return
  状态不正确 ALIVC_COMMON_INVALID_STATE
- 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  */
 - (int)applyAnimationFilter:(AliyunEffectFilter *)filter;
 
 /**
  更新特效滤镜
-
  @param filter filter对象
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
@@ -275,8 +273,8 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  移除某个特效滤镜
-
  @param filter filter对象
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
@@ -285,8 +283,8 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  使用时间特效
-
  @param filter 特效对象
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  参数设置不正确 ALIVC_COMMON_INVALID_PARAM
@@ -303,7 +301,6 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  API_AVAILABLE(3.7.0)
 
  删除某一个时间特效 目前只能删变速的时间特效
-
  @param filter 待删除的时间特效
  @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
@@ -313,7 +310,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 - (int)removeTimeFilter:(AliyunEffectTimeFilter *)filter;
 
 /**
- 删除时间特效 删除全部的时间特效
+ 删除全部的时间特效
 
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
@@ -338,6 +335,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  加入静态贴纸
 
  @param staticImage 静态贴纸
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
@@ -349,6 +347,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  移除静态贴纸
 
  @param staticImage 静态贴纸
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
@@ -359,6 +358,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  使用涂鸦
 
  @param paintImage 涂鸦图片
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
@@ -419,8 +419,9 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  删除涂鸦
-
+ 
  @param paintImage 涂鸦图片
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
@@ -429,8 +430,9 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
 /**
  设置水印
-
+ 
  @param waterMark 水印
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
@@ -444,6 +446,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  AliyunEffectImage对象需要设置endtime属性，此属性代表距离视频结尾的时长。
 
  @param waterMark 片尾水印
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
@@ -456,6 +459,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  设置是否静音
 
  @param mute 静音
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_AUDIO_PROCESS_CTL_INPUT_ERROR
@@ -468,6 +472,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  @param volume 音量：0-200
  默认值100,原始的音量大小
  大于100可能会破音，建议0-100
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_AUDIO_PROCESS_CTL_INPUT_ERROR
@@ -481,9 +486,10 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  设为100时，主流权重为0，只有配乐
  设为0时，配乐流权重为0，只有原音
  设为50时，主流和配乐流权重都为100
- 如需单独调节每个流的音量权重，可以使用一下接口：
+ 如需单独调节每个流的音量权重，可以使用以下接口：
  - (int)setAudioWeight:(int)weight streamId:(int)streamId;
  - (int)setMainStreamsAudioWeight:(int)weight;
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED
@@ -498,6 +504,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  主流id:AliyunClip.streamId
  配乐流id：AliyunEffectMusic.effectVid
  MV音乐流id：AliyunEffectMV.audioEffectVid
+ @return
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED
  */
@@ -508,6 +515,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 
  @param weight 混音权重 0-100
  100 代表原始大小
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
@@ -520,6 +528,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  @param streamId 流id
  AliyunEffectMusic流id：effectVid
  AliyunEffectMV流id：audioEffectVid
+ @return
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED
  */
@@ -529,6 +538,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  设置主流音频去噪
 
  @param denoise 是否去噪
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
@@ -575,8 +585,9 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 /**
  画面填充模式
 
- @param mode  AliyunScaleModeFit = 0,          // 填充
- AliyunScaleModeFill = 1          // 裁剪
+ @param mode  AliyunScaleModeFit = 0,      // 填充    
+ AliyunScaleModeFill = 1         // 裁剪 
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
@@ -589,6 +600,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  在填充模式下具有效果
  如果color设置为clearColor 那么默认背景为视频高斯模糊播放效果
  @param color 颜色
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
@@ -612,10 +624,11 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  */
 - (void)removeBlurBackgroundPlay:(AliyunEffectBlurBackground *)blur;
 
+#pragma mark - deprecated. It is not recommended to use the following methods.
 /**
  API_AVAILABLE(3.7.0)
 
- 添加动态播放模式
+ 添加动态播放模式 已废弃
 
  @param mode 播放模式
  */
@@ -624,13 +637,11 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 /**
  API_AVAILABLE(3.7.0)
 
- 删除动态播放模式
+ 删除动态播放模式 已废弃
 
  @param mode 播放模式
  */
 - (void)removeRunningDisplayMode:(AliyunEffectRunningDisplayMode *)mode;
-
-#pragma mark - deprecated 不建议使用的API
 
 /**
  request id
@@ -671,6 +682,7 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  准备播放
  预解码部分音视频数据，加快起播速度
  @param mode 编辑模式
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  参数不正确 ALIVC_COMMON_INVALID_PARAM
  已废弃，无需调用

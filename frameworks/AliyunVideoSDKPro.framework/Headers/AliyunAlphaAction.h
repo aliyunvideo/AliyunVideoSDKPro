@@ -6,7 +6,6 @@
 //  Copyright © 2018年 Alibaba Group Holding Limited. All rights reserved.
 //
 
-//!!!!!注意：主流不支持添加alpha动画
 
 #import "AliyunAction.h"
 
@@ -33,6 +32,6 @@
  @param dict 初始化参数
  @return 透明度动画实例
  */
-- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("deprecated");
 
 @end

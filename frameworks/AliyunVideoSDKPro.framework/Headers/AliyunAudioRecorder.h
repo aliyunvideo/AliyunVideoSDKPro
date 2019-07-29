@@ -12,7 +12,7 @@
 /**
  音频录制回调协议
  */
-@protocol AliyunAudioRecorderDelegate <NSObject>
+@protocol AliyunAudioRecorderDelegate<NSObject>
 
 /**
  录制进度
@@ -26,17 +26,17 @@
 /**
  音频录制类
  */
-__deprecated_msg("已废弃") @interface AliyunAudioRecorder : NSObject
+__deprecated_msg("deprecated") @interface AliyunAudioRecorder : NSObject
 
 /**
  是否正在录制
  */
-@property(nonatomic, assign) BOOL isRecording;
+@property (nonatomic, assign) BOOL isRecording;
 
 /**
  录制回调类
  */
-@property(nonatomic, assign) id<AliyunAudioRecorderDelegate> delegate;
+@property (nonatomic, assign) id<AliyunAudioRecorderDelegate> delegate;
 
 /**
  初始化

@@ -17,22 +17,22 @@
 /**
  线条颜色
  */
-@property(nonatomic, strong) UIColor *lineColor;
+@property (nonatomic, strong) UIColor *lineColor;
 
 /**
  线条宽度
  */
-@property(nonatomic, assign) CGFloat lineWidth;
+@property (nonatomic, assign) CGFloat lineWidth;
 
 /**
  线条阴影颜色
  */
-@property(nonatomic, strong) UIColor *shadowColor;
+@property (nonatomic, strong) UIColor *shadowColor;
 
 /**
  线条阴影宽度
  */
-@property(nonatomic, assign) CGFloat shadowWidth;
+@property (nonatomic, assign) CGFloat shadowWidth;
 
 /**
  初始化方法
@@ -41,5 +41,7 @@
  @param lineColor 线条颜色
  @return self
  */
-- (instancetype)initWithLineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor;
+- (instancetype)initWithLineWidth:(CGFloat)lineWidth
+                        lineColor:(UIColor *)lineColor;
+
 @end

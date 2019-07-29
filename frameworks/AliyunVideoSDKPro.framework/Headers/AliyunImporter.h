@@ -38,7 +38,6 @@
 
 /**
  在taskPath目录下，生成配置文件
-
  */
 - (void)generateProjectConfigure;
 

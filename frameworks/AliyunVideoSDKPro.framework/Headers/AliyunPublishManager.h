@@ -19,54 +19,54 @@ __attribute__((deprecated)) @interface AliyunUploadSVideoInfo : NSObject
 /**
  视频点播参数，标题
  */
-@property(nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString* title;
 
 /**
  视频点播参数，标签
  */
-@property(nonatomic, copy) NSString *tags;
+@property (nonatomic, copy) NSString* tags;
 
 /**
  视频点播参数，描述
  */
-@property(nonatomic, copy) NSString *desc;
+@property (nonatomic, copy) NSString* desc;
 
 /**
  视频点播参数，分类
  */
-@property(nonatomic, strong) NSNumber *cateId;
+@property (nonatomic, strong) NSNumber* cateId;
 
 /**
  视频点播参数，isProcess
  */
-@property(nonatomic, assign) BOOL isProcess;
+@property (nonatomic, assign) BOOL isProcess;
 
 /**
  视频点播参数，是否现显示水印
  */
-@property(nonatomic, assign) BOOL isShowWaterMark;
+@property (nonatomic, assign) BOOL isShowWaterMark;
 
 /**
  视频点播参数，优先级
  */
-@property(nonatomic, strong) NSNumber *priority;
+@property (nonatomic, strong) NSNumber* priority;
 
 /**
  视频点播参数，存储位置
  */
-@property(nonatomic, copy) NSString *storageLocation;
+@property (nonatomic, copy) NSString* storageLocation;
 
 /**
  视频点播参数，转码模版组id
  */
-@property(nonatomic, copy) NSString *templateGroupId;
+@property (nonatomic, copy) NSString* templateGroupId;
 
 @end
 
 /**
  上传回调协议
  */
-__attribute__((deprecated)) @protocol AliyunIUploadCallback<NSObject>
+__attribute__((deprecated)) @protocol AliyunIUploadCallback <NSObject>
 
 /**
  上传成功
@@ -112,39 +112,39 @@ __attribute__((deprecated)) @protocol AliyunIUploadCallback<NSObject>
 /**
  导出合成与上传管理器
 
- deprecated 已废弃，请使用AliyunVodPublishManager代替
+ 已废弃，请使用AliyunVodPublishManager代替
  */
 __attribute__((deprecated)) @interface AliyunPublishManager : NSObject
 
 /**
  导出回调
  */
-@property(nonatomic, weak) id<AliyunIExporterCallback> exportCallback;
+@property (nonatomic, weak) id<AliyunIExporterCallback> exportCallback;
 
 /**
  上传回调
  */
-@property(nonatomic, weak) id<AliyunIUploadCallback> uploadCallback;
+@property (nonatomic, weak) id<AliyunIUploadCallback> uploadCallback;
 
 /**
  导出视频路径
  */
-@property(nonatomic, copy) NSString *outputPath;
+@property (nonatomic, copy) NSString *outputPath;
 
 /**
  上传是否转码,默认值YES
  */
-@property(nonatomic, assign) BOOL transcode;
+@property (nonatomic, assign) BOOL transcode;
 
 /**
  上传超时重试次数,默认值INT_MAX
  */
-@property(nonatomic, assign) uint32_t maxRetryCount;
+@property (nonatomic, assign) uint32_t maxRetryCount;
 
 /**
  上传超时重试间隔，默认30秒
  */
-@property(nonatomic, assign) NSTimeInterval timeoutIntervalForRequest;
+@property (nonatomic, assign) NSTimeInterval timeoutIntervalForRequest;
 
 /**
  设置水印
@@ -176,6 +176,7 @@ __attribute__((deprecated)) @interface AliyunPublishManager : NSObject
  @param flag flag
  */
 - (void)setCancelExportInResignActive:(BOOL)flag;
+
 /**
  合成视频
 
@@ -200,17 +201,24 @@ __attribute__((deprecated)) @interface AliyunPublishManager : NSObject
  @param accessToken 服务端返回的临时accessToken
  @return 接口调用是否成功
  */
-- (BOOL)uploadWithImagePath:(NSString *)imagePath svideoInfo:(AliyunUploadSVideoInfo *)svideoInfo accessKeyId:(NSString *)accessKeyId accessKeySecret:(NSString *)accessKeySecret accessToken:(NSString *)accessToken;
+- (BOOL)uploadWithImagePath:(NSString *)imagePath
+                 svideoInfo:(AliyunUploadSVideoInfo *)svideoInfo
+                accessKeyId:(NSString *)accessKeyId
+            accessKeySecret:(NSString *)accessKeySecret
+                accessToken:(NSString *)accessToken;
 
 /**
  刷新sts
 
  @param accessKeyId 服务端返回的临时accessKeyId
  @param accessKeySecret 服务端返回的临时accessKeySecret
- @param accessToken 服务端返回的临时accessKeySecret
+ @param accessToken 服务端返回的临时accessToken
  @param expireTime 服务端返回的过期时间
  */
-- (void)refreshWithAccessKeyId:(NSString *)accessKeyId accessKeySecret:(NSString *)accessKeySecret accessToken:(NSString *)accessToken expireTime:(NSString *)expireTime;
+- (void)refreshWithAccessKeyId:(NSString *)accessKeyId
+               accessKeySecret:(NSString *)accessKeySecret
+                   accessToken:(NSString *)accessToken
+                    expireTime:(NSString *)expireTime;
 
 /**
  取消上传

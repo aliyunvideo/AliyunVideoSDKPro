@@ -23,7 +23,12 @@
  - AliyunClipAudio: 音频
  - AliyunClipGif: gif
  */
-typedef NS_ENUM(NSInteger, AliyunClipType) { AliyunClipVideo = 0, AliyunClipImage = 1, AliyunClipAudio = 2, AliyunClipGif = 3 };
+typedef NS_ENUM(NSInteger, AliyunClipType) {
+    AliyunClipVideo = 0,
+    AliyunClipImage = 1,
+    AliyunClipAudio = 2,
+    AliyunClipGif = 3
+};
 
 /**
  媒体片段
@@ -62,7 +67,7 @@ typedef NS_ENUM(NSInteger, AliyunClipType) { AliyunClipVideo = 0, AliyunClipImag
 
 /**
  显示模式
- 0:截断填充 1:黑边填充
+ 0:裁剪 1:填充
  */
 @property(nonatomic, assign) int displayMode;
 
@@ -84,7 +89,7 @@ typedef NS_ENUM(NSInteger, AliyunClipType) { AliyunClipVideo = 0, AliyunClipImag
 
 /**
  转场效果
- 和前一段视频/图片之间的专场效果
+ 和前一段视频/图片之间的转场效果
  */
 @property(nonatomic, strong) AliyunTransitionEffect *transitionEffect;
 
@@ -103,7 +108,7 @@ typedef NS_ENUM(NSInteger, AliyunClipType) { AliyunClipVideo = 0, AliyunClipImag
 /**
  已废弃字段
  */
-@property(nonatomic, assign) CGFloat audioRecordStartTime __deprecated_msg("已废弃");
+@property(nonatomic, assign) CGFloat audioRecordStartTime __deprecated_msg("deprecated");
 
 /**
  创建一个图片片段

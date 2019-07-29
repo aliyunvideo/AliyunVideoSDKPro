@@ -22,7 +22,8 @@
 
  动画作用的目标节点，例如如果是视频流，则使用视频流的streamID, 如果是如动图一类的，使用effectId
  */
-@property(nonatomic, assign) int targetID;
+@property (nonatomic, assign) int targetID;
+
 
 /**
  API_AVAILABLE(3.7.0)
@@ -30,21 +31,23 @@
  必须注意设置
  是否是视频 ，如果是视频 必须是True 如果是其他的则为false
  */
-@property(nonatomic, assign) BOOL isStream;
+@property (nonatomic, assign) BOOL isStream;
+
 
 /**
  API_AVAILABLE(3.7.0)
 
  动画开始的时间
  */
-@property(nonatomic, assign) float startTime;
+@property (nonatomic, assign) float startTime;
+
 
 /**
  API_AVAILABLE(3.7.0)
 
  动画持续的时间
  */
-@property(nonatomic, assign) float duration;
+@property (nonatomic, assign) float duration;
 
 /**
  设置动画id 此id由底层分配

@@ -27,141 +27,142 @@ typedef NS_ENUM(NSInteger, AliyunPasterEffectType) {
 /**
  动图控制器类
  */
-@interface AliyunPasterController : NSObject <AliyunPasterUIEventProtocol>
+@interface AliyunPasterController : NSObject<AliyunPasterUIEventProtocol>
+
 
 /**
  设置动图的view
 
  @warning:一定要设置
  */
-@property(nonatomic, strong) UIView *pasterView;
+@property (nonatomic, strong) UIView *pasterView;
 
 /**
  动图类型
  */
-@property(nonatomic, assign, readonly) AliyunPasterEffectType pasterType;
+@property (nonatomic, assign, readonly) AliyunPasterEffectType pasterType;
 
 /**
  动图的旋转角度
 
  单位：弧度
  */
-@property(nonatomic, assign) CGFloat pasterRotate;
+@property (nonatomic, assign) CGFloat pasterRotate;
 
 /**
  动图的位置(x,y)
  */
-@property(nonatomic, assign) CGPoint pasterPosition;
+@property (nonatomic, assign) CGPoint pasterPosition;
 
 /**
  动图的宽高
  */
-@property(nonatomic, assign) CGSize pasterSize;
+@property (nonatomic, assign) CGSize pasterSize;
 
 /**
  动图的位置大小
  */
-@property(nonatomic, assign) CGRect pasterFrame;
+@property (nonatomic, assign) CGRect pasterFrame;
 
 /**
  动图镜像
  */
-@property(nonatomic, assign) BOOL mirror;
+@property (nonatomic, assign) BOOL mirror;
 
 /**
  文字内容
  */
-@property(nonatomic, copy) NSString *subtitle;
+@property (nonatomic, copy) NSString *subtitle;
 
 /**
  文字位置
 
  相对于动图本身的位置大小
  */
-@property(nonatomic, assign) CGRect subtitleFrame;
+@property (nonatomic, assign) CGRect subtitleFrame;
 
 /**
  文字的后台配置字体
  */
-@property(nonatomic, copy, readonly) NSString *subtitleConfigFontName;
+@property (nonatomic, copy, readonly) NSString *subtitleConfigFontName;
 
 /**
  文字的后台配置字体的id
  */
-@property(nonatomic, assign, readonly) NSInteger subtitleConfigFontId;
+@property (nonatomic, assign, readonly) NSInteger subtitleConfigFontId;
 
 /**
  文字是否描边
  */
-@property(nonatomic, assign) BOOL subtitleStroke;
+@property (nonatomic, assign) BOOL subtitleStroke;
 
 /**
  文字颜色
  */
-@property(nonatomic, strong) UIColor *subtitleColor;
+@property (nonatomic, strong) UIColor *subtitleColor;
 
 /**
  文字描边颜色
  */
-@property(nonatomic, strong) UIColor *subtitleStrokeColor;
+@property (nonatomic, strong) UIColor *subtitleStrokeColor;
 
 /**
  文字的背景颜色
  */
-@property(nonatomic, strong) UIColor *subtitleBackgroundColor;
+@property (nonatomic, strong) UIColor *subtitleBackgroundColor;
 
 /**
  文字字体
  */
-@property(nonatomic, copy) NSString *subtitleFontName;
+@property (nonatomic, copy) NSString *subtitleFontName;
 
 /**
  关键帧图片
  */
-@property(nonatomic, strong, readonly) UIImage *kernelImage;
+@property (nonatomic, strong, readonly) UIImage *kernelImage;
 
 /**
  动图开始时间
 
  单位：秒
  */
-@property(nonatomic, assign) CGFloat pasterStartTime;
+@property (nonatomic, assign) CGFloat pasterStartTime;
 
 /**
  动图结束时间
 
  单位：秒
  */
-@property(nonatomic, assign) CGFloat pasterEndTime;
+@property (nonatomic, assign) CGFloat pasterEndTime;
 
 /**
  动图持续时间
 
  单位：秒
  */
-@property(nonatomic, assign) CGFloat pasterDuration;
+@property (nonatomic, assign) CGFloat pasterDuration;
 
 /**
  动图最小持续时间
 
  单位：秒
  */
-@property(nonatomic, assign) CGFloat pasterMinDuration;
+@property (nonatomic, assign) CGFloat pasterMinDuration;
 
 /**
  编辑区域
  */
-@property(nonatomic, assign) CGSize displaySize;
+@property (nonatomic, assign) CGSize displaySize;
 
 /**
  视频输出分辨率
  */
-@property(nonatomic, assign) CGSize outputSize;
+@property (nonatomic, assign) CGSize outputSize;
 
 /**
  预览大小
  */
-@property(nonatomic, assign) CGSize previewRenderSize;
+@property (nonatomic, assign) CGSize previewRenderSize;
 
 - (NSString *)getIconPath;
 
@@ -238,8 +239,9 @@ typedef NS_ENUM(NSInteger, AliyunPasterEffectType) {
 /**
  获取effectPaster
 
- @return 获取effectPaster
+ @return effectPaster
  */
 - (id)getEffectPaster;
+
 
 @end

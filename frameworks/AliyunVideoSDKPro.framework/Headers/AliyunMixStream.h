@@ -17,15 +17,10 @@
  */
 @property(nonatomic, copy) NSString *filePath;
 
-///**
-// 视频在所在轨道上占据的位置
-// */
-//@property(nonatomic, assign) CGRect frame;
-
 /**
- 视频在所在轨道上展示的视频本身的裁剪范围  可选：设置
+ 视频在所在轨道上展示的视频本身的裁剪范围  可选  此属性废弃
  */
-@property(nonatomic, assign) CGRect innerCropFrame;
+@property(nonatomic, assign) CGRect innerCropFrame  __deprecated_msg("已废弃");
 
 /**
  视频在轨道上播放的开始时间

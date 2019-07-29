@@ -27,6 +27,6 @@
  @param dict 初始化参数
  @return 多边形转场实例
  */
-- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("deprecated");
 
 @end

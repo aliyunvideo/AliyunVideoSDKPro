@@ -25,6 +25,7 @@
  @param streamSec 播放流时间
  */
 - (void)playProgress:(double)playSec streamProgress:(double)streamSec;
+
 /**
  播放异常
 
@@ -44,21 +45,21 @@
  */
 - (void)playError:(int)errorCode;
 
-#pragma mark - 不建议使用的API
+#pragma mark - It is not recommended to use the following methods.
 
 /**
  seek结束
  */
-
-- (void)seekDidEnd __deprecated_msg("已废弃不再维护");
+- (void)seekDidEnd __deprecated_msg("deprecated");
 
 /**
  开始播放
  已废弃
  */
-- (void)playerDidStart __deprecated_msg("已废弃不再维护");
+- (void)playerDidStart __deprecated_msg("deprecated");
 
 @optional
+
 /**
  播放进度
 

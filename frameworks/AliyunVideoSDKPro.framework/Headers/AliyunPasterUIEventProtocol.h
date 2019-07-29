@@ -64,7 +64,7 @@
 - (void)eventPasterViewClosed:(UIView *)pasterView;
 
 /**
- 编辑完成
+ 编辑完成
  */
 - (void)eventEditDidEnd;
 

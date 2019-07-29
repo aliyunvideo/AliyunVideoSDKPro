@@ -15,7 +15,12 @@
  DIRECTION_TOP：     向上平移
  DIRECTION_BOTTOM：  向下平移
  */
-typedef NS_ENUM(NSInteger, DIRECTION_TYPE) { DIRECTION_LEFT = 0, DIRECTION_RIGHT = 1, DIRECTION_TOP = 2, DIRECTION_BOTTOM };
+typedef NS_ENUM(NSInteger, DIRECTION_TYPE) {
+    DIRECTION_LEFT = 0,
+    DIRECTION_RIGHT = 1,
+    DIRECTION_TOP = 2,
+    DIRECTION_BOTTOM
+};
 
 /**
  平移效果的转场
@@ -33,6 +38,6 @@ typedef NS_ENUM(NSInteger, DIRECTION_TYPE) { DIRECTION_LEFT = 0, DIRECTION_RIGHT
  @param dict 参数
  @return 平移实例对象
  */
-- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("deprecated");
 
 @end

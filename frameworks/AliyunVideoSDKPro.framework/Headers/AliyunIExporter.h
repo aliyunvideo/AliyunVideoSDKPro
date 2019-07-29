@@ -22,6 +22,7 @@
  设置水印
 
  @param waterMark 水印
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
@@ -33,6 +34,7 @@
  设置片尾水印
 
  @param waterMark 片尾水印
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
@@ -68,6 +70,7 @@
  开始导出视频
 
  @param outputPath 导出视频文件路径，需要保证多级目录文件夹已经创建
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  参数不正确 ALIVC_COMMON_INVALID_PARAM
@@ -81,6 +84,7 @@
 /**
  暂停导出视频
 
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
@@ -89,6 +93,8 @@
 /**
  继续导出视频
 
+ @return 
+>>>>>>> release/svideo_v3.10.0
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
@@ -96,10 +102,11 @@
 
 /**
  取消导出视频
-
+ 
+ @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
-- (int)cancelExport;
+-(int)cancelExport;
 
 @end

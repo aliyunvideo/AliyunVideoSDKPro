@@ -48,16 +48,15 @@
  解码HEVC参数创建失败 ALIVC_FRAMEWORK_VIDEO_DECODER_CREATE_HEVC_PARAM_SET_FAILED
  缓存数据已满 ALIVC_FRAMEWORK_MEDIA_POOL_CACHE_DATA_SIZE_OVERFLOW
  解码器内部返回错误码
-
  */
 - (void)exportError:(int)errorCode;
 
-#pragma mark - 不建议使用的API
+#pragma mark - It is not recommended to use the following methods.
 
 /**
  开始导出
  */
-- (void)exporterDidStart __deprecated_msg("已废弃不再维护");
+- (void)exporterDidStart __deprecated_msg("deprecated");
 
 @optional
 /**

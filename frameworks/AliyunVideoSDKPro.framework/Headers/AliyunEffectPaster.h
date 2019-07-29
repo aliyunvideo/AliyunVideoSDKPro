@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, AliyunPasterType) {
 };
 
 /**
- 动图model类（纯序列帧的动图,包含人脸和普通两种类型）
+ 动图model类（动图,包含人脸和普通两种类型）
  */
 @interface AliyunEffectPaster : AliyunEffectPasterBase <AliyunIEffectRecovery>
 
@@ -59,8 +59,8 @@ typedef NS_ENUM(NSInteger, AliyunPasterType) {
  */
 @property(nonatomic, assign, readonly) CGFloat originDuration;
 
-- (AliyunEffectPaster *)copyAnother __deprecated_msg("已废弃");
+- (AliyunEffectPaster *)copyAnother __deprecated_msg("deprecated");
 
-- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("deprecated");
 
 @end

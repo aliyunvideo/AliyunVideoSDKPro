@@ -84,27 +84,27 @@ typedef NS_OPTIONS(NSInteger, AliyunVodUploadState) {
 /**
  合成导出回调类
  */
-@property(nonatomic, weak) id<AliyunIExporterCallback> exportCallback;
+@property (nonatomic, weak) id<AliyunIExporterCallback> exportCallback;
 
 /**
  上传回调类
  */
-@property(nonatomic, weak) id<AliyunIVodUploadCallback> uploadCallback;
+@property (nonatomic, weak) id<AliyunIVodUploadCallback> uploadCallback;
 
 /**
  当前上传状态
  */
-@property(nonatomic, assign) AliyunVodUploadState uploadState;
+@property (nonatomic, assign) AliyunVodUploadState uploadState;
 
 /**
  上传视频本地路径
  */
-@property(nonatomic, copy) NSString *videotPath;
+@property (nonatomic, copy) NSString *videotPath;
 
 /**
  上传图片本地路径
  */
-@property(nonatomic, copy) NSString *imagePath;
+@property (nonatomic, copy) NSString *imagePath;
 
 #pragma mark - export
 
@@ -148,7 +148,9 @@ typedef NS_OPTIONS(NSInteger, AliyunVodUploadState) {
  @param vodUploadAuth 点播上传凭证
  @return 返回值
  */
-- (int)uploadImageWithPath:(NSString *)imagePath uploadAddress:(NSString *)vodUploadAddress uploadAuth:(NSString *)vodUploadAuth;
+- (int)uploadImageWithPath:(NSString *)imagePath
+              uploadAddress:(NSString *)vodUploadAddress
+                 uploadAuth:(NSString *)vodUploadAuth;
 
 /**
  上传视频
@@ -158,7 +160,9 @@ typedef NS_OPTIONS(NSInteger, AliyunVodUploadState) {
  @param vodUploadAuth 点播上传凭证
  @return 返回值
  */
-- (int)uploadVideoWithPath:(NSString *)videoPath uploadAddress:(NSString *)vodUploadAddress uploadAuth:(NSString *)vodUploadAuth;
+- (int)uploadVideoWithPath:(NSString *)videoPath
+              uploadAddress:(NSString *)vodUploadAddress
+                 uploadAuth:(NSString *)vodUploadAuth;
 
 /**
  暂停上传

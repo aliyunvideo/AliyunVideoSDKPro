@@ -19,6 +19,13 @@
  - AliyunErrorMediaImageFormatNotSupport: AliyunErrorMediaImageFormatNotSupport
  - AliyunErrorMediaVideoEncoderInternal: AliyunErrorMediaVideoEncoderInternal
  */
-__deprecated_msg("已废弃") typedef NS_ENUM(int, AliyunErrorMedia) { AliyunErrorMediaThreshold = 100001, AliyunErrorMediaVideoNotSupport, AliyunErrorMediaAudioNotSupport, AliyunErrorMediaImageFormatNotSupport, AliyunErrorMediaVideoEncoderInternal };
+__deprecated_msg("deprecated") typedef NS_ENUM(int, AliyunErrorMedia) {
+    AliyunErrorMediaThreshold = 100001,
+    AliyunErrorMediaVideoNotSupport,
+    AliyunErrorMediaAudioNotSupport,
+    AliyunErrorMediaImageFormatNotSupport,
+    AliyunErrorMediaVideoEncoderInternal
+};
+
 
 #endif /* AliyunErrorCodeEnum_h */

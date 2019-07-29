@@ -34,17 +34,17 @@
 /**
  回调
  */
-@property(nonatomic, weak) id<AliyunICanvasViewDelegate> delegate;
+@property (nonatomic, weak) id<AliyunICanvasViewDelegate> delegate;
 
 /**
  是否允许越界画图，默认不允许
  */
-@property(nonatomic, assign) BOOL enableCrossBorder;
+@property (nonatomic, assign) BOOL enableCrossBorder;
 
 /**
  画笔
  */
-@property(nonatomic, strong) AliyunIPaint *paint;
+@property (nonatomic, strong) AliyunIPaint *paint;
 
 /**
  初始化方法
@@ -53,7 +53,9 @@
  @param paint 画笔
  @return self
  */
-- (instancetype)initWithFrame:(CGRect)frame paint:(AliyunIPaint *)paint;
+- (instancetype)initWithFrame:(CGRect)frame
+                        paint:(AliyunIPaint *)paint;
+
 
 /**
  更改画笔配置

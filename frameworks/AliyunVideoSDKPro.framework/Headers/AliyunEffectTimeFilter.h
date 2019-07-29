@@ -37,7 +37,7 @@ typedef NS_ENUM(NSInteger, TimeFilterType) {
 @property(nonatomic, assign) float endTime;
 
 /**
- 时间特效滤镜
+ 时间特效
  */
 @property(nonatomic, assign) TimeFilterType type;
 
@@ -62,6 +62,6 @@ typedef NS_ENUM(NSInteger, TimeFilterType) {
  @param dict dict
  @return AliyunEffectTimeFilter
  */
-- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("deprecated");
 
 @end

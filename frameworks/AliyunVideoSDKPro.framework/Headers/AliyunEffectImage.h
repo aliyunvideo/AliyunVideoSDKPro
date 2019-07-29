@@ -20,5 +20,5 @@
  @param dict dict
  @return AliyunEffectImage
  */
-- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("deprecated");
 @end

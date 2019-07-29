@@ -101,7 +101,8 @@
  @return 视频帧率
  内部封装了getValueForKey:方法
  */
-- (NSInteger)getVideoFrameRate;
+-(NSInteger)getVideoFrameRate;
+
 /**
  获取视频码率
 
@@ -210,19 +211,19 @@
 
  @return 是否存在b帧
  */
-- (BOOL)checkBFrame __deprecated_msg("已废弃");
+- (BOOL)checkBFrame __deprecated_msg("deprecated");
 
 /**
  检查视频是否支持倒播
 
  @return 是否支持倒播
  */
-- (BOOL)checkInvertAvailable __deprecated_msg("已废弃");
+- (BOOL)checkInvertAvailable __deprecated_msg("deprecated");
 
 /**
  获取视频最大缓存大小
 
  @return 视频最大缓存大小
  */
-- (int)getMaxEstimatedCacheSize __deprecated_msg("已废弃");
+- (int)getMaxEstimatedCacheSize __deprecated_msg("deprecated");
 @end

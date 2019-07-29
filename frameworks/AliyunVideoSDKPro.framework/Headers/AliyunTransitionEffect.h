@@ -29,7 +29,7 @@ typedef enum : NSUInteger {
 @interface AliyunTransitionEffect : AliyunJSONModel
 
 /**
- 转场时间，需要保证转场时间大于等于视频片段时长
+ 转场时间，需要保证转场时间小于等于视频片段时长
  */
 @property(nonatomic, assign) float overlapDuration;
 
@@ -46,6 +46,6 @@ typedef enum : NSUInteger {
 /**
  废弃方法
  */
-- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("已废弃");
+- (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("deprecated");
 
 @end

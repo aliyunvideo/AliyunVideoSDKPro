@@ -13,8 +13,8 @@
 /**
  裁剪模式
 
- - AliyunCropCutModeScaleAspectFill: 填充黑边
- - AliyunCropModeScaleAspectCut: 裁剪画面
+ - AliyunCropCutModeScaleAspectFill: 填充
+ - AliyunCropModeScaleAspectCut: 裁剪
  */
 typedef NS_ENUM(NSInteger, AliyunCropCutMode) { AliyunCropCutModeScaleAspectFill = 0, AliyunCropModeScaleAspectCut = 1 };
 
@@ -101,7 +101,7 @@ typedef NS_ENUM(NSInteger, AliyunCropCutMode) { AliyunCropCutModeScaleAspectFill
 
  无效接口，已废弃
  */
-@property(nonatomic, assign) long fadeDuration __deprecated_msg("已废弃");
+@property(nonatomic, assign) long fadeDuration __deprecated_msg("deprecated");
 
 /**
  裁剪模式
@@ -150,7 +150,7 @@ typedef NS_ENUM(NSInteger, AliyunCropCutMode) { AliyunCropCutModeScaleAspectFill
  硬编：1
  默认硬编
  */
-@property(nonatomic, assign) int encodeMode; // 0软编   1硬编
+@property(nonatomic, assign) int encodeMode; 
 
 /**
  码率
@@ -207,6 +207,6 @@ typedef NS_ENUM(NSInteger, AliyunCropCutMode) { AliyunCropCutModeScaleAspectFill
 
  @return 版本号
  */
-+ (NSString *)version __deprecated_msg("已废弃");
++ (NSString *)version __deprecated_msg("deprecated");
 
 @end
