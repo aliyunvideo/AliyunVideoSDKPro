@@ -12,6 +12,9 @@
 /**
  平移动画
  */
+/****
+ A class that defines translational motions.
+ */
 @interface AliyunMoveAction : AliyunAction
 
 /**
@@ -19,15 +22,26 @@
 
  坐标参考系是为系统屏幕坐标系 （0，0）为左上角  和系统view行为一致
  */
+/****
+ The coordinates of the start point of the motion.
+ 
+ The coordinate system of the screen is used. The origin (0, 0) is at the top left of the screen.
+ */
 @property(nonatomic, assign) CGPoint fromePoint;
 
 /**
  移动的终点位置
  */
+/****
+ The coordinates of the end point of the motion.
+ */
 @property(nonatomic, assign) CGPoint toPoint;
 
 /**
  动画移动的区域范围
+ */
+/****
+ The moving area of the motion.
  */
 @property(nonatomic, assign) CGSize displaySize;
 
@@ -36,6 +50,12 @@
 
  @param dict 初始化参数
  @return 平移动画实例
+ */
+/****
+ Initializer.
+
+ @param dict The initialization parameter.
+ @return A translational motion object.
  */
 - (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("deprecated");
 

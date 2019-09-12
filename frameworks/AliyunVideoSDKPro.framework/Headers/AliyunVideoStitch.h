@@ -11,6 +11,9 @@
 /**
  视频拼接类
  */
+/****
+ A class that splices videos.
+ */
 @interface AliyunVideoStitch : NSObject
 
 /**
@@ -20,6 +23,14 @@
  @param output 输出路径
  @param id 上传日志的id
  @return 是否成功
+ */
+/****
+ Splices multiple video clips.
+
+ @param videoPaths The paths of video clips to be spliced.
+ @param output The output path.
+ @param id The log id.
+ @return Whether the invocation is successful.
  */
 - (BOOL)stitchVideos:(NSArray *)videoPaths output:(NSString *)output reportId:(int64_t)id;
 

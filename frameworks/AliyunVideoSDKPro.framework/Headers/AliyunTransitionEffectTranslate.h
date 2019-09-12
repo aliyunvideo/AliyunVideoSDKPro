@@ -15,6 +15,13 @@
  DIRECTION_TOP：     向上平移
  DIRECTION_BOTTOM：  向下平移
  */
+/****
+ Directions of translational motions.
+ DIRECTION_LEFT：    Left
+ DIRECTION_RIGHT：   Right
+ DIRECTION_TOP：     Upward
+ DIRECTION_BOTTOM：  Downward
+ */
 typedef NS_ENUM(NSInteger, DIRECTION_TYPE) {
     DIRECTION_LEFT = 0,
     DIRECTION_RIGHT = 1,
@@ -25,10 +32,16 @@ typedef NS_ENUM(NSInteger, DIRECTION_TYPE) {
 /**
  平移效果的转场
  */
+/****
+ A class that defines translational motion effects.
+ */
 @interface AliyunTransitionEffectTranslate : AliyunTransitionEffect
 
 /**
  移动方向
+ */
+/****
+ The direction of the translational motion.
  */
 @property(nonatomic, assign) DIRECTION_TYPE direction;
 
@@ -37,6 +50,12 @@ typedef NS_ENUM(NSInteger, DIRECTION_TYPE) {
 
  @param dict 参数
  @return 平移实例对象
+ */
+/****
+ Initializer.
+
+ @param dict The initialization parameter.
+ @return A translational motion object.
  */
 - (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("deprecated");
 

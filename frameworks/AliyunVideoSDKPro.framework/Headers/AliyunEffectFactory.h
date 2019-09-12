@@ -11,12 +11,21 @@
 /**
  effect工厂类
  */
+/****
+ A factory class that creates effects. 
+ */
 __deprecated_msg("deprecated") @interface AliyunEffectFactory : NSObject
 
 /**
  创建一个AliyunEffect
 
  @param path 路径
+ @return AliyunEffect
+ */
+/****
+ Creates an AliyunEffect object.
+
+ @param path The path of the effect.
  @return AliyunEffect
  */
 + (id)createEffect:(NSString *)path;

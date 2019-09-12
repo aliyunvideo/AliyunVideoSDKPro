@@ -543,7 +543,7 @@ typedef NS_ENUM(NSInteger, AliyunVideoCoreError) {
     ALIVC_FRAMEWORK_AUDIO_ENCODER_INIT_FAILED =                     -10005001,
 
     /**
-     * 音频编码组件状态不符，出现了重复创建或者重复销毁
+     * 音频编码组件状态不对
      */
     ALIVC_FRAMEWORK_AUDIO_ENCODER_ERROR_STATE =                     -10005002,
 
@@ -566,6 +566,86 @@ typedef NS_ENUM(NSInteger, AliyunVideoCoreError) {
      * 没有符合编码场景要求的编码器
      */
     ALIVC_FRAMEWORK_AUDIO_ENCODER_WIDTHOUT_MATCH_ENCODER =          -10005006,
+
+    /**
+     * open 失败
+     */
+    ALIVC_FRAMEWORK_AUDIO_ENCODER_OPEN_FAILED =                     -10005007,
+
+    /**
+     * set bitrate 失败
+     */
+    ALIVC_FRAMEWORK_AUDIO_ENCODER_SET_BITRATE_FAILED =              -10005008,
+
+    /**
+     * set samplerate 失败
+     */
+    ALIVC_FRAMEWORK_AUDIO_ENCODER_SET_SAMPLERATE_FAILED =           -10005009,
+
+    /**
+     * set aot 失败
+     */
+    ALIVC_FRAMEWORK_AUDIO_ENCODER_SET_AOT_FAILED =                  -10005010,
+
+    /**
+     * set transmux 失败
+     */
+    ALIVC_FRAMEWORK_AUDIO_ENCODER_SET_TRANSMUX_FAILED =             -10005011,
+
+    /**
+     * set singlemode 失败
+     */
+    ALIVC_FRAMEWORK_AUDIO_ENCODER_SET_SINGLEMODE_FAILED =           -10005012,
+
+    /**
+     * set channel 失败
+     */
+    ALIVC_FRAMEWORK_AUDIO_ENCODER_SET_CHANNEL_FAILED =              -10005013,
+
+    /**
+     * set channelloader 失败
+     */
+    ALIVC_FRAMEWORK_AUDIO_ENCODER_SET_CHANLOADER_FAILED =           -10005014,
+
+    /**
+     * set afterburner 失败
+     */
+    ALIVC_FRAMEWORK_AUDIO_ENCODER_SET_AFTERBURNER_FAILED =          -10005015,
+
+    /**
+     * get info 失败
+     */
+    ALIVC_FRAMEWORK_AUDIO_ENCODER_GETINFO_FAILED =                  -10005016,
+
+    /**
+     * 没有编码器
+     */
+    ALIVC_FRAMEWORK_AUDIO_ENCODER_NOT_OPEN =                        -10005017,
+
+    /**
+     * 音频初始化输入config不合法
+     */
+    ALIVC_FRAMEWORK_AUDIO_ENCODER_ERROR_INPUT_CONFIG =              -10005018,
+
+    /**
+     * 重复初始化
+     */
+    ALIVC_FRAMEWORK_AUDIO_ENCODER_ALREADY_EXIST =                   -10005019,
+
+    /**
+     * 创建解码器失败
+     */
+    ALIVC_FRAMEWORK_AUDIO_ENCODER_CREATE_FAILED =                   -10005020,
+
+    /**
+     * 没有符合编码场景要求的编码器
+     */
+    ALIVC_FRAMEWORK_AUDIO_ENCODER_WIDTHOUT_MATCH_STREAMTYPE =       -10005021,
+
+    /**
+     * 没有解码器实例
+     */
+    ALIVC_FRAMEWORK_AUDIO_ENCODER_NO_INSTANSE =                     -10005022,
 
     /**
      * 音频解码组件起始错误段
@@ -611,6 +691,16 @@ typedef NS_ENUM(NSInteger, AliyunVideoCoreError) {
      * 音频解码器创建无内存
      */
     ALIVC_ADEC_ERROR_FFMPEG_NO_CONTEXT =                            -10006008,
+
+    /**
+     * 解码器已经存在，不能再次创建
+     */
+    ALIVC_FRAMEWORK_AUDIO_DECODER_ALREADY_EXIST =                   -10006009,
+
+    /**
+     * 创建音频解码器失败，参数不支持
+     */
+    ALIVC_FRAMEWORK_AUDIO_DECODER_CREATE_NULL_CFG =                 -10006010,
 
     /**
      * 渲染错误码起始字段
@@ -811,6 +901,26 @@ typedef NS_ENUM(NSInteger, AliyunVideoCoreError) {
      * 设置静音失败
      */
     ALIVC_FRAMEWORK_AUDIO_RENDER_SETMUTE_FAILED =                   -10010003,
+
+    /**
+     * License无效，可能原因: 过期或者未授权
+     */
+    ALIVC_FRAMEWORK_LICENSE_FAILED =                                -10011001,
+
+    /**
+     * License校验异常，无MV权限
+     */
+    ALIVC_FRAMEWORK_LICENSE_CHECK_MV_FAILED =                       -10011002,
+
+    /**
+     * License校验异常，无动图或字幕权限
+     */
+    ALIVC_FRAMEWORK_LICENSE_CHECK_PASTER_FAILED =                   -10011003,
+
+    /**
+     * License校验异常，无裁剪权限
+     */
+    ALIVC_FRAMEWORK_LICENSE_CHECK_TRANSCODE_FAILED =                -10011004,
 
     /**
      * 短视频开始段

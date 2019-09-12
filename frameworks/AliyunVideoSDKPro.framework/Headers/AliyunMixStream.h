@@ -15,10 +15,16 @@
 /**
  视频文件路径
  */
+/****
+ The path of the video file.
+ */
 @property(nonatomic, copy) NSString *filePath;
 
 /**
  视频在所在轨道上展示的视频本身的裁剪范围  可选  此属性废弃
+ */
+/****
+ The crop rectangle of the video on the track. Optional.
  */
 @property(nonatomic, assign) CGRect innerCropFrame  __deprecated_msg("已废弃");
 
@@ -27,6 +33,11 @@
 
  单位：秒
  */
+/****
+ The start time of the video on the track.
+
+ Unit: seconds.
+ */
 @property(nonatomic, assign) CGFloat streamStartTime;
 
 /**
@@ -34,10 +45,18 @@
 
  单位：秒
  */
+/****
+ The end time of the video on the track.
+
+ Unit: seconds.
+ */
 @property(nonatomic, assign) CGFloat streamEndTime;
 
 /**
  视频在轨道上的内容填充模式
+ */
+/****
+ The display mode of the video on the track.
  */
 @property(nonatomic, assign) AlivcContentMode mode;
 

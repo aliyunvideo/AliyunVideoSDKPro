@@ -16,12 +16,23 @@
  @param dict 初始化参数
  @return 实例对象
  */
+/****
+ Initializer. This method is automatically invoked after the effect is restored from the JSON configuration file.
+
+ @param dict The initialization parameter.
+ @return An effect object.
+ */
 - (id)initWithRestore:(NSDictionary *)dict;
 
 /**
  拷贝对象
 
  @return 拷贝后的对象
+ */
+/****
+ Creates a copy of an object.
+
+ @return An object copy.
  */
 - (id)copyAnother;
 

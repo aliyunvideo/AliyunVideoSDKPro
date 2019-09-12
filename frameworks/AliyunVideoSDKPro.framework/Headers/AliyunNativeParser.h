@@ -46,8 +46,13 @@
 #define ALIYUN_FILE_BIT_RATE (ALIYUN_FILE_DIC_KEY_START + 4)
 #define DIC_KEY_END 30
 
+extern NSString *const AliyunNativeParserUnknown;
+
 /**
  视频参数解析器
+ */
+/****
+ A class that defines parsers. 
  */
 @interface AliyunNativeParser : NSObject
 
@@ -56,6 +61,12 @@
 
  @param path 文件路径
  @return 解析器示例
+ */
+/****
+ Initializer.
+
+ @param path The file path.
+ @return A parser object.
  */
 - (instancetype)initWithPath:(NSString *)path;
 
@@ -69,6 +80,16 @@
                                         integerValue]/1000000.0f;
 
  */
+/****
+ Gets basic parameters about the file. 
+
+ @param key The parameter name.
+ @return The parameter value represented as a string.
+ For example, to get the video duration:
+ CGFloat duration = [[_parser getValueForKey:ALIYUN_VIDEO_DURATION]
+                                        integerValue]/1000000.0f;
+
+ */
 - (NSString *)getValueForKey:(NSInteger)key;
 
 /**
@@ -76,6 +97,12 @@
 
  @return 视频编码格式
  内部封装了getValueForKey:方法
+ */
+/****
+ Gets the video encoding format. 
+
+ @return The video encoding format.
+ The getValueForKey: method is available.
  */
 - (NSString *)getVideoCodec;
 
@@ -85,6 +112,12 @@
  @return 视频时长
  内部封装了getValueForKey:方法
  */
+/****
+ Gets the video duration.
+
+ @return The video duration.
+ The getValueForKey: method is available.
+ */
 - (CGFloat)getVideoDuration;
 
 /**
@@ -92,6 +125,12 @@
 
  @return 视频帧数
  内部封装了getValueForKey:方法
+ */
+/****
+ Gets the number of frames in the video.
+
+ @return The number of frames.
+ The getValueForKey: method is available.
  */
 - (NSInteger)getVideoFrameCount;
 
@@ -101,6 +140,12 @@
  @return 视频帧率
  内部封装了getValueForKey:方法
  */
+/****
+ Gets the video frame rate.
+
+ @return The video frame rate.
+ The getValueForKey: method is available.
+ */
 -(NSInteger)getVideoFrameRate;
 
 /**
@@ -108,6 +153,12 @@
 
  @return 视频码率
  内部封装了getValueForKey:方法
+ */
+/****
+ Gets the video bitrate.
+
+ @return The video bitrate.
+ The getValueForKey: method is available.
  */
 - (NSInteger)getVideoBitrate;
 
@@ -117,6 +168,12 @@
  @return 视频宽度
  内部封装了getValueForKey:方法
  */
+/****
+ Gets the width of the video.
+
+ @return The width of the video.
+ The getValueForKey: method is available.
+ */
 - (NSInteger)getVideoWidth;
 
 /**
@@ -124,6 +181,12 @@
 
  @return 视频高度
  内部封装了getValueForKey:方法
+ */
+/****
+ Gets the height of the video.
+
+ @return The height of the video.
+ The getValueForKey: method is available.
  */
 - (NSInteger)getVideoHeight;
 
@@ -133,6 +196,12 @@
  @return 音频编码格式
  内部封装了getValueForKey:方法
  */
+/****
+ Gets the audio encoding format.
+
+ @return The audio encoding format.
+ The getValueForKey: method is available.
+ */
 - (NSString *)getAudioCodec;
 
 /**
@@ -140,6 +209,12 @@
 
  @return 音频时长
  内部封装了getValueForKey:方法
+ */
+/****
+ Gets the audio duration.
+
+ @return The audio duration.
+ The getValueForKey: method is available.
  */
 - (CGFloat)getAudioDuration;
 
@@ -149,6 +224,12 @@
  @return 音频帧数
  内部封装了getValueForKey:方法
  */
+/****
+ Gets the number of frames in the audio.
+
+ @return The number of frames in the audio.
+ The getValueForKey: method is available.
+ */
 - (NSInteger)getAudioFrameCount;
 
 /**
@@ -156,6 +237,12 @@
 
  @return 音频码率
  内部封装了getValueForKey:方法
+ */
+/****
+ Gets the audio bitrate.
+
+ @return The audio bitrate.
+ The getValueForKey: method is available.
  */
 - (NSInteger)getAudioBitrate;
 
@@ -165,6 +252,12 @@
  @return 音频声道数
  内部封装了getValueForKey:方法
  */
+/****
+ Gets the number of sound channels in the audio.
+
+ @return The number of sound channels in the audio.
+ The getValueForKey: method is available.
+ */
 - (NSInteger)getAudioChannels;
 
 /**
@@ -172,6 +265,12 @@
 
  @return 音频采样率
  内部封装了getValueForKey:方法
+ */
+/****
+ Gets the audio sample rate.
+
+ @return The audio sample rate.
+ The getValueForKey: method is available.
  */
 - (NSInteger)getAudioSampleRate;
 
@@ -181,6 +280,12 @@
  @return 视频文件时长
  内部封装了getValueForKey:方法
  */
+/****
+ Gets the video file duration.
+
+ @return The video file duration.
+ The getValueForKey: method is available.
+ */
 - (CGFloat)getFileDuration;
 
 /**
@@ -188,6 +293,12 @@
 
  @return 文件格式
  内部封装了getValueForKey:方法
+ */
+/****
+ Gets the file format.
+
+ @return The file format.
+ The getValueForKey: method is available.
  */
 - (NSString *)getFileFormat;
 
@@ -197,12 +308,23 @@
  @return 文件码率
  内部封装了getValueForKey:方法
  */
+/****
+ Gets the video file bitrate.
+
+ @return The video file bitrate.
+ The getValueForKey: method is available.
+ */
 - (NSInteger)getFileBitrate;
 
 /**
  获取视频gop
 
  @return gop
+ */
+/****
+ Gets the GOP size of the video.
+
+ @return The GOP size.
  */
 - (NSInteger)getGopSize;
 
@@ -211,6 +333,11 @@
 
  @return 是否存在b帧
  */
+/****
+ Whether B-frames exist in the video.
+
+ @return Whether B-frames exist.
+ */
 - (BOOL)checkBFrame __deprecated_msg("deprecated");
 
 /**
@@ -218,12 +345,22 @@
 
  @return 是否支持倒播
  */
+/****
+ Whether the video supports reverse playback.
+
+ @return Whether reverse playback is supported.
+ */
 - (BOOL)checkInvertAvailable __deprecated_msg("deprecated");
 
 /**
  获取视频最大缓存大小
 
  @return 视频最大缓存大小
+ */
+/****
+ Gets the maximum cache size for the video.
+
+ @return The maximum cache size.
  */
 - (int)getMaxEstimatedCacheSize __deprecated_msg("deprecated");
 @end

@@ -22,6 +22,19 @@
  - AliyunAudioEffectMinions: 小黄人
  - AliyunAudioEffectDenoise: 去噪
  */
+/****
+ Sound effect types.
+
+ - AliyunAudioEffectDefault: Default
+ - AliyunAudioEffectLolita: Cute girl
+ - AliyunAudioEffectUncle: Middle-aged man
+ - AliyunAudioEffectReverb: Reverberation
+ - AliyunAudioEffectEcho: Echo
+ - AliyunAudioEffectRobot: Robot
+ - AliyunAudioEffectBigDevil: Demon
+ - AliyunAudioEffectMinions: Minion
+ - AliyunAudioEffectDenoise: Denoised
+ */
 typedef NS_ENUM(NSInteger, AliyunAudioEffectType) {
     AliyunAudioEffectDefault = 0,
     AliyunAudioEffectLolita,
@@ -39,20 +52,32 @@ id QUSDKObjectOrNull(id object);
 /**
  特效model基类
  */
+/****
+ A model base class that defines effects.
+ */
 @interface AliyunEffect : AliyunJSONModel
 
 /**
  路径
+ */
+/****
+ The path of the effect.
  */
 @property(nonatomic, copy) NSString *path;
 
 /**
  图标路径
  */
+/****
+ The path of the effect icon.
+ */
 @property(nonatomic, copy) NSString *icon;
 
 /**
  名称
+ */
+/****
+ The effect name.
  */
 @property(nonatomic, copy) NSString *name;
 
@@ -61,10 +86,20 @@ id QUSDKObjectOrNull(id object);
 
  @return id
  */
+/****
+ Gets the effect id.
+
+ @return id
+ */
 - (int)effectVid;
 
 /**
  设置id
+
+ @param vid id
+ */
+/****
+ Sets the effect id.
 
  @param vid id
  */
@@ -76,10 +111,22 @@ id QUSDKObjectOrNull(id object);
  @param path effect资源文件夹对象
  @return effect实例对象
  */
+/****
+ Initializes an effect object with an effect path.
+
+ @param path The effect path. 
+ @return An effect object.
+ */
 - (instancetype)initWithFile:(NSString *)path;
 
 /**
  内部调用方法
+
+ @param dict dict
+ @return AliyunEffect
+ */
+/****
+ Internal method.
 
  @param dict dict
  @return AliyunEffect
@@ -91,15 +138,24 @@ id QUSDKObjectOrNull(id object);
 /**
  音效model类
  */
+/****
+ A model class that defines sound effects.
+ */
 @interface AliyunAudioEffect : AliyunJSONModel
 
 /**
  音效类型
  */
+/****
+ The sound effect type.
+ */
 @property(nonatomic, assign) AliyunAudioEffectType type;
 
 /**
  音效值0-100
+ */
+/****
+ The value of the sound effect. Valid values: [0, 100]
  */
 @property(nonatomic, assign) int weight;
 

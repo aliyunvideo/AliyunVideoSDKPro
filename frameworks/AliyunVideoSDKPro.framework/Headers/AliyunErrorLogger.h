@@ -12,10 +12,17 @@
  错误处理类
 
  */
+/****
+ A class that handles errors.
+
+ */
 __deprecated_msg("deprecated") @interface AliyunErrorLogger : NSObject
 
 /**
  log回调
+ */
+/****
+ The error log callback.
  */
 @property (nonatomic, copy) void (^logCb)(int code, NSString *msg);
 
