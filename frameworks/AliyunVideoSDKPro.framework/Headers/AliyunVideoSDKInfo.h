@@ -5,10 +5,10 @@
 //  Created by Worthy on 2017/5/23.
 //  Copyright © 2017年 Alibaba Group Holding Limited. All rights reserved.
 // BUILD INFO
-// AliyunAlivcCommitId:de751c3
-// AliyunMediaCoreCommitId:3a28d16
-// AliyunVideoSDKCommitId:a1513e2
-// AliyunVideoSDKBuildId:11995823
+// AliyunAlivcCommitId:8add21c
+// AliyunMediaCoreCommitId:c732554
+// AliyunVideoSDKCommitId:bb7eaaa
+// AliyunVideoSDKBuildId:12261571
 
 #import <Foundation/Foundation.h>
 
@@ -30,16 +30,6 @@ extern NSString *const kAliyunVideoSDKModuleBasic;
 
 /**
  log等级
-
- - AlivcLogVerbose: Verbose
- - AlivcLogDebug: Debug
- - AlivcLogInfo: Info
- - AlivcLogWarn: Warn
- - AlivcLogError: Error
- - AlivcLogFatal: Fatal
- */
-/****
- Log levels.
 
  - AlivcLogVerbose: Verbose
  - AlivcLogDebug: Debug
@@ -76,20 +66,12 @@ typedef NS_ENUM(NSInteger, AlivcDebugLogLevel)
 /**
  sdk基础信息与设置类
  */
-/****
- A class that defines basic SDK settings.
- */
 @interface AliyunVideoSDKInfo : NSObject
 
     /**
      获取版本号
 
      @return 版本号
-     */
-    /****
-     Gets the SDK version.
-
-     @return The SDK version.
      */
 + (NSString *)version;
 
@@ -108,11 +90,6 @@ typedef NS_ENUM(NSInteger, AlivcDebugLogLevel)
 
  @return 版本号code
  */
-/****
- Gets the SDK version code.
-
- @return The SDK version code.
- */
 + (int)versionCode;
 
 
@@ -121,22 +98,12 @@ typedef NS_ENUM(NSInteger, AlivcDebugLogLevel)
  版本build相关，开发者无需关心
  @return alivc commit id
  */
-/****
- Gets the alivc commit id.
-
- @return The alivc commit id.
- */
 + (NSString *)alivcCommitId;
 
 /**
  获取mediacore commit id
  版本build相关，开发者无需关心
  @return mediacore commit id
- */
-/****
- Gets the mediacore commit id.
-
- @return The mediacore commit id.
  */
 + (NSString *)mediaCoreCommitId;
 
@@ -145,11 +112,6 @@ typedef NS_ENUM(NSInteger, AlivcDebugLogLevel)
  版本build相关，开发者无需关心
  @return video sdk commit id
  */
-/****
- Gets the video SDK commit id.
-
- @return The video SDK commit id.
- */
 + (NSString *)videoSDKCommitId;
 
 /**
@@ -157,27 +119,16 @@ typedef NS_ENUM(NSInteger, AlivcDebugLogLevel)
  版本build相关，开发者无需关心
  @return build id
  */
-/****
- Gets the build id.
-
- @return The build id.
- */
 + (NSString *)videoSDKBuildId;
 
 /**
  打印版本信息
- */
-/****
- Prints the SDK version.
  */
 + (void)printSDKInfo;
 
 /**
  注册SDK
  目前无需调用
- */
-/****
- Registers the SDK.
  */
 + (void)registerSDK;
 
@@ -187,13 +138,6 @@ typedef NS_ENUM(NSInteger, AlivcDebugLogLevel)
  @param level 日志等级
  默认值AlivcLogError，只有在报错时才有日志
  调试阶段可以设置为AlivcLogVerbose或AlivcLogDebug
- */
-/****
- Sets the log level.
-
- @param level The log level.
- Default is AlivcLogError. Logs are generated when errors occur.
- It is recommended to set the log level to AlivcLogVerbose or AlivcLogDebug during debugging.
  */
 + (void)setLogLevel:(AlivcLogLevel)level;
 
@@ -211,23 +155,12 @@ typedef NS_ENUM(NSInteger, AlivcDebugLogLevel)
 
  @param userId 用户id
  */
-/****
- Sets the user id.
- The user id is used for troubleshooting issues reported by users.
-
- @param userId The user id.
- */
 + (void)setUserId:(NSString *)userId;
 
 /**
  获取用户id
 
  @return 用户id
- */
-/****
- Gets the user id.
-
- @return The user id.
  */
 + (NSString *)userId;
 
@@ -236,22 +169,12 @@ typedef NS_ENUM(NSInteger, AlivcDebugLogLevel)
 
  @param conanUpload 是否上传
  */
-/****
- Sets whether to upload device information.
-
- @param conanUpload Whether to upload device information.
- */
 + (void)setDeviceInfoUpload:(BOOL)conanUpload;
 
 /**
  获取设备信息上传
 
  @return 结果
- */
-/****
- Gets whether to upload device information.
-
- @return Whether to upload device information.
  */
 + (BOOL)deviceInfoUpload;
 

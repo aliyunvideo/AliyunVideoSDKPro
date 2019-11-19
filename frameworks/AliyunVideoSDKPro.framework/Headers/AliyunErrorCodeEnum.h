@@ -19,16 +19,6 @@
  - AliyunErrorMediaImageFormatNotSupport: AliyunErrorMediaImageFormatNotSupport
  - AliyunErrorMediaVideoEncoderInternal: AliyunErrorMediaVideoEncoderInternal
  */
-/****
- Error types.
- Deprecated.
-
- - AliyunErrorMediaThreshold: AliyunErrorMediaThreshold
- - AliyunErrorMediaVideoNotSupport: AliyunErrorMediaVideoNotSupport
- - AliyunErrorMediaAudioNotSupport: AliyunErrorMediaAudioNotSupport
- - AliyunErrorMediaImageFormatNotSupport: AliyunErrorMediaImageFormatNotSupport
- - AliyunErrorMediaVideoEncoderInternal: AliyunErrorMediaVideoEncoderInternal
- */
 __deprecated_msg("deprecated") typedef NS_ENUM(int, AliyunErrorMedia) {
     AliyunErrorMediaThreshold = 100001,
     AliyunErrorMediaVideoNotSupport,

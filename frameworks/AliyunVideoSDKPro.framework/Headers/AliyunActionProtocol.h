@@ -14,20 +14,12 @@
 /**
  帧动画协议
  */
-/****
- The protocol of animations.
- */
 @protocol AliyunActionProtocol <NSObject>
 
 /**
  添加动画
 
  @param action 动画
- */
-/****
- Adds an animation.
-
- @param action The animation to be added.
  */
 - (void)addAction:(AliyunAction *)action;
 
@@ -36,11 +28,6 @@
 
  @param action 动画
  */
-/****
- Removes an animation.
-
- @param action The animation to be removed.
- */
 - (void)removeAction:(AliyunAction *)action;
 
 /**
@@ -48,22 +35,12 @@
 
  @return 动画id
  */
-/****
- Gets the id of an animation.
-
- @return The id of an animation.
- */
 - (int)getNodeID;
 
 /**
  是否是视频流
 
  @return BOOL值
- */
-/****
- Gets whether an object is a video stream.
-
- @return BOOL 
  */
 - (BOOL)isVideoStream;
 

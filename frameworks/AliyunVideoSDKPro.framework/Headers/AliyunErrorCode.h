@@ -268,6 +268,151 @@ typedef NS_ENUM(NSInteger, AliyunVideoCoreError) {
     ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_NULL_INPUT =                -10003013,
 
     /**
+     * OpenH264 初始化失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_OPENH264_INIT =             -10003101,
+
+    /**
+     * OpenH264 初始化失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_OPENH264_INPUT =            -10003102,
+
+    /**
+     * OpenH264 初始化失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_OPENH264_WITHOUT_WORK =     -10003103,
+
+    /**
+     * OpenH264 初始化失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_OPENH264_FMT_NOTSUPPORT =   -10003104,
+
+    /**
+     * OpenH264 编码失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_OPENH264_ENCODE =           -10003105,
+
+    /**
+     * OpenH264 编码无输出
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_OPENH264_OUT_ZERO =         -10003106,
+
+    /**
+     * OpenH264 编码SPS解析失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_OPENH264_SPS =              -10003107,
+
+    /**
+     * MediaCodec 状态错误
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_ANDROID_ERROR_STATE =       -10003201,
+
+    /**
+     * MediaCodec Buffer错误
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_ANDROID_BUFFER_ERROR =      -10003202,
+
+    /**
+     * MediaCodec 其他错误
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_ANDROID_INTERNAL =          -10003203,
+
+    /**
+     * Android 编码输入NULL
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_ANDROID_INPUT =             -10003204,
+
+    /**
+     * Android 编码output 句柄为NULL
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_ANDROID_WITHOUT_WORK =      -10003205,
+
+    /**
+     * Android 编码feat不支持
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_ANDROID_FEAT_NOTSUPPORT =   -10003206,
+
+    /**
+     * Android 编码format不支持
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_ANDROID_FMT_NOTSUPPORT =    -10003207,
+
+    /**
+     * Android 编码初始化失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_ANDROID_CREATE_FAILED =     -10003208,
+
+    /**
+     * Android 编码获取输出帧失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_ANDROID_TRY_READ =          -10003209,
+
+    /**
+     * Android 编码更新码率失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_ANDROID_UPDATEBPS_INPUT =   -10003210,
+
+    /**
+     * Android 编码更新码率失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_ANDROID_UPDATEBPS_STATE =   -10003211,
+
+    /**
+     * Android 编码更新码率失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_ANDROID_UPDATEBPS_FAILED =  -10003212,
+
+    /**
+     * Android 编码初始化失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_ANDROID_SIZE_NOTSUPPORT =   -10003213,
+
+    /**
+     * ffmpeg 创建失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_FFMPEG_INPUT =              -10003301,
+
+    /**
+     * ffmpeg 创建失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_FFMPEG_NO_CODEC =           -10003302,
+
+    /**
+     * ffmpeg 编码失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_FFMPEG_OPEN_FAILED =        -10003303,
+
+    /**
+     * ffmpeg 编码失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_FFMPEG_ENCODE_FAILED =      -10003304,
+
+    /**
+     * 编码初始化失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_MIX_HW_INIT_FAILED =        -10003401,
+
+    /**
+     * 编码初始化失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_MIX_ALAV_OPEN_FAILED =      -10003402,
+
+    /**
+     * 编码初始化失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_MIX_START_FAILED =          -10003403,
+
+    /**
+     * 编码初始化失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_MIX_ENCINIT_FAILED =        -10003404,
+
+    /**
+     * 编码初始化失败
+     */
+    ALIVC_FRAMEWORK_VIDEO_ENCODER_ERROR_MIX_ENCSTART_FAILED =       -10003405,
+
+    /**
      * 视频解码起始段
      */
     ALIVC_FRAMEWORK_VIDEO_DECODER_ERROR_START =                     -10004000,
@@ -703,6 +848,31 @@ typedef NS_ENUM(NSInteger, AliyunVideoCoreError) {
     ALIVC_FRAMEWORK_AUDIO_DECODER_CREATE_NULL_CFG =                 -10006010,
 
     /**
+     * 解码器已经存在，不能再次创建
+     */
+    ALIVC_FRAMEWORK_FFMPEGADECODER_ALREADY_EXIST =                  -10006011,
+
+    /**
+     * 解码器已经存在，不能再次创建
+     */
+    ALIVC_FRAMEWORK_IOSADECODER_ALREADY_EXIST =                     -10006012,
+
+    /**
+     * 解码器创建失败
+     */
+    ALIVC_FRAMEWORK_IOSADECODER_NEW_FAILED =                        -10006013,
+
+    /**
+     * 解码器输入不对
+     */
+    ALIVC_FRAMEWORK_IOSADECODER_ERROR_INPUT =                       -10006014,
+
+    /**
+     * 解码器cookiedata 设置失败
+     */
+    ALIVC_FRAMEWORK_IOSADECODER_ERROR_INFO =                        -10006015,
+
+    /**
      * 渲染错误码起始字段
      */
     ALIVC_FRAMEWORK_RENDER_ERROR_START =                            -10007000,
@@ -881,6 +1051,11 @@ typedef NS_ENUM(NSInteger, AliyunVideoCoreError) {
      * 未知配置
      */
     ALIVC_FRAMEWORK_AUDIO_PROCESS_CONTROL_UNKNOWN =                 -10009011,
+
+    /**
+     * Push空数据
+     */
+    ALIVC_FRAMEWORK_AUDIO_PROCESS_SEND_INVALID =                    -10009012,
 
     /**
      * 音频渲染起始段
@@ -1376,6 +1551,31 @@ typedef NS_ENUM(NSInteger, AliyunVideoCoreError) {
      * 录制已达到最大时长
      */
     ALIVC_SVIDEO_ERROR_RECORD_MAX_DURATION =                        -20008008,
+
+    /**
+     * 录制Service创建失败
+     */
+    ALIVC_SVIDEO_ERROR_REC_SERVICE_CREATE_FAILED =                  -20008009,
+
+    /**
+     * 录制Proxy创建失败
+     */
+    ALIVC_SVIDEO_ERROR_REC_PROXY_CREATE_FAILED =                    -20008010,
+
+    /**
+     * 录制service 状态错误
+     */
+    ALIVC_SVIDEO_ERROR_REC_INVALID_STATE  =                         -20008011,
+
+    /**
+     * 录制采集的数据不支持
+     */
+    ALIVC_SVIDEO_ERROR_REC_INVALID_CAP_FORMAT  =                    -20008012,
+
+    /**
+     * SurfaceTexture 类信息找不到
+     */
+    ALIVC_SVIDEO_ERROR_REC_FIND_TEXTURE_CLASS  =                    -20008013,
 
     /**
      * 合拍错误码起始字段

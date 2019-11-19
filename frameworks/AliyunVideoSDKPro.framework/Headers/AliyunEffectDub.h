@@ -11,9 +11,6 @@
 /**
  配音model类
  */
-/****
- A model class that defines voiceover effects.
- */
 @interface AliyunEffectDub : AliyunEffectMusic
 
 @end

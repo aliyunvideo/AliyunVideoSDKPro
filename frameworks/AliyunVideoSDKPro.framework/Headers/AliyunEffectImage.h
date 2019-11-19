@@ -12,21 +12,12 @@
 /**
  图片效果model类
  */
-/****
- A model class that defines images. 
- */
 @interface AliyunEffectImage : AliyunEffectPasterBase
 
 /**
  内部调用方法
 
  @param dict dict
- @return AliyunEffectImage
- */
-/****
- Internal method.
-
- @param dict The initialization parameter.
  @return AliyunEffectImage
  */
 - (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("deprecated");

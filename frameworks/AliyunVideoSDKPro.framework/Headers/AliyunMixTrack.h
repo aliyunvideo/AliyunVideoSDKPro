@@ -17,11 +17,6 @@
 
  @param stream 视频
  */
-/****
- Adds a video stream to a track.
-
- @param stream The video stream to be added.
- */
 - (void)addStream:(AliyunMixStream *)stream;
 
 @end

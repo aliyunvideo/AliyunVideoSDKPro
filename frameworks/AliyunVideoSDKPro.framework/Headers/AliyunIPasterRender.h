@@ -15,9 +15,6 @@
 /**
  动图渲染协议
  */
-/****
- The protocol of stickers.
- */
 @protocol AliyunIPasterRender <NSObject>
 
 /**
@@ -31,17 +28,6 @@
  解析动图失败 ALIVC_SVIDEO_EDITOR_PARSE_RESOURCE_FAILED
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  */
-/****
- Adds a sticker.
-
- @param paster The sticker to be added.
- @return
- ALIVC_COMMON_RETURN_SUCCESS if the invocation is successful.
- ALIVC_COMMON_INVALID_STATE if the renderer's state is incorrect.
- ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST if the image file does not exist.
- ALIVC_SVIDEO_EDITOR_PARSE_RESOURCE_FAILED if an error occurred during image parsing. 
- ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- */
 - (int)addGifPaster:(AliyunEffectPaster *)paster;
 
 /**
@@ -52,16 +38,6 @@
  @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
- ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- */
-/****
- Adds a standard caption.
-
- @param subtitle The standard caption to be added.
- @param textImage The text image.
- @return
- ALIVC_COMMON_RETURN_SUCCESS if the invocation is successful.
- ALIVC_COMMON_INVALID_STATE if the renderer's state is incorrect.
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  */
 - (int)addSubtitlePaster:(AliyunEffectSubtitle *)subtitle textImage:(UIImage *)textImage;
@@ -77,17 +53,6 @@
  解析动图失败 ALIVC_SVIDEO_EDITOR_PARSE_RESOURCE_FAILED
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  */
-/****
- Adds an animated caption.
-
- @param caption The animated caption to be added.
- @param textImage The text image.
- @return
- ALIVC_COMMON_INVALID_STATE if the renderer's state is incorrect.
- ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST if the image file does not exist.
- ALIVC_SVIDEO_EDITOR_PARSE_RESOURCE_FAILED if an error occurred during image parsing. 
- ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- */
 - (int)addCaptionPaster:(AliyunEffectCaption *)caption textImage:(UIImage *)textImage;
 
 /**
@@ -97,15 +62,6 @@
  @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
- ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- */
-/****
- Removes a sticker.
-
- @param basePaster The sticker to be removed.
- @return
- ALIVC_COMMON_RETURN_SUCCESS if the invocation is successful.
- ALIVC_COMMON_INVALID_STATE if the renderer's state is incorrect.
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  */
 - (int)removePaster:(AliyunEffectPasterBase *)basePaster;

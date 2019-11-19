@@ -13,17 +13,10 @@
 
  继承自AliyunRotateAction
  */
-/****
- A class that defines rotation animations with a target angle.
-
- */
 @interface AliyunRotateToAction : AliyunRotateAction
 
 /**
  旋转到目标角度
- */
-/****
- The target angle of the rotation.
  */
 @property(nonatomic, assign) float toDegree;
 
@@ -32,12 +25,6 @@
 
  @param dict 初始化参数
  @return 旋转实例对象
- */
-/****
- Initializer.
-
- @param dict The initialization parameter.
- @return A rotation animation object.
  */
 - (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("deprecated");
 

@@ -11,9 +11,6 @@
 /**
  动图view的基类
  */
-/****
- A base class that defines views for stickers. 
- */
 @interface AliyunPasterBaseView : UIView
 
 - (UIImage *)captureImage;
