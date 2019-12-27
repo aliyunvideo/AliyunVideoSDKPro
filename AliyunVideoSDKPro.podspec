@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "AliyunVideoSDKPro"
-  s.version      = "3.13.0"
+  s.version      = "3.14.0"
   s.summary      = "aliyun video sdk professional"
 
   # This description is used to generate tags and improve search results.
@@ -42,6 +42,7 @@ Pod::Spec.new do |s|
   # s.license      = "MIT"
   s.license      = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
 
+   s.resource = "Resources/AliyunVideoSDKPro.bundle"
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -82,7 +83,7 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/aliyunvideo/AliyunVideoSDKPro.git", :tag => "#{s.version}" }
 
-
+  
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  CocoaPods is smart about how it includes source code. For source files
@@ -90,12 +91,15 @@ Pod::Spec.new do |s|
   #  For header files it will include any header in the folder.
   #  Not including the public_header_files will make all headers public.
   #
-
+   s.resource = "AliyunVideoSDKPro.bundle"
   # s.source_files  = "Classes", "Classes/**/*.{h,m}"
   s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
 
+  # s.subspec 'AliyunVideoCore' do |core|
+  #   core.vendored_frameworks = 'AliyunVideoCore.framework'
+  # end
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -118,12 +122,12 @@ Pod::Spec.new do |s|
   #
 
   # s.framework  = "SomeFramework"
-   s.frameworks = "SystemConfiguration", "MobileCoreServices"
+   s.frameworks = "SystemConfiguration", "MobileCoreServices", "CoreTelephony"
 
    s.library   = "resolv"
   # s.libraries = "iconv", "xml2"
 
-  s.vendored_frameworks = "frameworks/AliyunVideoSDKPro.framework"
+  s.vendored_frameworks = "AliyunVideoSDKPro.framework","AliyunVideoCore.framework"
 
 
   # s.dependency 'QuCore-ThirdParty', '~> 3.4.0'

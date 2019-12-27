@@ -22,7 +22,7 @@ else:
         wf.close
 
     tag = "git tag -a "+version+" -m '"+version+"'" 
-    trunk = 'pod trunk push ' + spec + ' --allow-warnings'
+    trunk = 'pod trunk push ' + spec + ' --allow-warnings --verbose --skip-import-validation'
 
     os.system('git add .')
     os.system('git commit -m release')
