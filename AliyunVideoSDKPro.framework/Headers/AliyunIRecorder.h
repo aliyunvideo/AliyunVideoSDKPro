@@ -381,6 +381,14 @@ enum {
 - (int)applyAnimationFilter:(AliyunEffectFilter *)filter;
 
 /**
+ 更新动效滤镜
+
+ @param filter 滤镜
+ @return 返回值
+ */
+- (int)updateAnimationFilter:(AliyunEffectFilter *)filter;
+
+/**
  添加mv
 
  @param mv mv

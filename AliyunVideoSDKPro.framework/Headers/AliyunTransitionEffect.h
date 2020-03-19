@@ -8,6 +8,9 @@
 
 #import "AliyunJSONModel.h"
 #import <Foundation/Foundation.h>
+
+@class AliyunEffectConfig;
+
 /**
  AliyunTransitionEffectTypeShuffer:     百叶窗
  AliyunTransitionEffectTypeTranslate:   平移
@@ -21,6 +24,7 @@ typedef enum : NSUInteger {
     AliyunTransitionEffectTypeCircle,
     AliyunTransitionEffectTypePolygon,
     AliyunTransitionEffectTypeFade,
+    AliyunTransitionEffectTypeCustom,
 } AliyunTransitionEffectType;
 
 /**
@@ -44,8 +48,50 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) NSDictionary *transitionParam;
 
 /**
+ 转场类型
+ */
+/**
+ Transition Type
+ */
+@property(nonatomic,assign) AliyunTransitionEffectType type;
+
+/**
+ 转场配置对象
+ */
+/**
+ The config object of Transition
+ */
+@property(nonatomic,strong) AliyunEffectConfig* effectConfig;
+
+/**
+ 自定义转场本地资源路径
+ */
+/**
+ The local resouce path of  custom Transition
+ */
+@property(nonatomic,copy) NSString *path;
+
+/**
+转场自定义参数字符串
+*/
+@property(nonatomic,copy) NSString *paramString;
+
+/**
  废弃方法
  */
 - (id)initWithRestore:(NSDictionary *)dict __deprecated_msg("deprecated");
+
+/**
+ 根据资源路径进行初始化
+ */
+/**
+ init by resource path
+ */
+-(id)initWithPath:(NSString *)path;
+
+/**
+ 获取转场配置参数
+ */
+-(NSString*)getFliterParamString;
 
 @end

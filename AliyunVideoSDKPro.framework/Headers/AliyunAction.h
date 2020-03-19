@@ -15,7 +15,7 @@
 /**
  动画基类
  */
-@interface AliyunAction : AliyunJSONModel
+@interface AliyunAction : AliyunJSONModel <NSMutableCopying>
 
 /**
   API_AVAILABLE(3.7.0)

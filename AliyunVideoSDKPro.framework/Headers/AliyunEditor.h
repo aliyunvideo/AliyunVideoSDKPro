@@ -389,6 +389,25 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 /**
  API_AVAILABLE(3.7.0)
 
+ 更新转场   注意：
+               ① 如果只有一个视频片段，不可调用此接口
+               ② 转场的时长不能超过前后两段视频中最短的视频时长
+
+ [----A视频段----] [----B视频段----] [----C视频段----]...[----N段视频----]
+                 ^                ^                 ^
+ clipIndex:      0                1                N-1
+
+
+ @param transition 具体的转场
+ @param clipIdx 视频片段交叉序列点
+ @return 返回值为ALIVC_COMMON_RETURN_FAILED失败
+ ALIVC_COMMON_RETURN_SUCCESS成功
+ */
+-(int)updateTransition:(AliyunTransitionEffect *)transition atIndex:(int)clipIdx;
+
+/**
+ API_AVAILABLE(3.7.0)
+
  删除某个转场效果  注意：
  使用此接口前，先调用[_editor stopEdit]，然后调用此接口，接着调用 [_editor startEdit] 和[_player play]
 
