@@ -617,7 +617,6 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  视频渲染最底层背景颜色
 
  在填充模式下具有效果
- 如果color设置为clearColor 那么默认背景为视频高斯模糊播放效果
  @param color 颜色
  @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
