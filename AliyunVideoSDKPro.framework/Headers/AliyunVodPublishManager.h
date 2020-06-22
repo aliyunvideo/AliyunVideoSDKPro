@@ -106,6 +106,12 @@ typedef NS_OPTIONS(NSInteger, AliyunVodUploadState) {
  */
 @property (nonatomic, copy) NSString *imagePath;
 
+/**
+ 上传是否开启日志上报，默认开启
+ */
+@property (nonatomic, assign) BOOL reportEnabled;
+
+
 #pragma mark - export
 
 /**

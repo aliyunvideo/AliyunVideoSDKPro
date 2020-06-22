@@ -147,6 +147,11 @@ __attribute__((deprecated)) @interface AliyunPublishManager : NSObject
 @property (nonatomic, assign) NSTimeInterval timeoutIntervalForRequest;
 
 /**
+ 上传是否开启日志上报，默认开启
+ */
+@property (nonatomic, assign) BOOL reportEnabled;
+
+/**
  设置水印
 
  @param waterMark 水印

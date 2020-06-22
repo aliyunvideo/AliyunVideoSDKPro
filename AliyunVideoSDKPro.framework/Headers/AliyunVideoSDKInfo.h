@@ -7,8 +7,8 @@
 // BUILD INFO
 // AliyunAlivcCommitId:7b3c612
 // AliyunMediaCoreCommitId:f391ff1
-// AliyunVideoSDKCommitId:cc1599a
-// AliyunVideoSDKBuildId:13102753
+// AliyunVideoSDKCommitId:635bbb3
+// AliyunVideoSDKBuildId:13311679
 
 #import <Foundation/Foundation.h>
 
@@ -40,7 +40,8 @@ extern NSString *const kAliyunVideoSDKModuleBasic;
  */
 typedef NS_ENUM(NSInteger, AlivcLogLevel)
 {
-    AlivcLogVerbose = 2,
+    AlivcLogClose = 1,
+    AlivcLogVerbose,
     AlivcLogDebug,
     AlivcLogInfo,
     AlivcLogWarn,
@@ -131,6 +132,13 @@ typedef NS_ENUM(NSInteger, AlivcDebugLogLevel)
  目前无需调用
  */
 + (void)registerSDK;
+
+/**
+ 获取日志等级
+ 
+ @return AlivcLogLevel.
+ */
++ (AlivcLogLevel)logLevel;
 
 /**
  设置日志等级
