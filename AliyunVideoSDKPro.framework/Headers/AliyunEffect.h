@@ -32,6 +32,7 @@ typedef NS_ENUM(NSInteger, AliyunAudioEffectType) {
     AliyunAudioEffectBigDevil,
     AliyunAudioEffectMinions,
     AliyunAudioEffectDenoise,
+    AliyunAudioEffectDialect
 };
 
 id QUSDKObjectOrNull(id object);
