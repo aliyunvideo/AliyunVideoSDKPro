@@ -131,9 +131,14 @@ enum {
  每次调用videoZoomFactor,实际变焦值zoom为设定的1/100
  例：调用videoZoomFactor = 10.0f，实际zoom += 0.1f
  例：调用videoZoomFactor = -5.0f，实际zoom -= 0.05f
- 前置摄像头时，该参数是无效的
  */
 @property(nonatomic, assign) CGFloat videoZoomFactor;
+
+/**
+ 设置前置摄像头是否支持调整变焦，后置摄像头默认支持变焦，前置摄像头默认不支持变焦
+ 当supportVideoZoomFactorForFrontCamera = YES时，前置摄像头支持变焦
+ */
+@property(nonatomic, assign) BOOL frontCameraSupportVideoZoomFactor;
 
 /**
  录制的视频是否左右翻转
