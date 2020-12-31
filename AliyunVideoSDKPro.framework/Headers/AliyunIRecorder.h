@@ -253,6 +253,12 @@ enum {
 @property(nonatomic, strong, readonly) AliyunClipManager *clipManager;
 
 /**
+ 录音是否使用AVAudioSessionModeVideoRecording模式，默认YES
+ */
+@property(nonatomic, assign) BOOL useAudioSessionModeVideoRecording;
+
+
+/**
  获取版本号
 
  @return 版本号

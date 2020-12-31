@@ -73,7 +73,7 @@
 - (void)setOutputDurationReferenceTrack:(AliyunMixTrack *)referenceTrack;
 
 /**
- 指定以某个轨道的音频作为最终合成视频的音频
+ 指定以某个轨道的音频作为最终合成视频的音频，v3.18.0之后未指定音轨则为静音
 
  @param referenceTrack 轨道
  */

@@ -40,6 +40,20 @@
 
 @end
 
+
+/**
+ 设置合成视频使用的音轨类型
+ 
+ - MixAudioSourceTypeOriginal:  原始媒体的音轨
+ - MixAudioSourceTypeRecorded:  录制的音轨
+ - MixAudioSourceTypeMute:      静音
+ */
+typedef NS_ENUM(NSUInteger, MixAudioSourceType) {
+    MixAudioSourceTypeOriginal,
+    MixAudioSourceTypeRecorded,
+    MixAudioSourceTypeMute,
+};
+
 @interface AliyunMixRecorder : NSObject
 
 /**
@@ -230,6 +244,13 @@
  @return 合拍对象
  */
 - (instancetype)initWithMediaInfo:(AliyunMixMediaInfoParam *)param outputSize:(CGSize)outputSize;
+
+/**
+ 设置合成视频使用的录制音轨 默认使用原始媒体的音轨
+ 
+ @param audioSourceType 查看MixAudioSourceType定义
+ */
+- (void)setMixAudioSource:(MixAudioSourceType)audioSourceType;
 
 /**
  删除最后一段
