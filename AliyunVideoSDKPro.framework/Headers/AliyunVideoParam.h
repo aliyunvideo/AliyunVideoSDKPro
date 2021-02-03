@@ -68,6 +68,19 @@ typedef NS_ENUM(NSInteger, AliyunVideoCodecType) {
 };
 
 /**
+合拍背景图裁剪模式
+ 
+ - AliyunMixVideoBackgroundImageModeScaleAspectFill: 按图片比例填充
+ - AliyunMixVideoBackgroundImageModeScaleAspectFit: 按图片比例适配
+ - AliyunMixVideoBackgroundImageModeScaleToFill: 填充
+ */
+typedef NS_ENUM(NSInteger, AliyunMixVideoBackgroundImageMode) {
+    AliyunMixVideoBackgroundImageModeScaleAspectFill,
+    AliyunMixVideoBackgroundImageModeScaleAspectFit,
+    AliyunMixVideoBackgroundImageModeScaleToFill,
+};
+
+/**
  视频参数设置类
  */
 @interface AliyunVideoParam : NSObject

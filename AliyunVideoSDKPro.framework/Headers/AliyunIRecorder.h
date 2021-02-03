@@ -255,7 +255,7 @@ enum {
 /**
  录音是否使用AVAudioSessionModeVideoRecording模式，默认YES
  */
-@property(nonatomic, assign) BOOL useAudioSessionModeVideoRecording;
+@property(nonatomic, assign) BOOL useAudioSessionModeVideoRecording __deprecated_msg("3.19.0废弃");
 
 
 /**

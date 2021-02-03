@@ -541,9 +541,9 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 - (int)setMainStreamsAudioWeight:(int)weight;
 
 /**
- 设置单路音频去噪
+ 设置单路音频降噪
 
- @param denoise 是否去噪
+ @param denoise 是否降噪，如果开启，降噪weight=20
  @param streamId 流id
  AliyunEffectMusic流id：effectVid
  AliyunEffectMV流id：audioEffectVid
@@ -553,15 +553,40 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  */
 - (int)setAudioDenoise:(BOOL)denoise streamId:(int)streamId;
 
-/**
- 设置主流音频去噪
 
- @param denoise 是否去噪
+
+/**
+ 设置单路音频降噪
+
+ @param weight 降噪权值 [0~100]，取0表示关闭，值越大降噪越厉害
+ @param streamId 流id
+ AliyunEffectMusic流id：effectVid
+ AliyunEffectMV流id：audioEffectVid
+ @return
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED
+ */
+- (int)setAudioDenoiseWeight:(int)weight streamId:(int)streamId;
+
+/**
+ 设置主流音频降噪
+
+ @param denoise 是否降噪，如果开启，降噪weight=20
  @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
 - (int)setMainStreamsAudioDenoise:(BOOL)denoise;
+
+/**
+ 设置主流音频降噪
+
+ @param weight 降噪权值 [0~100]，取0表示关闭，值越大降噪越厉害
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ */
+- (int)setMainStreamsAudioDenoiseWeight:(int)weight;
 
 /**
  设置单路流音效

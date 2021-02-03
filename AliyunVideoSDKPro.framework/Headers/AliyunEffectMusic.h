@@ -43,11 +43,18 @@
 @property(nonatomic, assign) int audioMixWeight;
 
 /**
+ 降噪大小
+
+ 0-100，0关闭降噪，值越大降噪幅度越大
+ */
+@property(nonatomic, assign) int audioDenoiseWeight;
+
+/**
  是否去噪
 
  已废弃，请使用音效列表AliyunAudioEffect代替
  */
-@property(nonatomic, assign) BOOL denoise __deprecated_msg("deprecated");
+@property(nonatomic, assign) BOOL denoise __deprecated_msg("use audioDenoiseWeight");
 
 /**
  音效列表

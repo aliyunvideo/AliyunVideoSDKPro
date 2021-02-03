@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, AliyunAudioEffectType) {
     AliyunAudioEffectRobot,
     AliyunAudioEffectBigDevil,
     AliyunAudioEffectMinions,
-    AliyunAudioEffectDenoise,
+    AliyunAudioEffectDenoise   __deprecated_msg("use AliyunEditor::setAudioDenoiseWeight:streamId:"), // 已失效，请使用AliyunEditor::setAudioDenoise:streamId:
     AliyunAudioEffectDialect
 };
 

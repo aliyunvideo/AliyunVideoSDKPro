@@ -47,11 +47,24 @@
  - MixAudioSourceTypeOriginal:  原始媒体的音轨
  - MixAudioSourceTypeRecorded:  录制的音轨
  - MixAudioSourceTypeMute:      静音
+ - MixAudioSourceTypeBoth:      2个音轨进行混音  API_AVAILABLE(3.19.0)
  */
 typedef NS_ENUM(NSUInteger, MixAudioSourceType) {
     MixAudioSourceTypeOriginal,
     MixAudioSourceTypeRecorded,
     MixAudioSourceTypeMute,
+    MixAudioSourceTypeBoth,
+};
+
+/**
+ 录音回音消除效果
+ 
+ - AliyunIRecorderAECTypeNone:  回音消除不开启
+ - AliyunIRecorderAECTypeHardware:  开启硬件回音消除
+ */
+typedef NS_ENUM(NSInteger, AliyunIRecorderAECType) {
+    AliyunIRecorderAECTypeNone,
+    AliyunIRecorderAECTypeHardware,
 };
 
 @interface AliyunMixRecorder : NSObject
@@ -230,6 +243,11 @@ typedef NS_ENUM(NSUInteger, MixAudioSourceType) {
 @property(nonatomic, assign, readonly) BOOL isRecording;
 
 /**
+ 录音回音效果，默认AliyunIRecorderAECTypeNone，不开启回音消除，API_AVAILABLE(3.19.0)
+ */
+@property(nonatomic, assign) AliyunIRecorderAECType recorderAECType;
+
+/**
  人脸数量的回调
 
  在useFaceDetect开启的状态下生效
@@ -251,6 +269,15 @@ typedef NS_ENUM(NSUInteger, MixAudioSourceType) {
  @param audioSourceType 查看MixAudioSourceType定义
  */
 - (void)setMixAudioSource:(MixAudioSourceType)audioSourceType;
+
+
+/**
+ 设置音轨音量，audioSourceType为MixAudioSourceTypeBoth生效
+ API_AVAILABLE(3.19.0)
+ @param originalWeight 原始音轨混音音量大小[0~100]
+ @param recordWeight 录制音轨混音音量大小[0~100]
+ */
+- (void)setMixAudioOriginalWeight:(int)originalWeight recordWeight:(int)recordWeight;
 
 /**
  删除最后一段
@@ -298,6 +325,22 @@ typedef NS_ENUM(NSUInteger, MixAudioSourceType) {
  @return 片段数
  */
 - (NSInteger)partCount;
+
+/**
+ 指定合成的背景颜色，默认为0，黑色，API_AVAILABLE(3.19.0)
+ 
+ @param backgroundColor 颜色, 如0xfffff;
+ */
+- (void)setBackgroundColor:(int)backgroundColor;
+
+/**
+指定合成的背景图片路径 API_AVAILABLE(3.19.0)
+
+@param backgroundImageFilePath 图片路径，nil 为不设置图片，默认nil
+@param imageDisplayMode        图片裁剪模式 查看 AliyunMixVideoBackgroundImageMode
+*/
+- (void)setBackgroundImageFilePath:(NSString *)backgroundImageFilePath
+                  imageDisplayMode:(AliyunMixVideoBackgroundImageMode)imageDisplayMode;
 
 /**
  开始预览
