@@ -8,7 +8,7 @@
 // AliyunAlivcCommitId:3cbf7c6
 // AliyunMediaCoreCommitId:f391ff1
 // AliyunVideoSDKCommitId:d5e9ec7
-// AliyunVideoSDKBuildId:14528573
+// AliyunVideoSDKBuildId:14534739
 
 #import <Foundation/Foundation.h>
 
