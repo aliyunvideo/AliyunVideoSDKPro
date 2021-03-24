@@ -35,6 +35,68 @@ typedef NS_ENUM(NSInteger, AliyunAudioEffectType) {
     AliyunAudioEffectDialect
 };
 
+/**
+ API_AVAILABLE(3.20.0)
+ 音频淡入淡出函数曲线类型
+ 
+ -AliyunEditorAudioFadeShapeLinear:   线性曲线
+ -AliyunEditorAudioFadeShapeSin: 正弦函数曲线
+ */
+typedef NS_ENUM(NSUInteger, AliyunAudioFadeShape) {
+    AliyunAudioFadeShapeLinear,
+    AliyunAudioFadeShapeSin,
+};
+
+/**
+ API_AVAILABLE(3.20.0)
+ 视频增强类型
+
+ - AliyunVideoAugmentationTypeBrightness: 亮度
+ - AliyunVideoAugmentationTypeContrast: 对比度
+ - AliyunVideoAugmentationTypeSaturation: 饱和度
+ - AliyunVideoAugmentationTypeSharpness: 锐度
+ - AliyunVideoAugmentationTypeVignette: 暗角
+ */
+typedef NS_ENUM(NSUInteger, AliyunVideoAugmentationType) {
+    AliyunVideoAugmentationTypeBrightness = 0,
+    AliyunVideoAugmentationTypeContrast,
+    AliyunVideoAugmentationTypeSaturation,
+    AliyunVideoAugmentationTypeSharpness,
+    AliyunVideoAugmentationTypeVignette
+};
+
+
+/**
+ API_AVAILABLE(3.20.0)
+ 亮度调节默认值，返回0.5
+ */
+extern const float AliyunVideoBrightnessDefaultValue;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 对比度调节默认值，返回0.25
+ */
+extern const float AliyunVideoContrastDefaultValue;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 饱和度调节默认值，返回0.5
+ */
+extern const float AliyunVideoSaturationDefaultValue;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 锐度调节默认值，返回0.0
+ */
+extern const float AliyunVideoSharpnessDefaultValue;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 暗角调节默认值，返回0.0
+ */
+extern const float AliyunVideoVignetteDefaultValue;
+
+
 id QUSDKObjectOrNull(id object);
 
 /**
@@ -103,5 +165,26 @@ id QUSDKObjectOrNull(id object);
  音效值0-100
  */
 @property(nonatomic, assign) int weight;
+
+@end
+
+
+/**
+ API_AVAILABLE(3.20.0)
+ 音频淡入淡出Model
+ */
+@interface AliyunAudioFade : AliyunJSONModel
+
+/**
+ API_AVAILABLE(3.20.0)
+ 曲线
+ */
+@property(nonatomic, assign) AliyunAudioFadeShape shape;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 时长（单位：秒）
+ */
+@property(nonatomic, assign) float duration;
 
 @end

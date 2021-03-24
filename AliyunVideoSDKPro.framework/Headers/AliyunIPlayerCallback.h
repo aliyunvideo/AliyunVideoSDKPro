@@ -47,6 +47,8 @@
 
 #pragma mark - It is not recommended to use the following methods.
 
+@optional
+
 /**
  seek结束
  */
@@ -58,7 +60,7 @@
  */
 - (void)playerDidStart __deprecated_msg("deprecated");
 
-@optional
+
 
 /**
  播放进度

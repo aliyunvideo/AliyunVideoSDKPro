@@ -35,6 +35,7 @@
 #import "AliyunVideoParam.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "AliyunRollCaptionComposer.h"
 
 /**
  编辑模式枚举值
@@ -447,6 +448,27 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  */
 - (int)removePaint:(AliyunEffectImage *)paintImage;
 
+
+/**
+ API_AVAILABLE(3.20.0)
+ 设置视频增强参数
+ @param streamId 目标流id
+ @param videoAugmentationType 增强类型
+ @see AliyunVideoAugmentationType
+ @param value 参数值范围[0.0, 1.0]
+ @return 正确返回0，错误返回错误码
+ */
+- (int)setVideoAugmentation:(AliyunVideoAugmentationType)videoAugmentationType value:(float)value streamId:(int)streamId;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 重置视频增强参数
+ @param videoAugmentationType 增强类型
+ @see AliyunVideoAugmentationType
+ @return 正确返回0，错误返回错误码
+ * */
+- (int)resetVideoAugmentation:(AliyunVideoAugmentationType)videoAugmentationType streamId:(int)streamId;
+
 /**
  设置水印
  
@@ -627,6 +649,83 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 - (int)removeMainStreamsAudioEffect:(AliyunAudioEffectType)typ;
 
 /**
+ API_AVAILABLE(3.20.0)
+ 设置音频淡入，从音频0秒开始
+ 
+ @param streamId 流ID
+ @param shape 曲线形状 @AliyunEditorAudioFadeShape
+ @param duration 作用时长（单位秒）
+ @return 正确返回0，错误返回错误码
+ */
+- (int)setAudioFadeInShape:(AliyunAudioFadeShape)shape duration:(float)duration streamId:(int)streamId;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 去除淡入效果
+
+ @param streamId 流ID
+ @return 返回值
+ */
+- (int)removeAudioFadeInWithStreamId:(int)streamId;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 设置主流淡入效果
+ 
+ @param shape 曲线形状 @AliyunAudioFadeShape
+ @param duration 作用时长（单位秒）
+ @return 正确返回0，错误返回错误码
+ */
+- (int)setMainStreamsAudioFadeInShape:(AliyunAudioFadeShape)shape duration:(float)duration;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 去除主流淡入效果
+
+ @return 返回值
+ */
+- (int)removeMainStreamsAudioFadeIn;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 设置音频淡出，到结束
+ 
+ @param streamId 流ID
+ @param shape 曲线形状 @AliyunAudioFadeShape
+ @param duration 作用时长（单位秒）
+ @return 正确返回0，错误返回错误码
+ */
+- (int)setAudioFadeOutShape:(AliyunAudioFadeShape)shape duration:(float)duration streamId:(int)streamId;
+
+
+/**
+ API_AVAILABLE(3.20.0)
+ 去除淡出效果
+
+ @param streamId 流ID
+ @return 返回值
+ */
+- (int)removeAudioFadeOutWithStreamId:(int)streamId;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 设置主流淡出效果
+ 
+ @param shape 曲线形状 @AliyunAudioFadeShape
+ @param duration 作用时长（单位秒）
+ @return 正确返回0，错误返回错误码
+ */
+- (int)setMainStreamsAudioFadeOutShape:(AliyunAudioFadeShape)shape duration:(float)duration;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 去除主流淡出效果
+
+ @return 返回值
+ */
+- (int)removeMainStreamsAudioFadeOut;
+
+/**
  画面填充模式
 
  @param mode  AliyunScaleModeFit = 0,      // 填充    
@@ -666,6 +765,12 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  @param blur 视频高斯模糊效果
  */
 - (void)removeBlurBackgroundPlay:(AliyunEffectBlurBackground *)blur;
+
+
+/**
+ 获取翻转字幕编排 API_AVAILABLE(3.20.0)
+ */
+- (AliyunRollCaptionComposer *)rollCaptionComposer;
 
 #pragma mark - deprecated. It is not recommended to use the following methods.
 /**
@@ -795,4 +900,5 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  @return 返回值为水印id或者错误码 详细：如果返回值范围为 >0  && < ALIVC_FRAMEWORK_ERROR_START， 则为水印id；否则为错误码。
  */
 - (int)setWaterMark:(NSString *)imagePath frame:(CGRect)frame __deprecated_msg("use setWaterMark:(AliyunEffectImage *)waterMark");
+
 @end

@@ -16,7 +16,7 @@ static const double kQUSDKPasterBase = 640.f;
 /**
  所有动图/字幕的基类
  */
-@interface AliyunEffectPasterBase : AliyunEffect
+@interface AliyunEffectPasterBase : AliyunEffect<AliyunActionProtocol>
 
 /**
  设置开始时间

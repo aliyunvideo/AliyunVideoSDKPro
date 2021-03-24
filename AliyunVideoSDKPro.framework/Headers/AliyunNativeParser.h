@@ -7,7 +7,7 @@
 //
 
 #import <CoreGraphics/CoreGraphics.h>
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #define ALIYUN_VIDEO_STREAM_DIC_KEY_START 0
 #define ALIYUN_VIDEO_STREAM_INDEX (ALIYUN_VIDEO_STREAM_DIC_KEY_START)
@@ -46,13 +46,14 @@
 #define ALIYUN_FILE_BIT_RATE (ALIYUN_FILE_DIC_KEY_START + 4)
 #define DIC_KEY_END 30
 
+typedef void(^ThumbnailCallBack)(int errorCode, NSArray<UIImage *>* imageList);
+
 extern NSString *const AliyunNativeParserUnknown;
 
 /**
  视频参数解析器
  */
 @interface AliyunNativeParser : NSObject
-
 /**
  初始化参数解析器
 
@@ -228,4 +229,32 @@ extern NSString *const AliyunNativeParserUnknown;
  @return 视频最大缓存大小
  */
 - (int)getMaxEstimatedCacheSize __deprecated_msg("deprecated");
+@end
+
+
+
+@interface AliyunNativeParser (Thumbnail)
+
+/**
+ 获取视频流缩略图 API_AVAILABLE(3.20.0)
+ 
+ @param duration 获取图片的间隔，单位：秒
+ @param imageWidth 获得的图片宽度分辨率
+ @param complete 回调complete，@see ThumbnailCallBack
+ */
+- (void)loadThumbnailListWithDuration:(float)duration
+                           imageWidth:(int)imageWidth
+                             complete:(ThumbnailCallBack)complete;
+
+
+/**
+ 获取视频流缩略图 API_AVAILABLE(3.20.0)
+ 
+ @param timeList 里面包含时间戳，单位：秒
+ @param imageWidth 获得的图片宽度分辨率
+ @param complete 回调complete，@see ThumbnailCallBack
+ */
+- (void)loadThumbnailWithTimeList:(NSArray<NSNumber *> *)timeList
+                       imageWidth:(int)imageWidth
+                         complete:(ThumbnailCallBack)complete;
 @end

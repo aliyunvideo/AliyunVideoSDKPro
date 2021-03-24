@@ -48,4 +48,17 @@
  音效列表
  */
 @property(nonatomic, strong) NSMutableArray<AliyunAudioEffect *> *audioEffects;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 淡入Model
+ */
+@property(nonatomic, strong) AliyunAudioFade *fadeIn;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 淡出Model
+ */
+@property(nonatomic, strong) AliyunAudioFade *fadeOut;
+
 @end

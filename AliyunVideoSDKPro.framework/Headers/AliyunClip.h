@@ -77,6 +77,36 @@ typedef NS_ENUM(NSInteger, AliyunClipType) {
 @property(nonatomic, assign) int rotation;
 
 /**
+ API_AVAILABLE(3.20.0)
+ 亮度值
+ */
+@property(nonatomic, assign) float brightnessValue;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 对比度值
+ */
+@property(nonatomic, assign) float contrastValue;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 饱和度值
+ */
+@property(nonatomic, assign) float saturationValue;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 锐度值
+ */
+@property(nonatomic, assign) float sharpnessValue;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 暗角值
+ */
+@property(nonatomic, assign) float vignetteValue;
+
+/**
  持续时长
  */
 @property(nonatomic, assign) CGFloat duration;
@@ -98,6 +128,18 @@ typedef NS_ENUM(NSInteger, AliyunClipType) {
  只对有音频的视频流生效
  */
 @property(nonatomic, strong) NSMutableArray<AliyunAudioEffect *> *audioEffects;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 淡入Model
+ */
+@property(nonatomic, strong) AliyunAudioFade *fadeIn;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 淡出Model
+ */
+@property(nonatomic, strong) AliyunAudioFade *fadeOut;
 
 /**
  音量大小
