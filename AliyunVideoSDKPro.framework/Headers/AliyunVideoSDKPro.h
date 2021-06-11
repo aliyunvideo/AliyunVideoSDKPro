@@ -96,6 +96,32 @@ FOUNDATION_EXPORT const unsigned char AliyunVideoSDKProVersionString[];
 #import <AliyunVideoSDKPro/AliyunEffectConfig.h>
 #import <AliyunVideoSDKPro/AliyunRollCaptionComposer.h>
 #import <AliyunVideoSDKPro/AliyunThumbnailParser.h>
+#import <AliyunVideoSDKPro/AliyunCaptionSticker.h>
 
+#import <AliyunVideoSDKPro/AliyunStickerManager.h>
+
+#import <AliyunVideoSDKPro/AliyunSticker.h>
+#import <AliyunVideoSDKPro/AliyunGifSticker.h>
+#import <AliyunVideoSDKPro/AliyunGifStickerController.h>
+
+#import <AliyunVideoSDKPro/AliyunRenderModel.h>
+#import <AliyunVideoSDKPro/AliyunRenderBaseController.h>
+#import <AliyunVideoSDKPro/AliyunCaptionStickerController.h>
+
+#import <AliyunVideoSDKPro/AliyunImageSticker.h>
+#import <AliyunVideoSDKPro/AliyunRecorderSticker.h>
+
+#import <AliyunVideoSDKPro/AliyunRecordSource.h>
+#import <AliyunVideoSDKPro/AliyunMicRecordSource.h>
+#import <AliyunVideoSDKPro/AliyunCameraRecordSource.h>
+#import <AliyunVideoSDKPro/AliyunViewRecordSource.h>
+#import <AliyunVideoSDKPro/AliyunPlayerRecordSource.h>
+
+#import <AliyunVideoSDKPro/AliyunRecordController.h>
+#import <AliyunVideoSDKPro/AliyunAudioRecordController.h>
+#import <AliyunVideoSDKPro/AliyunVideoRecordController.h>
+
+#import <AliyunVideoSDKPro/AliyunRecorderConfig.h>
+#import <AliyunVideoSDKPro/AliyunRecorder.h>
 
 #endif

@@ -19,7 +19,7 @@
 
 /**
  添加动图渲染
-
+ 
  @param paster 动图对象
  @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
@@ -32,7 +32,7 @@
 
 /**
  添加纯文字
-
+ 
  @param subtitle 纯文字动图对象
  @param textImage 文字截图
  @return
@@ -44,7 +44,7 @@
 
 /**
  添加字幕动图
-
+ 
  @param caption 字幕动图对象
  @param textImage 文字截图
  @return

@@ -41,8 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BOOL)reset;
 
-
-
 @end
 
 NS_ASSUME_NONNULL_END

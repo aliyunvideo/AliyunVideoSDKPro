@@ -52,10 +52,6 @@ static const double kQUSDKPasterBase = 640.f;
  */
 @property(nonatomic, assign) CGSize displaySize;
 
-/**
- 视频导出分辨率
- */
-@property(nonatomic, assign) CGSize outputSize;
 
 /**
  动图的位置大小
@@ -124,5 +120,12 @@ static const double kQUSDKPasterBase = 640.f;
  @return 动画集合
  */
 - (NSArray *)allActions;
+
+
+
+/**
+ 视频导出分辨率
+ */
+@property(nonatomic, assign) CGSize outputSize;
 
 @end

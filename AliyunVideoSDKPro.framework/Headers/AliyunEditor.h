@@ -36,6 +36,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "AliyunRollCaptionComposer.h"
+#import "AliyunStickerManager.h"
 
 /**
  编辑模式枚举值
@@ -112,19 +113,14 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  */
 - (id<AliyunIExporter>)getExporter;
 
-/**
- 获取PasterRender实例
 
- @return PasterRender
- */
-- (id<AliyunIPasterRender>)getPasterRender;
 
 /**
- 获取动图管理类
-
- @return AliyunPasterManager
+ 获取贴图管理类(字幕/动图) API_AVAILABLE(3.20.0)
+ 
+ @return AliyunStickerManager
  */
-- (AliyunPasterManager *)getPasterManager;
+- (AliyunStickerManager *)getStickerManager;
 
 /**
  获取渲染窗口像素大小
@@ -900,5 +896,23 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  @return 返回值为水印id或者错误码 详细：如果返回值范围为 >0  && < ALIVC_FRAMEWORK_ERROR_START， 则为水印id；否则为错误码。
  */
 - (int)setWaterMark:(NSString *)imagePath frame:(CGRect)frame __deprecated_msg("use setWaterMark:(AliyunEffectImage *)waterMark");
+
+
+/**
+ 获取贴图管理类
+ 
+ @return AliyunPasterManager
+ */
+- (AliyunPasterManager *)getPasterManager __deprecated_msg("use getStickerManager");
+
+
+/**
+ 获取PasterRender实例
+ 
+ @return PasterRender
+ */
+- (id<AliyunIPasterRender>)getPasterRender __deprecated_msg("use getStickerManager");
+
+
 
 @end

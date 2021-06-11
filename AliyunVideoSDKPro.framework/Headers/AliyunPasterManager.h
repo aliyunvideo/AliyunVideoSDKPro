@@ -11,9 +11,9 @@
 #import <Foundation/Foundation.h>
 
 /**
- 动图管理器协议
+ 已废弃，请使用AliyunStickerManager
  */
-@protocol AliyunPasterManagerDelegate <NSObject>
+__attribute__((deprecated(("please use AliyunStickerManager")))) @protocol AliyunPasterManagerDelegate <NSObject>
 
 /**
  动图控制器即将被删除
@@ -25,9 +25,9 @@
 @end
 
 /**
- 动图管理器
+ 已废弃，请使用AliyunStickerManager
  */
-@interface AliyunPasterManager : NSObject
+__attribute__((deprecated("please use AliyunStickerManager"))) @interface  AliyunPasterManager : NSObject
 
 /**
  动图管理器回调
