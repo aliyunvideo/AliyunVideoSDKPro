@@ -148,7 +148,6 @@ typedef NS_ENUM(NSInteger, AliyunCropCutMode) { AliyunCropCutModeScaleAspectFill
 
  软编：0
  硬编：1
- 默认硬编
  */
 @property(nonatomic, assign) int encodeMode; 
 
@@ -165,7 +164,7 @@ typedef NS_ENUM(NSInteger, AliyunCropCutMode) { AliyunCropCutModeScaleAspectFill
 
  裁剪音乐时无需设置
  */
-@property(nonatomic, assign) BOOL useHW;
+@property(nonatomic, assign) BOOL useHW __deprecated_msg("deprecated");
 
 /**
  是否开启优化

@@ -61,10 +61,12 @@ typedef NS_ENUM(NSUInteger, MixAudioSourceType) {
  
  - AliyunIRecorderAECTypeNone:  回音消除不开启
  - AliyunIRecorderAECTypeHardware:  开启硬件回音消除
+ - AliyunIRecorderAECType3A:  开启3A算法回音消除
  */
 typedef NS_ENUM(NSInteger, AliyunIRecorderAECType) {
     AliyunIRecorderAECTypeNone,
     AliyunIRecorderAECTypeHardware,
+    AliyunIRecorderAECType3A,
 };
 
 @interface AliyunMixRecorder : NSObject

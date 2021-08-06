@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AliyunGifStickerController.h"
 #import "AliyunCaptionStickerController.h"
+#import "AliyunImageStickerController.h"
 
 
 
@@ -41,6 +42,18 @@
 - (AliyunGifStickerController *)addGif:(NSString *)filePath
                              startTime:(double)startTime
                               duration:(double)duration;
+
+/**
+ 添加静态图 API_AVAILABLE(3.23.0)
+ 
+ @param imagePath 图片文件路径
+ @param startTime 图片开始时间，单位：秒
+ @param duration 图片持续时间，单位：秒
+ @return 返回 AliyunImageStickerController控制器
+ */
+- (AliyunImageStickerController *) addImage:(NSString *)imagePath
+                                  startTime:(double)startTime
+                                   duration:(double)duration;
 
 
 /**

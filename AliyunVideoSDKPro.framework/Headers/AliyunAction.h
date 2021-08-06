@@ -9,8 +9,10 @@
 #import "AliyunJSONModel.h"
 #import <Foundation/Foundation.h>
 
-#define ALIYUN_ADD_ACTION_NOTI @"kNotificationAddAction"
-#define ALIYUN_REMOVE_ACTION_NOTI @"kNotificationRemoveAction"
+typedef NS_ENUM(NSUInteger, AliyunActionCoordinateSpace) {
+    AliyunActionCoordinateSpace_Local   = 0,
+    AliyunActionCoordinateSpace_Global  = 1,
+};
 
 /**
  动画基类

@@ -6,7 +6,7 @@
 //  Copyright © 2021 aliyun. All rights reserved.
 //
 
-#import "AliyunRenderBaseController.h"
+#import "AliyunStickerController.h"
 #import "AliyunImageSticker.h"
 
 /**
@@ -15,7 +15,11 @@
 /**
  The controller of image sticker API_AVAILABLE(3.22.0)
  */
-@interface AliyunImageStickerController : AliyunRenderBaseController
+@interface AliyunImageStickerController : AliyunStickerController
+@end
+
+
+@interface AliyunImageStickerController (Model)
 /**
  图片贴纸 API_AVAILABLE(3.22.0)
  */

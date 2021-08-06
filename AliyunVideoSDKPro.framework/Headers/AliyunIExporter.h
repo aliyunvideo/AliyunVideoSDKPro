@@ -11,14 +11,6 @@
 
 @protocol AliyunIExporter <NSObject>
 /**
- 添加片尾水印
-
- @param image 水印图片
- @return 返回值为片尾id或者错误码 详细：如果返回值范围为 >0  && < ALIVC_FRAMEWORK_ERROR_START， 则为片尾水印id；否则为错误码。
- */
-- (int)setTailWaterMark:(UIImage *)image frame:(CGRect)frame duration:(CGFloat)duration __deprecated_msg("use setWaterMark:(AliyunEffectImage *)waterMark in AliyunEditor");
-
-/**
  设置水印
 
  @param waterMark 水印
@@ -94,7 +86,6 @@
  继续导出视频
 
  @return 
->>>>>>> release/svideo_v3.10.0
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
@@ -109,4 +100,12 @@
  */
 -(int)cancelExport;
 
+@optional
+/**
+ 添加片尾水印
+
+ @param image 水印图片
+ @return 返回值为片尾id或者错误码 详细：如果返回值范围为 >0  && < ALIVC_FRAMEWORK_ERROR_START， 则为片尾水印id；否则为错误码。
+ */
+- (int)setTailWaterMark:(UIImage *)image frame:(CGRect)frame duration:(CGFloat)duration __deprecated_msg("use setWaterMark:(AliyunEffectImage *)waterMark in AliyunEditor");
 @end

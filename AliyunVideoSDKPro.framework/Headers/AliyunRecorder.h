@@ -275,7 +275,19 @@ typedef NS_ENUM(NSUInteger, AliyunRecorderState) {
  
  @param completion the callback of finishRecord; finish record need merge multi record clip async. it will call this function if merge finish
  */
-- (void) finishRecord:(void(^)(NSString *outputPath, NSError *error))completion;
+- (void) finishRecord:(void(^)(NSString *taskPath, NSError *error))completion;
+
+/**
+ 结束录制，输出给编辑器 API_AVAILABLE(3.23.0)
+ 
+ @param completion 结束完成的回调
+ */
+/**
+ Finish record for editor API_AVAILABLE(3.23.0)
+ 
+ @param completion the callback of finish recording
+ */
+- (void) finishRecordForEdit:(void(^)(NSString *taskPath, NSError *error))completion;
 
 /**
  取消录制；删除之前录制片段，状态重置为idle API_AVAILABLE(3.22.0)

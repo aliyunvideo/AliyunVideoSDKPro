@@ -15,6 +15,12 @@ typedef NS_OPTIONS(NSUInteger, AliyunCaptionStickerFaceType) {
     AliyunCaptionStickerFaceTypeItatic                 = 1 << 1,//斜体
 };
 
+typedef NS_OPTIONS(NSUInteger, AliyunCaptionStickerTextAlignment) {
+    AliyunCaptionStickerTextAlignmentLeft             = 1<<0,
+    AliyunCaptionStickerTextAlignmentCenter           = 1<<1,
+    AliyunCaptionStickerTextAlignmentRight            = 1<<2,
+};
+
 @interface AliyunCaptionSticker : AliyunSticker<NSCopying>
 
 /**
@@ -36,11 +42,6 @@ typedef NS_OPTIONS(NSUInteger, AliyunCaptionStickerFaceType) {
  字体名称,优先级高于fontPath，不设置默认使用系统字体 API_AVAILABLE(3.22.0)
  */
 @property (nonatomic, copy) NSString *fontName;
-
-/**
- 字体大小，默认 30 API_AVAILABLE(3.22.0)
- */
-@property (nonatomic, assign) CGFloat fontSize;
 
 /**
  文字颜色， 默认白色 API_AVAILABLE(3.22.0)
@@ -76,6 +77,18 @@ typedef NS_OPTIONS(NSUInteger, AliyunCaptionStickerFaceType) {
  花字效果文件夹路径 API_AVAILABLE(3.22.0)
  */
 @property (nonatomic, copy) NSString *fontEffectTemplatePath;
+
+/**
+ 文字对齐方式 API_AVAILABLE(3.23.0)
+ */
+@property (nonatomic, assign) AliyunCaptionStickerTextAlignment textAlignment;
+
+
+/**
+ 背景颜色， 默认颜色alpha等于0 API_AVAILABLE(3.23.0)
+ */
+@property (nonatomic, strong) UIColor *backgroundColor;
+
 
 @end
 

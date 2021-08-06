@@ -38,6 +38,14 @@
 @property (nonatomic, readonly) NSTimeInterval duration; // second
 
 /**
+ 目标视频 API_AVAILABLE(3.23.0)
+ */
+/**
+ The target asset API_AVAILABLE(3.23.0)
+ */
+@property (nonatomic, readonly) AVAsset *targetAsset;
+
+/**
   API_AVAILABLE(3.22.0)
  @param asset 视频资源
  @param fps 采集频率

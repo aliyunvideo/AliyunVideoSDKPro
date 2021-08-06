@@ -37,6 +37,7 @@
 #import <UIKit/UIKit.h>
 #import "AliyunRollCaptionComposer.h"
 #import "AliyunStickerManager.h"
+#import "AliyunEditorProject.h"
 
 /**
  编辑模式枚举值
@@ -51,15 +52,21 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
     AliyunEditorModeExport
 };
 
+@class AliyunEditor;
+@protocol AliyunEditorDelegate <NSObject>
+@optional
+- (void) onEditor:(AliyunEditor *)editor editingDidChange:(BOOL)isEditing;
+- (void) onEditor:(AliyunEditor *)editor loadingDidChange:(BOOL)isLoading;
+- (void) onEditor:(AliyunEditor *)editor loadError:(NSError *)error;
+@end
+
 /**
  编辑器
  */
-@interface AliyunEditor : NSObject
-
 /**
- 播放，合成，渲染回调类
+ A class that defines editors.
  */
-@property(nonatomic, weak) id<AliyunIPlayerCallback, AliyunIExporterCallback, AliyunIRenderCallback> delegate;
+@interface AliyunEditor : NSObject
 
 /**
  初始化Editor
@@ -70,6 +77,35 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  */
 - (instancetype)initWithPath:(NSString *)taskPath preview:(UIView *)preview;
 
+/**
+ taskPath文件夹路径
+ */
+/**
+ The path of the task folder
+ */
+@property(nonatomic, copy, readonly) NSString *taskPath;
+
+// MARK: Config
+/**
+ 获取渲染窗口像素大小
+
+ @return 渲染窗口像素大小
+ */
+- (CGSize)getPreviewRenderSize;
+
+/**
+ 画面填充模式
+
+ @param mode  AliyunScaleModeFit = 0,      // 填充
+ AliyunScaleModeFill = 1         // 裁剪
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ */
+- (int)setScaleMode:(AliyunScaleMode)mode;
+
+// MARK: State
 /**
  创建相关资源
  @return
@@ -90,6 +126,49 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  状态不正确 ALIVC_COMMON_INVALID_STATE
  */
 - (int)stopEdit;
+
+// MARK: Callback
+/**
+ 编辑回调
+ */
+/**
+ The edit callbacks
+ */
+@property(nonatomic, weak) id<AliyunEditorDelegate> editorCallback;
+
+/**
+ 播放回调
+ */
+/**
+ The playback callbacks.
+ */
+@property(nonatomic, weak) id<AliyunIPlayerCallback> playerCallback;
+
+/**
+ 导出回调
+ */
+/**
+ The exporter callback
+ */
+@property(nonatomic, weak) id<AliyunIExporterCallback> exporterCallback;
+
+/**
+ 渲染回调
+ */
+/**
+ The render callback
+ */
+@property(nonatomic, weak) id<AliyunIRenderCallback> renderCallback;
+@end
+
+@interface AliyunEditor (Model)
+/**
+ 编辑工程模型
+ */
+/**
+ The project model of editor
+ */
+- (AliyunEditorProject *)getEditorProject;
 
 /**
  获取媒体片段构造器
@@ -113,8 +192,6 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  */
 - (id<AliyunIExporter>)getExporter;
 
-
-
 /**
  获取贴图管理类(字幕/动图) API_AVAILABLE(3.20.0)
  
@@ -123,11 +200,195 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
 - (AliyunStickerManager *)getStickerManager;
 
 /**
- 获取渲染窗口像素大小
-
- @return 渲染窗口像素大小
+ 获取翻转字幕编排 API_AVAILABLE(3.20.0)
  */
-- (CGSize)getPreviewRenderSize;
+- (AliyunRollCaptionComposer *)rollCaptionComposer;
+@end
+
+@interface AliyunEditor (Global)
+/**
+ 使用涂鸦
+
+ @param paintImage 涂鸦图片
+ @param linesData 涂鸦线数据，用于草稿恢复
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
+ 图片类型不支持 ALIVC_SVIDEO_EDITOR_VIEW_TYPE_NOT_SUPPORTED
+ */
+- (int)applyPaint:(AliyunEffectImage *)paintImage linesData:(NSArray<AliyunICanvasLineData *> *)linesData;
+
+/**
+ 删除涂鸦
+ 
+ @param paintImage 涂鸦图片
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ */
+- (int)removePaint:(AliyunEffectImage *)paintImage;
+
+/**
+ 设置水印
+ 
+ @param waterMark 水印
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
+ 图片类型不支持 ALIVC_SVIDEO_EDITOR_VIEW_TYPE_NOT_SUPPORTED
+ */
+- (int)setWaterMark:(AliyunEffectImage *)waterMark;
+
+/**
+ 设置片尾水印
+
+ AliyunEffectImage对象需要设置endtime属性，此属性代表距离视频结尾的时长。
+
+ @param waterMark 片尾水印
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
+ */
+- (int)setTailWaterMark:(AliyunEffectImage *)waterMark;
+
+/**
+ 视频渲染最底层背景颜色
+
+ 在填充模式下具有效果
+ @param color 颜色
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ */
+- (int)setRenderBackgroundColor:(UIColor *)color;
+
+/**
+ API_AVAILABLE(3.7.0)
+
+ 在填充模式下，设置高斯模糊视频播放背景 支持多段时间段 注意：如果背景色为clearColor将默认是此效果，如果是非clearColor此接口才有效果
+
+ @param blur 视频高斯模糊效果
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ */
+- (int)applyBlurBackgroundPlay:(AliyunEffectBlurBackground *)blur;
+
+/**
+ API_AVAILABLE(3.7.0)
+
+ 移除视频高斯模糊播放背景
+
+ @param blur 视频高斯模糊效果
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ */
+- (int)removeBlurBackgroundPlay:(AliyunEffectBlurBackground *)blur;
+@end
+
+@interface AliyunEditor (Video)
+/**
+ API_AVAILABLE(3.20.0)
+ 设置视频增强参数
+ @param streamId 目标流id
+ @param videoAugmentationType 增强类型
+ @see AliyunVideoAugmentationType
+ @param value 参数值范围[0.0, 1.0]
+ @return 正确返回0，错误返回错误码
+ */
+- (int)setVideoAugmentation:(AliyunVideoAugmentationType)videoAugmentationType value:(float)value streamId:(int)streamId;
+
+/**
+ API_AVAILABLE(3.20.0)
+ 重置视频增强参数
+ @param videoAugmentationType 增强类型
+ @see AliyunVideoAugmentationType
+ @return 正确返回0，错误返回错误码
+ * */
+- (int)resetVideoAugmentation:(AliyunVideoAugmentationType)videoAugmentationType streamId:(int)streamId;
+
+/**
+ API_AVAILABLE(3.7.0)
+
+ 添加转场   注意：
+               ① 如果只有一个视频片段，不可调用此接口
+               ② 转场的时长不能超过前后两段视频中最短的视频时长
+               ③ 使用此接口前，先调用[_editor stopEdit]，然后调用此接口，接着调用 [_editor startEdit] 和[_player play]
+
+ [----A视频段----] [----B视频段----] [----C视频段----]...[----N段视频----]
+                 ^                ^                 ^
+ clipIndex:      0                1                N-1
+
+
+ @param transition 具体的转场
+ @param clipIdx 视频片段交叉序列点
+ @return 返回值为ALIVC_COMMON_RETURN_FAILED失败
+ ALIVC_COMMON_RETURN_SUCCESS成功
+ */
+- (int)applyTransition:(AliyunTransitionEffect *)transition atIndex:(int)clipIdx;
+
+/**
+ API_AVAILABLE(3.7.0)
+
+ 更新转场   注意：
+               ① 如果只有一个视频片段，不可调用此接口
+               ② 转场的时长不能超过前后两段视频中最短的视频时长
+
+ [----A视频段----] [----B视频段----] [----C视频段----]...[----N段视频----]
+                 ^                ^                 ^
+ clipIndex:      0                1                N-1
+
+
+ @param transition 具体的转场
+ @param clipIdx 视频片段交叉序列点
+ @return 返回值为ALIVC_COMMON_RETURN_FAILED失败
+ ALIVC_COMMON_RETURN_SUCCESS成功
+ */
+-(int)updateTransition:(AliyunTransitionEffect *)transition atIndex:(int)clipIdx;
+
+/**
+ API_AVAILABLE(3.7.0)
+
+ 删除某个转场效果  注意：
+ 使用此接口前，先调用[_editor stopEdit]，然后调用此接口，接着调用 [_editor startEdit] 和[_player play]
+
+ @param clipIdx 序列号
+ */
+- (int)removeTransitionAtIndex:(int)clipIdx;
+@end
+
+
+@interface AliyunEditor (Audio)
+/**
+ 设置是否静音
+
+ @param mute 静音
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_CTL_INPUT_ERROR
+ */
+- (int)setMute:(BOOL)mute;
+
+/**
+ 设置音量
+
+ @param volume 音量：0-200
+ 默认值100,原始的音量大小
+ 大于100可能会破音，建议0-100
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_CTL_INPUT_ERROR
+ */
+- (int)setVolume:(int)volume;
 
 /**
  使用mv
@@ -226,295 +487,6 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  调用后，播放器将处于暂停状态
  */
 - (int)removeDubs;
-
-/**
- 使用滤镜
- @param filter filter对象
- @return
- 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- 状态不正确 ALIVC_COMMON_INVALID_STATE
- ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
- */
-- (int)applyFilter:(AliyunEffectFilter *)filter;
-
-/**
- 删除滤镜
- @return
- 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- 状态不正确 ALIVC_COMMON_INVALID_STATE
- ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
- */
-- (int)removeFilter;
-
-/**
- 使用特效滤镜
- @param filter filter对象
- @return
- 状态不正确 ALIVC_COMMON_INVALID_STATE
- ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- */
-- (int)applyAnimationFilter:(AliyunEffectFilter *)filter;
-
-/**
- 更新特效滤镜
- @param filter filter对象
- @return
- 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- 状态不正确 ALIVC_COMMON_INVALID_STATE
- ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
- */
-- (int)updateAnimationFilter:(AliyunEffectFilter *)filter;
-
-/**
- 移除某个特效滤镜
- @param filter filter对象
- @return
- 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- 状态不正确 ALIVC_COMMON_INVALID_STATE
- ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- */
-- (int)removeAnimationFilter:(AliyunEffectFilter *)filter;
-
-/**
- 使用时间特效
- @param filter 特效对象
- @return
- 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- 状态不正确 ALIVC_COMMON_INVALID_STATE
- 参数设置不正确 ALIVC_COMMON_INVALID_PARAM
- 特效不支持（多个流的情况下）ALIVC_SVIDEO_EDITOR_TIME_EFFECT_NOT_SUPPORT
- ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
- ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
- ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILE
- 调用后，播放器将处于暂停状态
- */
-- (int)applyTimeFilter:(AliyunEffectTimeFilter *)filter;
-
-/**
- API_AVAILABLE(3.7.0)
-
- 删除某一个时间特效 目前只能删变速的时间特效
- @param filter 待删除的时间特效
- @return
- 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- 状态不正确 ALIVC_COMMON_INVALID_STATE
- 调用后，播放器将处于暂停状态
- */
-- (int)removeTimeFilter:(AliyunEffectTimeFilter *)filter;
-
-/**
- 删除全部的时间特效
-
- 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- 状态不正确 ALIVC_COMMON_INVALID_STATE
- ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
- ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED]
- 调用后，播放器将处于暂停状态
- */
-- (int)removeTimeFilter;
-
-/**
- 获取当前的时间特效类型
-
- @return 时间特效种类  TIME_EFFECT_NONE = 0, 无效果
- TIME_EFFECT_SPEED = 1,加速或者减速
- TIME_EFFECT_REPEAT = 2,反复
- TIME_EFFECT_INVERT = 3 倒放
- */
-- (int)getTimeFilter;
-
-/**
- 加入静态贴纸
-
- @param staticImage 静态贴纸
- @return
- 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- 状态不正确 ALIVC_COMMON_INVALID_STATE
- 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
- 图片类型不支持 ALIVC_SVIDEO_EDITOR_VIEW_TYPE_NOT_SUPPORTED
- */
-- (int)applyStaticImage:(AliyunEffectStaticImage *)staticImage;
-
-/**
- 移除静态贴纸
-
- @param staticImage 静态贴纸
- @return
- 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- 状态不正确 ALIVC_COMMON_INVALID_STATE
- ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- */
-- (int)removeStaticImage:(AliyunEffectStaticImage *)staticImage;
-
-/**
- 使用涂鸦
-
- @param paintImage 涂鸦图片
- @return
- 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- 状态不正确 ALIVC_COMMON_INVALID_STATE
- 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
- 图片类型不支持 ALIVC_SVIDEO_EDITOR_VIEW_TYPE_NOT_SUPPORTED
- */
-- (int)applyPaint:(AliyunEffectImage *)paintImage;
-
-/**
- API_AVAILABLE(3.7.0)
-
- 添加转场   注意：
-               ① 如果只有一个视频片段，不可调用此接口
-               ② 转场的时长不能超过前后两段视频中最短的视频时长
-               ③ 使用此接口前，先调用[_editor stopEdit]，然后调用此接口，接着调用 [_editor startEdit] 和[_player play]
-
- [----A视频段----] [----B视频段----] [----C视频段----]...[----N段视频----]
-                 ^                ^                 ^
- clipIndex:      0                1                N-1
-
-
- @param transition 具体的转场
- @param clipIdx 视频片段交叉序列点
- @return 返回值为ALIVC_COMMON_RETURN_FAILED失败
- ALIVC_COMMON_RETURN_SUCCESS成功
- */
-- (int)applyTransition:(AliyunTransitionEffect *)transition atIndex:(int)clipIdx;
-
-/**
- API_AVAILABLE(3.7.0)
-
- 更新转场   注意：
-               ① 如果只有一个视频片段，不可调用此接口
-               ② 转场的时长不能超过前后两段视频中最短的视频时长
-
- [----A视频段----] [----B视频段----] [----C视频段----]...[----N段视频----]
-                 ^                ^                 ^
- clipIndex:      0                1                N-1
-
-
- @param transition 具体的转场
- @param clipIdx 视频片段交叉序列点
- @return 返回值为ALIVC_COMMON_RETURN_FAILED失败
- ALIVC_COMMON_RETURN_SUCCESS成功
- */
--(int)updateTransition:(AliyunTransitionEffect *)transition atIndex:(int)clipIdx;
-
-/**
- API_AVAILABLE(3.7.0)
-
- 删除某个转场效果  注意：
- 使用此接口前，先调用[_editor stopEdit]，然后调用此接口，接着调用 [_editor startEdit] 和[_player play]
-
- @param clipIdx 序列号
- */
-- (int)removeTransitionAtIndex:(int)clipIdx;
-
-/**
- API_AVAILABLE(3.7.0)
-
- 加帧动画
-
- 注意：1.主流不支持alpha帧动画  2.在倒播特效下，不支持此功能
- @param obj 动画作用的对象
- @param action 动画
- */
-- (void)add:(id<AliyunActionProtocol>)obj withFrameAnimation:(AliyunAction *)action;
-
-/**
- API_AVAILABLE(3.7.0)
-
- 删帧动画
-
- @param obj 动画作用的对象
- @param action 动画
- */
-- (void)remove:(id<AliyunActionProtocol>)obj withFrameAnimation:(AliyunAction *)action;
-
-/**
- 删除涂鸦
- 
- @param paintImage 涂鸦图片
- @return
- 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- 状态不正确 ALIVC_COMMON_INVALID_STATE
- ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- */
-- (int)removePaint:(AliyunEffectImage *)paintImage;
-
-
-/**
- API_AVAILABLE(3.20.0)
- 设置视频增强参数
- @param streamId 目标流id
- @param videoAugmentationType 增强类型
- @see AliyunVideoAugmentationType
- @param value 参数值范围[0.0, 1.0]
- @return 正确返回0，错误返回错误码
- */
-- (int)setVideoAugmentation:(AliyunVideoAugmentationType)videoAugmentationType value:(float)value streamId:(int)streamId;
-
-/**
- API_AVAILABLE(3.20.0)
- 重置视频增强参数
- @param videoAugmentationType 增强类型
- @see AliyunVideoAugmentationType
- @return 正确返回0，错误返回错误码
- * */
-- (int)resetVideoAugmentation:(AliyunVideoAugmentationType)videoAugmentationType streamId:(int)streamId;
-
-/**
- 设置水印
- 
- @param waterMark 水印
- @return
- 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- 状态不正确 ALIVC_COMMON_INVALID_STATE
- 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
- 图片类型不支持 ALIVC_SVIDEO_EDITOR_VIEW_TYPE_NOT_SUPPORTED
- */
-- (int)setWaterMark:(AliyunEffectImage *)waterMark;
-
-/**
- 设置片尾水印
-
- AliyunEffectImage对象需要设置endtime属性，此属性代表距离视频结尾的时长。
-
- @param waterMark 片尾水印
- @return
- 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- 状态不正确 ALIVC_COMMON_INVALID_STATE
- 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
- ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
- ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
- */
-- (int)setTailWaterMark:(AliyunEffectImage *)waterMark;
-
-/**
- 设置是否静音
-
- @param mute 静音
- @return
- 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- 状态不正确 ALIVC_COMMON_INVALID_STATE
- ALIVC_FRAMEWORK_AUDIO_PROCESS_CTL_INPUT_ERROR
- */
-- (int)setMute:(BOOL)mute;
-
-/**
- 设置音量
-
- @param volume 音量：0-200
- 默认值100,原始的音量大小
- 大于100可能会破音，建议0-100
- @return
- 正常返回 ALIVC_COMMON_RETURN_SUCCESS
- 状态不正确 ALIVC_COMMON_INVALID_STATE
- ALIVC_FRAMEWORK_AUDIO_PROCESS_CTL_INPUT_ERROR
- */
-- (int)setVolume:(int)volume;
 
 /**
  设置混音权重
@@ -721,54 +693,182 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  */
 - (int)removeMainStreamsAudioFadeOut;
 
-/**
- 画面填充模式
+@end
 
- @param mode  AliyunScaleModeFit = 0,      // 填充    
- AliyunScaleModeFill = 1         // 裁剪 
+@interface AliyunEditor (Filter)
+/**
+ 使用滤镜
+ @param filter filter对象
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
+ */
+- (int)applyFilter:(AliyunEffectFilter *)filter;
+
+/**
+ 删除滤镜
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
+ */
+- (int)removeFilter;
+
+/**
+ 使用特效滤镜
+ @param filter filter对象
+ @return
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ */
+- (int)applyAnimationFilter:(AliyunEffectFilter *)filter;
+
+/**
+ 更新特效滤镜
+ @param filter filter对象
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
+ */
+- (int)updateAnimationFilter:(AliyunEffectFilter *)filter;
+
+/**
+ 移除某个特效滤镜
+ @param filter filter对象
  @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
  ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
  */
-- (int)setScaleMode:(AliyunScaleMode)mode;
+- (int)removeAnimationFilter:(AliyunEffectFilter *)filter;
 
 /**
- 视频渲染最底层背景颜色
-
- 在填充模式下具有效果
- @param color 颜色
+ 使用时间特效
+ @param filter 特效对象
  @return
  正常返回 ALIVC_COMMON_RETURN_SUCCESS
  状态不正确 ALIVC_COMMON_INVALID_STATE
+ 参数设置不正确 ALIVC_COMMON_INVALID_PARAM
+ 特效不支持（多个流的情况下）ALIVC_SVIDEO_EDITOR_TIME_EFFECT_NOT_SUPPORT
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ ALIVC_FRAMEWORK_RENDER_ERROR_INVALID_OPTION
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILE
+ 调用后，播放器将处于暂停状态
  */
-- (int)setRenderBackgroundColor:(UIColor *)color;
+- (int)applyTimeFilter:(AliyunEffectTimeFilter *)filter;
 
 /**
  API_AVAILABLE(3.7.0)
 
- 在填充模式下，设置高斯模糊视频播放背景 支持多段时间段 注意：如果背景色为clearColor将默认是此效果，如果是非clearColor此接口才有效果
-
- @param blur 视频高斯模糊效果
+ 删除某一个时间特效 目前只能删变速的时间特效
+ @param filter 待删除的时间特效
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 调用后，播放器将处于暂停状态
  */
-- (void)applyBlurBackgroundPlay:(AliyunEffectBlurBackground *)blur;
+- (int)removeTimeFilter:(AliyunEffectTimeFilter *)filter;
+
+/**
+ 删除全部的时间特效
+
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_FILE_STREAM_LIST_FAILED
+ ALIVC_FRAMEWORK_AUDIO_PROCESS_OPTION_LIST_FAILED]
+ 调用后，播放器将处于暂停状态
+ */
+- (int)removeTimeFilter;
+
+/**
+ 获取当前的时间特效类型
+
+ @return 时间特效种类  TIME_EFFECT_NONE = 0, 无效果
+ TIME_EFFECT_SPEED = 1,加速或者减速
+ TIME_EFFECT_REPEAT = 2,反复
+ TIME_EFFECT_INVERT = 3 倒放
+ */
+- (int)getTimeFilter;
+@end
+
+@interface AliyunEditor (Animation)
+/**
+ API_AVAILABLE(3.7.0)
+
+ 加帧动画
+
+ 注意：1.主流不支持alpha帧动画  2.在倒播特效下，不支持此功能
+ @param obj 动画作用的对象
+ @param action 动画
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 错误发生 ALIVC_COMMON_RETURN_FAILED
+ */
+- (int)add:(id<AliyunActionProtocol>)obj withFrameAnimation:(AliyunAction *)action;
 
 /**
  API_AVAILABLE(3.7.0)
 
- 移除视频高斯模糊播放背景
+ 删帧动画
 
- @param blur 视频高斯模糊效果
+ @param obj 动画作用的对象
+ @param action 动画
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 错误发生 ALIVC_COMMON_RETURN_FAILED
  */
-- (void)removeBlurBackgroundPlay:(AliyunEffectBlurBackground *)blur;
+- (int)remove:(id<AliyunActionProtocol>)obj withFrameAnimation:(AliyunAction *)action;
+@end
 
+
+// MARK: - deprecated. It is not recommended to use the following methods.
+@interface AliyunEditor (Deprecated)
+/**
+ 使用涂鸦
+
+ @param paintImage 涂鸦图片
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
+ 图片类型不支持 ALIVC_SVIDEO_EDITOR_VIEW_TYPE_NOT_SUPPORTED
+ */
+- (int)applyPaint:(AliyunEffectImage *)paintImage __deprecated_msg("please use applyPaint:linesData:");
+/**
+ 播放，合成，渲染回调类 已经废弃
+ */
+@property(nonatomic, weak) id<AliyunIPlayerCallback, AliyunIExporterCallback, AliyunIRenderCallback> delegate __deprecated_msg("please use playerCallback/exporterCallback/RenderCallback");
 
 /**
- 获取翻转字幕编排 API_AVAILABLE(3.20.0)
- */
-- (AliyunRollCaptionComposer *)rollCaptionComposer;
+ 加入静态贴纸 已废弃
 
-#pragma mark - deprecated. It is not recommended to use the following methods.
+ @param staticImage 静态贴纸
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ 文件不存在 ALIVC_SVIDEO_EDITOR_FILE_NOT_EXIST
+ 图片类型不支持 ALIVC_SVIDEO_EDITOR_VIEW_TYPE_NOT_SUPPORTED
+ */
+- (int)applyStaticImage:(AliyunEffectStaticImage *)staticImage __deprecated_msg("please use getStickerManager, addImage:startTime:duration:");
+
+/**
+ 移除静态贴纸 已废弃
+
+ @param staticImage 静态贴纸
+ @return
+ 正常返回 ALIVC_COMMON_RETURN_SUCCESS
+ 状态不正确 ALIVC_COMMON_INVALID_STATE
+ ALIVC_FRAMEWORK_RENDER_ERROR_SCENE_INVALID
+ */
+- (int)removeStaticImage:(AliyunEffectStaticImage *)staticImage __deprecated_msg("please use getStickerManager, remove:");
+
 /**
  API_AVAILABLE(3.7.0)
 
@@ -912,7 +1012,4 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  @return PasterRender
  */
 - (id<AliyunIPasterRender>)getPasterRender __deprecated_msg("use getStickerManager");
-
-
-
 @end

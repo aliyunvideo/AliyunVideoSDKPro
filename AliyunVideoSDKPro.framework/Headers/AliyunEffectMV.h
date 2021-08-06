@@ -14,6 +14,16 @@
 @interface AliyunEffectMV : AliyunEffect
 
 /**
+ 开始时间
+ */
+@property(nonatomic, assign) float startTime;
+
+/**
+ 特效持续时间
+ */
+@property(nonatomic, assign) float duration;
+
+/**
  mv音乐流id
  */
 @property(nonatomic, assign) int audioEffectVid;

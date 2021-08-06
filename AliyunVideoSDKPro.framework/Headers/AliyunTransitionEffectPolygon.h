@@ -15,7 +15,7 @@
 @interface AliyunTransitionEffectPolygon : AliyunTransitionEffect
 
 /**
- 设置几变形
+ 设置几变形，仅支持5边形
 
  n >= 3
  */

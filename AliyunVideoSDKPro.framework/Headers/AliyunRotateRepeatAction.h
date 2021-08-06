@@ -19,6 +19,14 @@
 @property(nonatomic, assign) float durationPerCircle;
 
 /**
+ 是否重复；默认YES
+ */
+/**
+ isRepeat; default: YES
+ */
+@property(nonatomic, assign) BOOL isRepeat;
+
+/**
  初始化方法
 
  @param dict 初始化参数

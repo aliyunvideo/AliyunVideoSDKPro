@@ -74,4 +74,13 @@ typedef NS_ENUM(NSUInteger, AliyunStickerType) {
  the origin size of sticker API_AVAILABLE(3.22.0)
  */
 @property (nonatomic, readonly) CGSize originSize;
+
+/**
+ 获取所有动画action API_AVAILABLE(3.23.0)
+ */
+/**
+ get all frame animation actions. API_AVAILABLE(3.23.0)
+ */
+- (NSArray *)getAllActionList;
+
 @end

@@ -49,6 +49,14 @@
 @property (nonatomic, assign, readonly) int firstClipVideoRotation;
 
 /**
+ 退出时删除所有片段，默认不删除
+ */
+/**
+ Delete all video clips on exit; default is NO
+ */
+@property (nonatomic, assign) BOOL deleteVideoClipsOnExit;
+
+/**
  删除所有视频片段
  */
 - (void)deleteAllPart;

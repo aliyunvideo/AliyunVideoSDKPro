@@ -7,6 +7,7 @@
 //
 
 #import "AliyunAction.h"
+#import <UIKit/UIKit.h>
 
 /**
  旋转动画类
@@ -28,6 +29,22 @@
  单位：弧度
  */
 @property(nonatomic, assign) float fromDegree;
+
+/**
+ 旋转的中心点，取值[0,1]
+ */
+/**
+ The center of rotate
+ */
+@property(nonatomic, assign) CGPoint normalizedCenter;
+
+/**
+ 旋转中心点所在的坐标系统，默认为AliyunActionCoordinateSpace_Local
+ */
+/**
+ The CoordinateSpace of Center Point
+ */
+@property(nonatomic, assign) AliyunActionCoordinateSpace coordinateSpace;
 
 /**
  初始化方法

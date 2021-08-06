@@ -8,6 +8,7 @@
 
 #import "AliyunIPaint.h"
 #import <UIKit/UIKit.h>
+#import "AliyunICanvasLineData.h"
 
 @protocol AliyunICanvasViewDelegate <NSObject>
 
@@ -45,6 +46,14 @@
  画笔
  */
 @property (nonatomic, strong) AliyunIPaint *paint;
+
+/**
+ 线数据
+ */
+/**
+ The data of lines
+ */
+@property (nonatomic, copy) NSArray<AliyunICanvasLineData *> *lines;
 
 /**
  初始化方法

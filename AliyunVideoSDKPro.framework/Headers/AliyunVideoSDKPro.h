@@ -43,6 +43,7 @@ FOUNDATION_EXPORT const unsigned char AliyunVideoSDKProVersionString[];
 #import <AliyunVideoSDKPro/AliyunIPasterRender.h>
 #import <AliyunVideoSDKPro/AliyunPasterUIEventProtocol.h>
 #import <AliyunVideoSDKPro/AliyunIPaint.h>
+#import <AliyunVideoSDKPro/AliyunICanvasLineData.h>
 #import <AliyunVideoSDKPro/AliyunICanvasView.h>
 #import <AliyunVideoSDKPro/AliyunPublishManager.h>
 #import <AliyunVideoSDKPro/AliyunVodPublishManager.h>
@@ -85,6 +86,7 @@ FOUNDATION_EXPORT const unsigned char AliyunVideoSDKProVersionString[];
 #import <AliyunVideoSDKPro/AliyunRotateRepeatAction.h>
 #import <AliyunVideoSDKPro/AliyunRotateToAction.h>
 #import <AliyunVideoSDKPro/AliyunScaleAction.h>
+#import <AliyunVideoSDKPro/AliyunWipeAction.h>
 #import <AliyunVideoSDKPro/AliyunTransitionEffect.h>
 #import <AliyunVideoSDKPro/AliyunTransitionEffectCircle.h>
 #import <AliyunVideoSDKPro/AliyunTransitionEffectFade.h>
@@ -123,5 +125,25 @@ FOUNDATION_EXPORT const unsigned char AliyunVideoSDKProVersionString[];
 
 #import <AliyunVideoSDKPro/AliyunRecorderConfig.h>
 #import <AliyunVideoSDKPro/AliyunRecorder.h>
+
+#import <AliyunVideoSDKPro/AliyunEditorProject.h>
+#import <AliyunVideoSDKPro/AEPConfig.h>
+#import <AliyunVideoSDKPro/AEPTimeline.h>
+#import <AliyunVideoSDKPro/AEPSource.h>
+#import <AliyunVideoSDKPro/AEPTrack.h>
+#import <AliyunVideoSDKPro/AEPVideoTrackClip.h>
+#import <AliyunVideoSDKPro/AEPAudioTrackClip.h>
+#import <AliyunVideoSDKPro/AEPStickerTrack.h>
+#import <AliyunVideoSDKPro/AEPEffectTrack.h>
+#import <AliyunVideoSDKPro/AEPGlobalTrack.h>
+#import <AliyunVideoSDKPro/AEPEffect.h>
+#import <AliyunVideoSDKPro/AEPTransitionEffect.h>
+#import <AliyunVideoSDKPro/AEPAction.h>
+
+#import <AliyunVideoSDKPro/AliyunEditor+Draft.h>
+#import <AliyunVideoSDKPro/AliyunDraft.h>
+#import <AliyunVideoSDKPro/AliyunDraft+Cloud.h>
+#import <AliyunVideoSDKPro/AliyunDraftManager.h>
+#import <AliyunVideoSDKPro/AEPResourceModel.h>
 
 #endif

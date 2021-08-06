@@ -16,7 +16,7 @@
  - TimeFilterTypeInvert: 倒放
  */
 typedef NS_ENUM(NSInteger, TimeFilterType) {
-    TimeFilterTypeSpeed,
+    TimeFilterTypeSpeed = 0,
     TimeFilterTypeRepeat,
     TimeFilterTypeInvert,
 };

@@ -30,15 +30,11 @@
 
 /**
  滤镜开始时间
-
- 只在设置动效滤镜时有效
  */
 @property(nonatomic, assign) float streamStartTime;
 
 /**
  滤镜结束时间
-
- 只在设置动效滤镜时有效
  */
 @property(nonatomic, assign) float streamEndTime;
 

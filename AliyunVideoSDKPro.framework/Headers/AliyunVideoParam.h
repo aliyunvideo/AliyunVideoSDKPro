@@ -60,11 +60,11 @@ typedef NS_ENUM(NSInteger, AlivcContentMode) {
  - AliyunVideoCodecX264: X264
  */
 typedef NS_ENUM(NSInteger, AliyunVideoCodecType) {
-    AliyunVideoCodecTypeAuto = 0,
-    AliyunVideoCodecHardware,
-    AliyunVideoCodecFFmpeg,
-    AliyunVideoCodecOpenh264,
-    AliyunVideoCodecX264
+    AliyunVideoCodecTypeAuto    = 0,
+    AliyunVideoCodecHardware    = 1,
+    AliyunVideoCodecFFmpeg      = 2,
+    AliyunVideoCodecOpenh264    = 3,
+    AliyunVideoCodecX264        = 5,
 };
 
 /**

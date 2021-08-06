@@ -319,6 +319,13 @@ enum {
 - (void)finishRecording;
 
 /**
+ 结束录制，输出给编辑器 API_AVAILABLE(3.23.0)
+/**
+ Finish record for editor API_AVAILABLE(3.23.0)
+ */
+- (NSString *) finishRecordingForEdit;
+
+/**
  释放录制资源
  */
 - (void)destroyRecorder;
