@@ -85,6 +85,16 @@ typedef NS_ENUM(NSUInteger, AliyunEditorMode) {
  */
 @property(nonatomic, copy, readonly) NSString *taskPath;
 
+
+/**
+ 预览视图
+ */
+/**
+ The preview
+ */
+@property(nonatomic, strong, readonly) UIView *preview;
+
+
 // MARK: Config
 /**
  获取渲染窗口像素大小

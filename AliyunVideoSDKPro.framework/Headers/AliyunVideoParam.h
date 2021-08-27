@@ -55,16 +55,16 @@ typedef NS_ENUM(NSInteger, AlivcContentMode) {
  ios只开放部分编码类型
  - AliyunVideoCodecTypeAuto: 自动
  - AliyunVideoCodecHardware: 硬编
- - AliyunVideoCodecFFmpeg: ffmpeg
  - AliyunVideoCodecOpenh264: Openh264
- - AliyunVideoCodecX264: X264
+ 
+ - AliyunVideoCodecFFmpeg: ffmpeg, 当前版本(v3.23.0之后)不再使用
+ - AliyunVideoCodecX264: X264, 当前版本(v3.23.0之后)不再使用
  */
 typedef NS_ENUM(NSInteger, AliyunVideoCodecType) {
-    AliyunVideoCodecTypeAuto    = 0,
-    AliyunVideoCodecHardware    = 1,
-    AliyunVideoCodecFFmpeg      = 2,
-    AliyunVideoCodecOpenh264    = 3,
-    AliyunVideoCodecX264        = 5,
+    AliyunVideoCodecTypeAuto = 0,
+    AliyunVideoCodecHardware = 1, 
+    AliyunVideoCodecOpenh264 = 3,
+
 };
 
 /**
