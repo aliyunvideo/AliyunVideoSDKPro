@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "AliyunVideoSDKPro"
-  s.version      = "3.24.0"
+  s.version      = "3.25.0"
   s.summary      = "aliyun video sdk professional"
 
   # This description is used to generate tags and improve search results.
@@ -81,7 +81,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/aliyunvideo/AliyunVideoSDKPro.git", :tag => "#{s.version}" }
+  s.source       = { :http => "https://alivc-demo-cms.alicdn.com/versionProduct/sdk/shortVideo/3.25.0/iOS/AliyunVideoSDKPro.zip" }
 
   
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -91,7 +91,7 @@ Pod::Spec.new do |s|
   #  For header files it will include any header in the folder.
   #  Not including the public_header_files will make all headers public.
   #
-   s.resource = "AliyunVideoSDKPro.bundle"
+   s.resource = "AliyunVideoSDKPro/AliyunVideoSDKPro.bundle"
   # s.source_files  = "Classes", "Classes/**/*.{h,m}"
   s.exclude_files = "Classes/Exclude"
 
@@ -127,7 +127,7 @@ Pod::Spec.new do |s|
   #  s.library   = "resolv"
    s.libraries   = "resolv","c++"
 
-  s.vendored_frameworks = "AliyunVideoSDKPro.framework","AliyunVideoCore.framework"
+  s.vendored_frameworks = "AliyunVideoSDKPro/AliyunVideoSDKPro.framework","AliyunVideoSDKPro/AliyunVideoCore.framework"
 
   s.dependency 'QuCore-ThirdParty', '~> 4.3.0'
   # s.dependency 'VODUpload'
