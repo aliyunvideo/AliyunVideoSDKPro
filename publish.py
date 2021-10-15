@@ -14,14 +14,15 @@ else:
         for i in range(len(lines)):
             if lines[i].find('s.version      =') != -1:
                 lines[i] = "  s.version      = \"" + version + "\"" + "\n"
+            if lines[i].find('s.source       =') != -1:
+                lines[i] = "  s.source       = { :http => 'https://alivc-demo-cms.alicdn.com/versionProduct/sdk/shortVideo/" + version + "/iOS/AliyunVideoSDKPro.zip' }"
         f.close
-    
-    
+
     with open(spec,'w+') as wf:
         wf.writelines(lines)
         wf.close
 
-    tag = "git tag -a "+version+" -m '"+version+"'" 
+    tag = "git tag -a "+version+" -m '"+version+"'"
     trunk = 'pod trunk push ' + spec + ' --allow-warnings --verbose --skip-import-validation'
 
     os.system('git add .')
@@ -30,33 +31,5 @@ else:
     os.system(tag)
     os.system('git push --tags')
     os.system(trunk)
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
 
 
