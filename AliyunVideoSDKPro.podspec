@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "AliyunVideoSDKPro"
-  s.version      = "3.26.0"
+  s.version      = "3.27.0"
   s.summary      = "aliyun video sdk professional"
 
   # This description is used to generate tags and improve search results.
@@ -81,7 +81,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :http => 'https://alivc-demo-cms.alicdn.com/versionProduct/sdk/shortVideo/3.26.0/iOS/AliyunVideoSDKPro.zip' }  
+  s.source       = { :http => "https://alivc-demo-cms.alicdn.com/versionProduct/sdk/shortVideo/#{s.version}/iOS/AliyunVideoSDKPro.zip" }
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  CocoaPods is smart about how it includes source code. For source files

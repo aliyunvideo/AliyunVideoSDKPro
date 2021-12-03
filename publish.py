@@ -14,8 +14,6 @@ else:
         for i in range(len(lines)):
             if lines[i].find('s.version      =') != -1:
                 lines[i] = "  s.version      = \"" + version + "\"" + "\n"
-            if lines[i].find('s.source       =') != -1:
-                lines[i] = "  s.source       = { :http => 'https://alivc-demo-cms.alicdn.com/versionProduct/sdk/shortVideo/" + version + "/iOS/AliyunVideoSDKPro.zip' }"
         f.close
 
     with open(spec,'w+') as wf:
