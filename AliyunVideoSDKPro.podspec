@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "AliyunVideoSDKPro"
-  s.version      = "3.29.0"
+  s.version      = "3.30.0"
   s.summary      = "aliyun video sdk professional"
 
   # This description is used to generate tags and improve search results.
@@ -39,8 +39,8 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  # s.license      = "MIT"
-  s.license      = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
+  s.license      = "Apache License, Version 2.0"
+  #s.license      = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
 
    s.resource = "Resources/AliyunVideoSDKPro.bundle"
 
@@ -95,8 +95,8 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = "Classes/**/*.h"
 
-  # s.subspec 'AliyunVideoCore' do |core|
-  #   core.vendored_frameworks = 'AliyunVideoCore.framework'
+  # s.subspec 'AliyunVideoAIO' do |core|
+  #   core.vendored_frameworks = 'AliyunVideoAIO.framework'
   # end
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -125,10 +125,11 @@ Pod::Spec.new do |s|
   #  s.library   = "resolv"
    s.libraries   = "resolv","c++"
 
-  s.vendored_frameworks = "AliyunVideoSDKPro/AliyunVideoSDKPro.framework","AliyunVideoSDKPro/AliyunVideoCore.framework"
+  s.vendored_frameworks = "AliyunVideoSDKPro/AliyunVideoSDKPro.framework","AliyunVideoSDKPro/AliyunVideoAIO.framework"
 
-  s.dependency 'QuCore-ThirdParty', '~> 4.3.1'
-  # s.dependency 'VODUpload'
+  s.dependency 'QuCore-ThirdParty', '~> 4.3.2'
+  s.dependency 'AlivcConan', '~> 1.0.3'
+  s.dependency 'VODUpload'
 
 
 
