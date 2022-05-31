@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "AliyunVideoSDKPro"
-  s.version      = "3.31.0"
+  s.version      = "3.32.0"
   s.summary      = "aliyun video sdk professional"
 
   # This description is used to generate tags and improve search results.
@@ -128,8 +128,7 @@ Pod::Spec.new do |s|
   s.vendored_frameworks = "AliyunVideoSDKPro/AliyunVideoSDKPro.framework","AliyunVideoSDKPro/AliyunVideoAIO.framework"
 
   s.dependency 'QuCore-ThirdParty', '~> 4.3.2'
-  s.dependency 'AlivcConan', '~> 1.0.3'
-  s.dependency 'VODUpload'
+  s.dependency 'VODUpload', '~> 1.6.6'
 
 
 
