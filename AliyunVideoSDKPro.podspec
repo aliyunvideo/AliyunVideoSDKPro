@@ -32,6 +32,6 @@ Pod::Spec.new do |s|
   end
   s.subspec 'min' do |ss|
     ss.vendored_frameworks = "AliyunVideoSDKPro.framework"
-    ss.dependency 'QuCore-ThirdParty', '~> 4.3.2'
+    ss.dependency 'QuCore-ThirdParty', '~> 4.3.6'
   end
 end
