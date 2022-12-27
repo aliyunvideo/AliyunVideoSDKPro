@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AliyunVideoSDKPro"
-  s.version      = "3.34.1"
+  s.version      = "3.35.0"
   s.summary      = "aliyun video sdk professional"
   s.description  = <<-DESC
                    It's an professional SDK for aliyun video, which implement by Objective-C.
@@ -17,11 +17,17 @@ Pod::Spec.new do |s|
   s.frameworks   = "SystemConfiguration", "MobileCoreServices", "CoreTelephony"
   s.libraries    = "resolv","c++"
 
-  s.default_subspec = 'all'
+  s.default_subspec = 'common'
   s.subspec 'all' do |ss|
+    ss.vendored_frameworks = "AliyunVideoSDKPro.framework", "AETemplateEngine.framework"
+    ss.resource            = "AliyunVideoSDKPro.bundle"
+    ss.dependency 'QuCore-ThirdParty', '~> 4.3.6'
+    ss.dependency 'VODUpload', '~> 1.6.6'
+  end
+  s.subspec 'common' do |ss|
     ss.vendored_frameworks = "AliyunVideoSDKPro.framework"
     ss.resource            = "AliyunVideoSDKPro.bundle"
-    ss.dependency 'QuCore-ThirdParty', '~> 4.3.2'
+    ss.dependency 'QuCore-ThirdParty', '~> 4.3.6'
     ss.dependency 'VODUpload', '~> 1.6.6'
   end
   s.subspec 'min' do |ss|
