@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AliyunVideoSDKPro"
-  s.version      = "3.35.0"
+  s.version      = "3.36.0"
   s.summary      = "aliyun video sdk professional"
   s.description  = <<-DESC
                    It's an professional SDK for aliyun video, which implement by Objective-C.
